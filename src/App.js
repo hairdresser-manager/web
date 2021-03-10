@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Navbar from './components/Navbar';
 import theme from './theme';
 import Banner from './components/Banner';
+import Services from './components/Services';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <CssBaseline />
         <Navbar />
         <Banner />
+        <Services />
       </ThemeProvider>
     </div>
   );

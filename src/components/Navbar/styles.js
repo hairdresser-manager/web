@@ -9,7 +9,6 @@ const styles = (theme) => ({
     height: '82px',
     '& > * + *': {
       marginLeft: theme.spacing(2),
-      fontSize: '16px',
     },
   },
   styledToolbar: {
