@@ -1,8 +1,4 @@
 const styles = (theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   root: {
     width: '90vw',
     marginTop: '100px',

@@ -9,13 +9,14 @@ import {
   AccordionSummary,
   AccordionDetails,
   Paper,
+  Grid,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import styles from './styles';
 
 const Services = ({ classes }) => {
   return (
-    <div className={classes.container}>
+    <Grid container justify="center">
       <Paper elevation="4" className={classes.root}>
         <Accordion className={classes.styledAccordion}>
           <AccordionSummary
@@ -59,7 +60,7 @@ const Services = ({ classes }) => {
           </AccordionDetails>
         </Accordion>
       </Paper>
-    </div>
+    </Grid>
   );
 };
 
