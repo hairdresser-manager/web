@@ -10,7 +10,7 @@ const styles = (theme) => ({
     borderRadius: '5px',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(16),
     fontWeight: theme.typography.fontWeightRegular,
   },
   styledAccordion: {

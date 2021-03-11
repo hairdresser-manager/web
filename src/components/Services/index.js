@@ -23,13 +23,13 @@ const Services = ({ classes }) => {
           <AccordionDetails className={classes.styledAccordionDetails}>
             <div className={classes.accordionWrapper}>
               <div className={classes.leftBox}>
-                <Typography variant="subtitle2">Hair Cut</Typography>
-                <Typography variant="body2">
+                <Typography variant="subtitle1">Hair Cut</Typography>
+                <Typography variant="subtitle2">
                   Precision cut shaped to your request . Styling not included in this price
                 </Typography>
               </div>
               <div className={classes.rightBox}>
-                <Typography variant="subtitle2">$40.00+</Typography>
+                <Typography variant="subtitle1">$40.00+</Typography>
                 <Button color="secondary" variant="contained">
                   book
                 </Button>
