@@ -1,9 +1,7 @@
 import banner from '../../images/banner.jpg';
 const styles = (theme) => ({
-  container: {
+  styledGrid: {
     position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
   },
   bannerImg: {
     background: `url(${banner})`,
