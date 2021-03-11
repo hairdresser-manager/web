@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import theme from './theme';
 import Banner from './components/Banner';
 import Services from './components/Services';
+import Heading from './components/Heading';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Navbar />
         <Banner />
         <Services />
+        <Heading />
       </ThemeProvider>
     </div>
   );

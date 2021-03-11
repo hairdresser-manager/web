@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
+import {
+  Typography,
+  Button,
+  Divider,
+  withStyles,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Paper,
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Button, Divider, withStyles } from '@material-ui/core';
 import styles from './styles';
 
 const Services = ({ classes }) => {
   return (
     <div className={classes.container}>
-      <div className={classes.root}>
+      <Paper elevation="4" className={classes.root}>
         <Accordion className={classes.styledAccordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -53,7 +58,7 @@ const Services = ({ classes }) => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-      </div>
+      </Paper>
     </div>
   );
 };
