@@ -43,16 +43,16 @@ const Navbar = ({ classes }) => {
             </Typography>
           </div>
           <Typography className={classes.styledMenu}>
-            <Link href="#" color="inherit">
+            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
               home
             </Link>
-            <Link href="#" color="inherit">
+            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
               our services
             </Link>
-            <Link href="#" color="inherit">
+            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
               meet the team
             </Link>
-            <Link href="#" color="inherit">
+            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
               reviews
             </Link>
           </Typography>

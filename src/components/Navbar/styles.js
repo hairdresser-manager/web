@@ -7,6 +7,7 @@ const styles = (theme) => ({
     display: 'flex',
     alignItems: 'center',
     height: '82px',
+    marginTop: '3px',
     '& > * + *': {
       marginLeft: theme.spacing(2),
     },
@@ -46,6 +47,12 @@ const styles = (theme) => ({
     },
     styledMenu: {
       display: 'none',
+    },
+  },
+  styledLink: {
+    borderBottom: `3px solid transparent`,
+    '&:hover': {
+      borderBottom: `3px solid ${theme.palette.secondary.main}`,
     },
   },
 });

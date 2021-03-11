@@ -5,6 +5,7 @@ import theme from './theme';
 import Banner from './components/Banner';
 import Services from './components/Services';
 import Heading from './components/Heading';
+import Comment from './components/Comment';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Banner />
         <Services />
         <Heading />
+        <Comment />
       </ThemeProvider>
     </div>
   );
