@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, withStyles, Grid } from '@material-ui/core';
 import styles from './styles';
-import scissorImg from '../../images/pink-scissor.svg';
+import scissorImg from 'images/pink-scissor.svg';
 
 const Heading = ({ classes }) => {
   return (

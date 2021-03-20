@@ -7,11 +7,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './styles';
-import employee1 from '../../images/employee1.jpg';
-import employee2 from '../../images/employee2.jpg';
-import employee3 from '../../images/employee3.jpg';
-import employee4 from '../../images/employee4.jpg';
-import employee5 from '../../images/employee5.jpg';
+import employee1 from 'images/employee1.jpg';
+import employee2 from 'images/employee2.jpg';
+import employee3 from 'images/employee3.jpg';
+import employee4 from 'images/employee4.jpg';
+import employee5 from 'images/employee5.jpg';
 
 const TeamSlider = ({ classes }) => {
   const settings = {
