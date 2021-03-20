@@ -6,6 +6,7 @@ import Banner from './components/Banner';
 import Services from './components/Services';
 import Heading from './components/Heading';
 import Comment from './components/Comment';
+import SliderTest from './components/TeamSlider';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Navbar />
         <Banner />
         <Services />
+        <Heading />
+        <SliderTest />
         <Heading />
         <Comment />
       </ThemeProvider>
