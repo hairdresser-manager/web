@@ -4,12 +4,12 @@ import { Divider, withStyles, Grid } from '@material-ui/core';
 import styles from './styles';
 import scissorImg from 'images/pink-scissor.svg';
 
-const Heading = ({ classes }) => {
+const Heading = ({ classes, title }) => {
   return (
     <Grid container justify="center" alignItems="center" className={classes.styledGrid}>
       <Divider className={classes.styledDivider} />
       <img src={scissorImg} alt="Scissor Icon" />
-      <h1 className={classes.heading}>meet the team</h1>
+      <h1 className={classes.heading}>{title}</h1>
       <img src={scissorImg} alt="Scissor Icon" />
       <Divider className={classes.styledDivider} />
     </Grid>
@@ -18,6 +18,7 @@ const Heading = ({ classes }) => {
 
 Heading.propTypes = {
   classes: PropTypes.object.isRequired,
+  title: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Heading);

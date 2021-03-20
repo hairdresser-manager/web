@@ -4,7 +4,7 @@ import { Grid, withStyles, Avatar, Typography, Divider } from '@material-ui/core
 import styles from './styles';
 import StarIcon from '@material-ui/icons/Star';
 
-const Comment = ({ classes }) => {
+const Reviews = ({ classes }) => {
   return (
     <Grid className={classes.styledGrid} container direction="row" spacing={2}>
       <Grid item>
@@ -51,8 +51,8 @@ const Comment = ({ classes }) => {
   );
 };
 
-Comment.propTypes = {
+Reviews.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Comment);
+export default withStyles(styles)(Reviews);
