@@ -18,7 +18,7 @@ const Heading = ({ classes, title }) => {
 
 Heading.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Heading);

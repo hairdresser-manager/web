@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import {
@@ -19,8 +19,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import logo from '../../images/scissor.svg';
 
 const Navbar = ({ classes }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isLoggedIn = false;
+  const openMenu = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
@@ -28,7 +29,7 @@ const Navbar = ({ classes }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleCloseMenu = () => {
     setAnchorEl(null);
   };
 
@@ -81,12 +82,12 @@ const Navbar = ({ classes }) => {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
-                open={open}
-                onClose={handleClose}
+                open={openMenu}
+                onClose={handleCloseMenu}
               >
-                <MenuItem onClick={handleClose}>Our services</MenuItem>
-                <MenuItem onClick={handleClose}>Meet the team</MenuItem>
-                <MenuItem onClick={handleClose}>Reviews</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>Our services</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>Meet the team</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>Reviews</MenuItem>
               </Menu>
             </>
           ) : (
@@ -94,38 +95,56 @@ const Navbar = ({ classes }) => {
               <Button className={classes.styledButton} variant="outlined" color="secondary">
                 BOOK NOW
               </Button>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="profile-menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-                disableFocusRipple
-                size="small"
-              >
-                <AccountCircle />
-                <Typography className={classes.styledAccountButton} variant="button">
-                  Log In
-                </Typography>
-              </IconButton>
-              <Menu
-                id="profile-menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
+              {isLoggedIn ? (
+                <>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="profile-menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                    disableFocusRipple
+                    size="small"
+                  >
+                    <AccountCircle />
+                    <Typography className={classes.styledAccountButton} variant="button">
+                      User
+                    </Typography>
+                  </IconButton>
+                  <Menu
+                    id="profile-menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={openMenu}
+                    onClose={handleCloseMenu}
+                  >
+                    <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
+                    <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
+                  </Menu>
+                </>
+              ) : (
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="profile-menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                  disableFocusRipple
+                  size="small"
+                >
+                  <AccountCircle />
+                  <Typography className={classes.styledAccountButton} variant="button">
+                    Log In
+                  </Typography>
+                </IconButton>
+              )}
             </div>
           )}
         </Toolbar>
