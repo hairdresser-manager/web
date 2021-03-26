@@ -1,6 +1,5 @@
 import { Typography, withStyles } from '@material-ui/core';
-import { StyledArrowBackIosIcon } from './Arrows';
-import { StyledArrowForwardIosIcon } from './Arrows';
+import { NextArrow, PrevArrow } from './Arrows';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
@@ -20,8 +19,8 @@ const TeamSlider = ({ classes }) => {
     slidesToShow: 3,
     slidesToScroll: 3,
     className: classes.root,
-    nextArrow: <StyledArrowForwardIosIcon />,
-    prevArrow: <StyledArrowBackIosIcon />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1024,

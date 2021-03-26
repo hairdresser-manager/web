@@ -17,7 +17,7 @@ import styles from './styles';
 const Services = ({ classes }) => {
   return (
     <Grid container justify="center">
-      <Paper elevation="4" className={classes.root}>
+      <Paper elevation={4} className={classes.root}>
         <Accordion className={classes.styledAccordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

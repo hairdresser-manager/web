@@ -7,7 +7,7 @@ const Banner = ({ classes }) => {
   return (
     <Grid container justify="center" className={classes.styledGrid}>
       <div className={classes.bannerImg}></div>
-      <Paper elevation="4" className={classes.textBox}>
+      <Paper elevation={4} className={classes.textBox}>
         <Typography variant="h4">our services</Typography>
       </Paper>
     </Grid>
