@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { isOpen } from 'slices/ModalAuthSlice';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import {
@@ -18,7 +20,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from 'images/scissor.svg';
 
-const Navbar = ({ classes, isModalOpen }) => {
+const Navbar = ({ classes }) => {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const isLoggedIn = false;
   const openMenu = Boolean(anchorEl);
@@ -34,7 +37,7 @@ const Navbar = ({ classes, isModalOpen }) => {
   };
 
   const handleOpenModal = () => {
-    isModalOpen((prev) => !prev);
+    dispatch(isOpen());
   };
 
   return (
@@ -160,6 +163,5 @@ const Navbar = ({ classes, isModalOpen }) => {
 
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
-  isModalOpen: PropTypes.func,
 };
 export default withStyles(styles)(Navbar);

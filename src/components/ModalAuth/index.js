@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { isOpen } from 'slices/ModalAuthSlice';
 import PropTypes from 'prop-types';
 import { Grid, withStyles } from '@material-ui/core';
 import styles from './styles';
@@ -6,9 +8,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import Login from 'components/Login';
 import Register from 'components/Register';
 
-const AuthTemplate = ({ classes, isModalOpen }) => {
+const ModalAuth = ({ classes }) => {
+  const dispatch = useDispatch();
   const handleCloseModal = () => {
-    isModalOpen((prev) => !prev);
+    dispatch(isOpen());
   };
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   return (
@@ -26,9 +29,8 @@ const AuthTemplate = ({ classes, isModalOpen }) => {
   );
 };
 
-AuthTemplate.propTypes = {
+ModalAuth.propTypes = {
   classes: PropTypes.object.isRequired,
-  isModalOpen: PropTypes.func,
 };
 
-export default withStyles(styles)(AuthTemplate);
+export default withStyles(styles)(ModalAuth);
