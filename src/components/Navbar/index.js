@@ -16,9 +16,9 @@ import {
 } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
-import logo from '../../images/scissor.svg';
+import logo from 'images/scissor.svg';
 
-const Navbar = ({ classes }) => {
+const Navbar = ({ classes, isModalOpen }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const isLoggedIn = false;
   const openMenu = Boolean(anchorEl);
@@ -33,12 +33,16 @@ const Navbar = ({ classes }) => {
     setAnchorEl(null);
   };
 
+  const handleOpenModal = () => {
+    isModalOpen((prev) => !prev);
+  };
+
   return (
     <div className={classes.root}>
       <AppBar color="transparent" position="static">
         <Toolbar className={classes.styledToolbar}>
           <div className={classes.styledLogo}>
-            <img src={logo} alt="Logo"></img>
+            <img src={logo} alt="Logo" />
             <Typography className={classes.styledLogoTypography} variant="h6">
               hairdresser
             </Typography>
@@ -138,6 +142,7 @@ const Navbar = ({ classes }) => {
                   color="inherit"
                   disableFocusRipple
                   size="small"
+                  onClick={handleOpenModal}
                 >
                   <AccountCircle />
                   <Typography className={classes.styledAccountButton} variant="button">
@@ -155,5 +160,6 @@ const Navbar = ({ classes }) => {
 
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
+  isModalOpen: PropTypes.func,
 };
 export default withStyles(styles)(Navbar);

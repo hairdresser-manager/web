@@ -1,5 +1,5 @@
 import { Typography, withStyles } from '@material-ui/core';
-import { NextArrow, PrevArrow } from './Arrows';
+import { Arrow } from './Arrows';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
@@ -19,8 +19,8 @@ const TeamSlider = ({ classes }) => {
     slidesToShow: 3,
     slidesToScroll: 3,
     className: classes.root,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <Arrow direction="next" />,
+    prevArrow: <Arrow direction="prev" />,
     responsive: [
       {
         breakpoint: 1024,
