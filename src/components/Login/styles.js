@@ -6,6 +6,15 @@ const styles = (theme) => ({
   link: {
     cursor: 'pointer',
   },
+  formContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    '& .MuiTextField-root': {
+      width: '25ch',
+    },
+  },
 });
 
 export default styles;
