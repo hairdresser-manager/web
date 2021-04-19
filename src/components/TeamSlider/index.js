@@ -1,7 +1,7 @@
-import { Typography, withStyles } from '@material-ui/core';
-import { Arrow } from './Arrows';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core';
+import { Arrow } from './Arrows';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -11,6 +11,35 @@ import employee2 from 'images/employee2.jpg';
 import employee3 from 'images/employee3.jpg';
 import employee4 from 'images/employee4.jpg';
 import employee5 from 'images/employee5.jpg';
+import TeamCard from './TeamCard';
+
+const initState = [
+  {
+    name: 'Ania',
+    imgUrl: employee1,
+    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
+  },
+  {
+    name: 'Marta',
+    imgUrl: employee2,
+    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
+  },
+  {
+    name: 'Rafał',
+    imgUrl: employee3,
+    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
+  },
+  {
+    name: 'Włodek',
+    imgUrl: employee4,
+    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
+  },
+  {
+    name: 'Bartek',
+    imgUrl: employee5,
+    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
+  },
+];
 
 const TeamSlider = ({ classes }) => {
   const settings = {
@@ -55,26 +84,9 @@ const TeamSlider = ({ classes }) => {
   return (
     <div className={classes.container}>
       <Slider {...settings}>
-        <div className={classes.Card}>
-          <img src={employee1} alt="" />
-          <Typography>Ania</Typography>
-        </div>
-        <div className={classes.Card}>
-          <img src={employee2} alt="" />
-          <Typography>Marta</Typography>
-        </div>
-        <div className={classes.Card}>
-          <img src={employee3} alt="" />
-          <Typography>Rafał</Typography>
-        </div>
-        <div className={classes.Card}>
-          <img src={employee4} alt="" />
-          <Typography>Włodek</Typography>
-        </div>
-        <div className={classes.Card}>
-          <img src={employee5} alt="" />
-          <Typography>Bartek</Typography>
-        </div>
+        {initState.map((person, index) => (
+          <TeamCard key={index} person={person} />
+        ))}
       </Slider>
     </div>
   );

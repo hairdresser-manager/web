@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { isOpen } from 'slices/ModalAuthSlice';
+import { isOpenAuthModal } from 'slices/ModalsSlice';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import {
@@ -37,7 +37,7 @@ const Navbar = ({ classes }) => {
   };
 
   const handleOpenModal = () => {
-    dispatch(isOpen());
+    dispatch(isOpenAuthModal());
   };
 
   return (

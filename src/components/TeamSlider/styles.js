@@ -9,6 +9,7 @@ const styles = () => ({
       margin: '12px auto',
       height: '300px',
       width: '400px',
+      cursor: 'pointer',
     },
   },
 });

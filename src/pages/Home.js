@@ -8,13 +8,14 @@ import Services from 'components/Services';
 import TeamSlider from 'components/TeamSlider';
 import Reviews from 'components/Reviews';
 import ModalAuth from 'components/ModalAuth';
+import ModalTeam from 'components/ModalTeam';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const Home = () => {
-  const isModalOpen = useSelector((state) => state.ModalAuth.isModalOpen);
+  const isModalOpen = useSelector((state) => state.ModalsSlice.AuthModal.isModalOpen);
   return (
     <>
       <Navbar />
@@ -27,6 +28,7 @@ const Home = () => {
       <Dialog fullScreen open={isModalOpen} TransitionComponent={Transition}>
         <ModalAuth />
       </Dialog>
+      <ModalTeam />
     </>
   );
 };
