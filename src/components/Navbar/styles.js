@@ -30,9 +30,6 @@ const styles = (theme) => ({
     fontWeight: 'bold',
     marginRight: theme.spacing(2),
   },
-  styledAccountButton: {
-    marginLeft: '5px',
-  },
   [theme.breakpoints.down('sm')]: {
     styledLogoTypography: {
       display: 'none',
@@ -54,6 +51,9 @@ const styles = (theme) => ({
     '&:hover': {
       borderBottom: `3px solid ${theme.palette.secondary.main}`,
     },
+  },
+  test: {
+    width: '95px',
   },
 });
 

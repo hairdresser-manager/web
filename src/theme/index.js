@@ -16,6 +16,11 @@ const theme = createMuiTheme({
       color: '#616161',
     },
   },
+  palette: {
+    error: {
+      main: '#f50057',
+    },
+  },
 });
 
 export default theme;

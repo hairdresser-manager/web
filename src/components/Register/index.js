@@ -1,10 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { isOpenAuthModal } from 'slices/ModalsSlice';
+import { register as registerSlice, clearState } from 'slices/RegisterSlice.js';
 import { useForm, Controller } from 'react-hook-form';
-import { Button, Link, TextField, Typography, withStyles } from '@material-ui/core';
+import {
+  Button,
+  Link,
+  TextField,
+  Typography,
+  withStyles,
+  CircularProgress,
+} from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import styles from './styles';
 
 const Register = ({ classes, setShowRegisterForm }) => {
+  const dispatch = useDispatch();
+  const registerState = useSelector((state) => state.RegisterSlice);
+  const { errorMessage, isLoading, isSuccess, isError } = registerState;
+
   const {
     handleSubmit,
     control,
@@ -14,13 +29,56 @@ const Register = ({ classes, setShowRegisterForm }) => {
   } = useForm();
   const password = useRef({});
   password.current = watch('password', '');
-  const onSubmit = (data) => console.log(data);
 
   const handleLoginForm = () => {
     setShowRegisterForm((prev) => !prev);
   };
+
+  const onSubmit = (data) => {
+    dispatch(registerSlice(data));
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(isOpenAuthModal());
+      dispatch(clearState());
+    }
+    if (isError) {
+      dispatch(clearState());
+    }
+  }, [isError, isSuccess]);
   return (
     <>
+      {errorMessage.Email ? (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage.Email}
+        </MuiAlert>
+      ) : null}
+      {errorMessage.Password ? (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage.Password}
+        </MuiAlert>
+      ) : null}
+      {errorMessage.MobilePhone ? (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage.MobilePhone}
+        </MuiAlert>
+      ) : null}
+      {errorMessage.ReTypedPassword ? (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage.ReTypedPassword}
+        </MuiAlert>
+      ) : null}
+      {errorMessage.FirstName ? (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage.FirstName}
+        </MuiAlert>
+      ) : null}
+      {errorMessage.LastName ? (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage.LastName}
+        </MuiAlert>
+      ) : null}
       <Typography variant="h5">Register</Typography>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
         <Controller
@@ -69,10 +127,10 @@ const Register = ({ classes, setShowRegisterForm }) => {
           defaultValue=""
         />
         <Controller
-          name="confirmPassword"
+          name="ReTypedPassword"
           render={({ field }) => (
             <TextField
-              {...register('confirmPassword', {
+              {...register('ReTypedPassword', {
                 required: 'This field is required',
                 validate: (value) => value === password.current || 'The passwords do not match',
               })}
@@ -80,8 +138,8 @@ const Register = ({ classes, setShowRegisterForm }) => {
               label="Confirm Password"
               variant="outlined"
               type="password"
-              helperText={errors.confirmPassword && errors.confirmPassword.message}
-              error={errors.confirmPassword ? true : false}
+              helperText={errors.ReTypedPassword && errors.ReTypedPassword.message}
+              error={errors.ReTypedPassword ? true : false}
             />
           )}
           control={control}
@@ -123,22 +181,23 @@ const Register = ({ classes, setShowRegisterForm }) => {
           defaultValue=""
         />
         <Controller
-          name="phoneNumber"
+          name="MobilePhone"
           render={({ field }) => (
             <TextField
-              {...register('phoneNumber', {
+              {...register('MobilePhone', {
                 required: true,
               })}
               {...field}
               label="Phone Number"
               variant="outlined"
-              helperText={errors.phoneNumber && 'This field is required'}
-              error={errors.phoneNumber ? true : false}
+              helperText={errors.MobilePhone && 'This field is required'}
+              error={errors.MobilePhone ? true : false}
             />
           )}
           control={control}
           defaultValue=""
         />
+        {isLoading ? <CircularProgress /> : null}
         <Link className={classes.link} onClick={handleLoginForm}>
           already have an account? log in
         </Link>

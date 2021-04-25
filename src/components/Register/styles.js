@@ -15,6 +15,9 @@ const styles = (theme) => ({
       width: '25ch',
     },
   },
+  alert: {
+    marginBottom: theme.spacing(2),
+  },
 });
 
 export default styles;

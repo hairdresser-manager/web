@@ -23,12 +23,13 @@ import logo from 'images/scissor.svg';
 const Navbar = ({ classes }) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
-  const isLoggedIn = false;
   const openMenu = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const isLoggedIn = localStorage.getItem('accessToken');
 
   const handleMenu = (event) => {
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
@@ -38,6 +39,11 @@ const Navbar = ({ classes }) => {
 
   const handleOpenModal = () => {
     dispatch(isOpenAuthModal());
+  };
+
+  const onLogOut = () => {
+    localStorage.removeItem('accessToken');
+    window.location.reload();
   };
 
   return (
@@ -105,6 +111,7 @@ const Navbar = ({ classes }) => {
               {isLoggedIn ? (
                 <>
                   <IconButton
+                    className={classes.test}
                     aria-label="account of current user"
                     aria-controls="profile-menu-appbar"
                     aria-haspopup="true"
@@ -114,9 +121,7 @@ const Navbar = ({ classes }) => {
                     size="small"
                   >
                     <AccountCircle />
-                    <Typography className={classes.styledAccountButton} variant="button">
-                      User
-                    </Typography>
+                    <Typography variant="button">User</Typography>
                   </IconButton>
                   <Menu
                     id="profile-menu-appbar"
@@ -135,10 +140,12 @@ const Navbar = ({ classes }) => {
                   >
                     <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
                     <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
+                    <MenuItem onClick={onLogOut}>Logout</MenuItem>
                   </Menu>
                 </>
               ) : (
                 <IconButton
+                  className={classes.test}
                   aria-label="account of current user"
                   aria-controls="profile-menu-appbar"
                   aria-haspopup="true"
@@ -148,9 +155,7 @@ const Navbar = ({ classes }) => {
                   onClick={handleOpenModal}
                 >
                   <AccountCircle />
-                  <Typography className={classes.styledAccountButton} variant="button">
-                    Log In
-                  </Typography>
+                  <Typography variant="button">Log In</Typography>
                 </IconButton>
               )}
             </div>
