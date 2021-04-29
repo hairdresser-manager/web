@@ -101,7 +101,6 @@ const ChangePassword = ({ classes }) => {
 
 ChangePassword.propTypes = {
   classes: PropTypes.object.isRequired,
-  setShowRegisterForm: PropTypes.func,
 };
 
 export default withStyles(styles)(ChangePassword);
