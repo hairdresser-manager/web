@@ -5,20 +5,12 @@ export const login = createAsyncThunk('LoginSlice/login', async ({ email, passwo
   try {
     let res;
     res = await api.login({ email, password });
-    let { accessToken, refreshToken } = res.data;
+    let { accessToken, refreshToken, firstName, role } = res.data;
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('firstName', firstName);
+    localStorage.setItem('role', role);
     return { ...res.data, email: email, password: password };
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.errors);
-  }
-});
-
-export const test = createAsyncThunk('LoginSlice/login', async (thunkAPI) => {
-  try {
-    let res;
-    res = await api.test();
-    console.log(res);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.errors);
   }
@@ -27,13 +19,14 @@ export const test = createAsyncThunk('LoginSlice/login', async (thunkAPI) => {
 export const LoginSlice = createSlice({
   name: 'LoginSlices',
   initialState: {
+    email: '',
+    firstName: '',
+    role: '',
     isLoading: false,
     isSuccess: false,
     isLoggedIn: false,
     isError: false,
     errorMessage: '',
-    email: '',
-    password: '',
   },
   reducers: {
     clearState: (state) => {
@@ -49,7 +42,8 @@ export const LoginSlice = createSlice({
     },
     [login.fulfilled]: (state, { payload }) => {
       state.email = payload.email;
-      state.password = payload.password;
+      state.firstName = payload.firstName;
+      state.role = payload.role;
       state.isLoggedIn = true;
       state.isSuccess = true;
     },

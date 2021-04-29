@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { isOpenAuthModal } from 'slices/ModalsSlice';
 import PropTypes from 'prop-types';
@@ -22,14 +23,15 @@ import logo from 'images/scissor.svg';
 
 const Navbar = ({ classes }) => {
   const dispatch = useDispatch();
+  const isLoggedIn = localStorage.getItem('accessToken');
+  const userName = localStorage.getItem('firstName');
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const isLoggedIn = localStorage.getItem('accessToken');
+  const history = useHistory();
 
   const handleMenu = (event) => {
-    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
@@ -43,6 +45,9 @@ const Navbar = ({ classes }) => {
 
   const onLogOut = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('role');
+    history.push('/');
     window.location.reload();
   };
 
@@ -57,16 +62,16 @@ const Navbar = ({ classes }) => {
             </Typography>
           </div>
           <Typography className={classes.styledMenu}>
-            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
+            <Link className={classes.styledLink} href="/" color="inherit" underline="none">
               home
             </Link>
-            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
+            <Link className={classes.styledLink} href="/#services" color="inherit" underline="none">
               our services
             </Link>
-            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
+            <Link className={classes.styledLink} href="/#team" color="inherit" underline="none">
               meet the team
             </Link>
-            <Link className={classes.styledLink} href="#" color="inherit" underline="none">
+            <Link className={classes.styledLink} href="/#reviews" color="inherit" underline="none">
               reviews
             </Link>
           </Typography>
@@ -121,7 +126,7 @@ const Navbar = ({ classes }) => {
                     size="small"
                   >
                     <AccountCircle />
-                    <Typography variant="button">User</Typography>
+                    <Typography variant="button">{userName}</Typography>
                   </IconButton>
                   <Menu
                     id="profile-menu-appbar"
@@ -138,14 +143,16 @@ const Navbar = ({ classes }) => {
                     open={openMenu}
                     onClose={handleCloseMenu}
                   >
-                    <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
+                    <Link underline="none" color="inherit" href="/profile">
+                      <MenuItem href="/profile">Profile</MenuItem>
+                    </Link>
                     <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
                     <MenuItem onClick={onLogOut}>Logout</MenuItem>
                   </Menu>
                 </>
               ) : (
                 <IconButton
-                  className={classes.test}
+                  className={classes.iconButton}
                   aria-label="account of current user"
                   aria-controls="profile-menu-appbar"
                   aria-haspopup="true"

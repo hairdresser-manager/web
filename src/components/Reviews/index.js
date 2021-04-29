@@ -23,7 +23,7 @@ const initState = [
 
 const Reviews = ({ classes }) => {
   return (
-    <Grid className={classes.styledGrid} container direction="row" spacing={2}>
+    <Grid id="reviews" className={classes.styledGrid} container direction="row" spacing={2}>
       {initState.map((item, index) => (
         <Review key={index} item={item} />
       ))}

@@ -3,28 +3,25 @@ import api from 'api/api';
 
 export const register = createAsyncThunk(
   'RegisterSlice/register',
-  async ({ email, password, ReTypedPassword, firstName, lastName, MobilePhone }, thunkAPI) => {
+  async ({ email, password, reTypedPassword, firstName, lastName, mobilePhone }, thunkAPI) => {
     try {
       let res;
       res = await api.signup({
         email,
         password,
-        ReTypedPassword,
+        reTypedPassword,
         firstName,
         lastName,
-        MobilePhone,
+        mobilePhone,
       });
-      let { accessToken, refreshToken } = res.data;
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
       return {
         ...res.data,
         email: email,
         password: password,
-        ReTypedPassword: ReTypedPassword,
+        reTypedPassword: reTypedPassword,
         firstName: firstName,
         lastName: lastName,
-        MobilePhone: MobilePhone,
+        mobilePhone: mobilePhone,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.errors);
@@ -45,6 +42,7 @@ export const RegisterSlice = createSlice({
     firstName: '',
     lastName: '',
     mobilePhone: '',
+    verifyToken: '',
   },
   reducers: {
     clearState: (state) => {
@@ -65,6 +63,7 @@ export const RegisterSlice = createSlice({
       state.firstName = payload.firstName;
       state.lastName = payload.lastName;
       state.mobilePhone = payload.mobilePhone;
+      state.verifyToken = payload.verifyToken;
       state.isSuccess = true;
     },
     [register.rejected]: (state, { payload }) => {

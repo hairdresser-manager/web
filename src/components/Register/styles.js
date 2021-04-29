@@ -18,6 +18,9 @@ const styles = (theme) => ({
   alert: {
     marginBottom: theme.spacing(2),
   },
+  confirmLink: {
+    cursor: 'pointer',
+  },
 });
 
 export default styles;

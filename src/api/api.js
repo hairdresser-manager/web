@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/api';
+const baseUrl = 'http://localhost:8080/api/v1';
 
 axios.interceptors.request.use(
   (config) => {
@@ -24,7 +24,7 @@ axios.interceptors.response.use(
     let refreshToken = localStorage.getItem('refreshToken');
     if (refreshToken && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      return axios.post(`${baseUrl}/v1/jwt/refresh`, { refreshToken: refreshToken }).then((res) => {
+      return axios.post(`${baseUrl}/jwt/refresh`, { refreshToken: refreshToken }).then((res) => {
         if (res.status === 200) {
           localStorage.setItem('accessToken', res.data.accessToken);
           console.log('Access token refreshed!');
@@ -38,19 +38,22 @@ axios.interceptors.response.use(
 
 const api = {
   signup: (body) => {
-    return axios.post(`${baseUrl}/v1/register`, body);
+    return axios.post(`${baseUrl}/register`, body);
+  },
+  verifyEmail: (body) => {
+    return axios.post(`${baseUrl}/register/verify-email`, body);
   },
   login: (body) => {
-    return axios.post(`${baseUrl}/v1/login`, body);
+    return axios.post(`${baseUrl}/login`, body);
   },
   refreshToken: (body) => {
-    return axios.post(`${baseUrl}/v1/jwt/refresh`, body);
+    return axios.post(`${baseUrl}/jwt/refresh`, body);
   },
   logout: (body) => {
-    return axios.delete(`${baseUrl}/v1/logout`, body);
+    return axios.delete(`${baseUrl}/logout`, body);
   },
-  test: (body) => {
-    return axios.get(`${baseUrl}/v1/employees`, body);
+  changePassword: (body) => {
+    return axios.post(`${baseUrl}/accounts/change-password`, body);
   },
 };
 export default api;

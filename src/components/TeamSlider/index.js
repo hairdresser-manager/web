@@ -82,7 +82,7 @@ const TeamSlider = ({ classes }) => {
   };
 
   return (
-    <div className={classes.container}>
+    <div id="team" className={classes.container}>
       <Slider {...settings}>
         {initState.map((person, index) => (
           <TeamCard key={index} person={person} />

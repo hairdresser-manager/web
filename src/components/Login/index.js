@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isOpenAuthModal } from 'slices/ModalsSlice';
-import { login, clearState } from 'slices/LoginSlice.js';
+import { login, clearState } from 'slices/LoginSlice';
 import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
 import {
@@ -50,14 +50,9 @@ const Login = ({ classes, setShowRegisterForm }) => {
 
   return (
     <>
-      {errorMessage.Password ? (
+      {errorMessage ? (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {errorMessage.Password}
-        </MuiAlert>
-      ) : null}
-      {errorMessage.Email ? (
-        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {errorMessage.Email}
+          {errorMessage}
         </MuiAlert>
       ) : null}
       <Typography variant="h5">Log in</Typography>
@@ -90,7 +85,11 @@ const Login = ({ classes, setShowRegisterForm }) => {
             <TextField
               {...register('password', {
                 required: 'This field is required',
-                minLength: { value: 8, message: 'Password must have at least 8 characters' },
+                pattern: {
+                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/,
+                  message:
+                    'Password must contain at least one number and one uppercase and lowercase letter, and at least 8 and a maximum of 20 characters and one special character',
+                },
               })}
               {...field}
               label="Password"
@@ -98,7 +97,6 @@ const Login = ({ classes, setShowRegisterForm }) => {
               type="password"
               helperText={errors.password && errors.password.message}
               error={errors.password ? true : false}
-              fullWidth
             />
           )}
           control={control}

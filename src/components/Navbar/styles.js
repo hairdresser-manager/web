@@ -52,7 +52,7 @@ const styles = (theme) => ({
       borderBottom: `3px solid ${theme.palette.secondary.main}`,
     },
   },
-  test: {
+  iconButton: {
     width: '95px',
   },
 });
