@@ -14,7 +14,7 @@ soon...
 Project is created with:
 
 - React js
-- Context Api
+- Redux
 - Material UI
 
 ## Setup
