@@ -10,10 +10,11 @@ const styles = (theme) => ({
     minHeight: '400px',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    marginTop: '82px',
   },
   textBox: {
     position: 'absolute',
-    top: '340px',
+    top: '420px',
     width: '333px',
     height: '115px',
     background: '#E10050',
@@ -30,6 +31,9 @@ const styles = (theme) => ({
     textBox: {
       position: 'static',
       width: '100%',
+    },
+    bannerImg: {
+      marginTop: '52px',
     },
   },
 });

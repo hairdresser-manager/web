@@ -30,6 +30,7 @@ const styles = (theme) => ({
     fontWeight: 'bold',
     marginRight: theme.spacing(2),
   },
+
   [theme.breakpoints.down('sm')]: {
     styledLogoTypography: {
       display: 'none',

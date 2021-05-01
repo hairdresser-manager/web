@@ -20,10 +20,10 @@ import styles from './styles';
 
 const Register = ({ classes, setShowRegisterForm }) => {
   const dispatch = useDispatch();
-  const registerState = useSelector((state) => state.RegisterSlice);
-  const { errorMessage, isLoading, isSuccess, isError, email, verifyToken } = registerState;
-  const verifyEmailState = useSelector((state) => state.VerifyEmailSlice);
-  const { isConfirm } = verifyEmailState;
+  const registerData = useSelector((state) => state.RegisterSlice);
+  const { errorMessage, isLoading, isSuccess, isError, email, verifyToken } = registerData;
+  const verifyEmailData = useSelector((state) => state.VerifyEmailSlice);
+  const { isConfirm } = verifyEmailData;
 
   const {
     handleSubmit,

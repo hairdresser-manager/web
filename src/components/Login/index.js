@@ -17,8 +17,8 @@ import styles from './styles';
 
 const Login = ({ classes, setShowRegisterForm }) => {
   const dispatch = useDispatch();
-  const loginState = useSelector((state) => state.LoginSlice);
-  const { errorMessage, isLoading, isError, isSuccess } = loginState;
+  const loginData = useSelector((state) => state.LoginSlice);
+  const { errorMessage, isLoading, isError, isSuccess } = loginData;
 
   const {
     handleSubmit,

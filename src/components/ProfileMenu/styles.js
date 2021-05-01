@@ -2,7 +2,7 @@ const styles = (theme) => ({
   container: {
     width: '400px',
     height: '400px',
-    borderRight: 'solid 1px black',
+    borderRight: 'solid 1px #7F7F7F',
   },
   user: {
     display: 'flex',
@@ -13,6 +13,9 @@ const styles = (theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginRight: theme.spacing(1),
+    '&.MuiAvatar-colorDefault': {
+      background: theme.palette.secondary.main,
+    },
   },
 });
 

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'api/api';
 
 export const verifyEmail = createAsyncThunk(
-  'RegisterSlice/verifyEmail',
+  'VerifyEmailSlice/verifyEmail',
   async ({ token, email }, thunkAPI) => {
     try {
       let res;

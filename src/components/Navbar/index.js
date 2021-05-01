@@ -53,7 +53,7 @@ const Navbar = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar color="transparent" position="static">
+      <AppBar color="default" position="fixed">
         <Toolbar className={classes.styledToolbar}>
           <div className={classes.styledLogo}>
             <img src={logo} alt="Logo" />

@@ -55,5 +55,8 @@ const api = {
   changePassword: (body) => {
     return axios.post(`${baseUrl}/accounts/change-password`, body);
   },
+  userAppointments: () => {
+    return axios.get(`${baseUrl}/appointments`);
+  },
 };
 export default api;

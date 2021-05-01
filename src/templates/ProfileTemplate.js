@@ -7,6 +7,7 @@ import Profile from 'components/Profile';
 import { Route } from 'react-router-dom';
 import ChangePassword from 'components/ChangePassword';
 import ChangeNumberPhone from 'components/ChangeNumberPhone';
+import MyReservations from 'components/MyReservations';
 
 const ProfileComponent = ({ classes }) => {
   return (
@@ -18,6 +19,7 @@ const ProfileComponent = ({ classes }) => {
         <Route exact path="/profile" component={Profile}></Route>
         <Route path="/profile/change-password" component={ChangePassword}></Route>
         <Route path="/profile/change-numberphone" component={ChangeNumberPhone}></Route>
+        <Route path="/profile/my-reservations" component={MyReservations}></Route>
       </div>
     </div>
   );
