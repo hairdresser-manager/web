@@ -146,7 +146,14 @@ const Navbar = ({ classes }) => {
                     <Link underline="none" color="inherit" href="/profile">
                       <MenuItem href="/profile">Profile</MenuItem>
                     </Link>
-                    <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
+                    <Link
+                      underline="none"
+                      color="inherit"
+                      href="profile/change-account-informations"
+                    >
+                      <MenuItem onClick={handleCloseMenu}>Edit Account</MenuItem>
+                    </Link>
+
                     <MenuItem onClick={onLogOut}>Logout</MenuItem>
                   </Menu>
                 </>
