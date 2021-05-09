@@ -36,7 +36,7 @@ const TeamModal = ({ classes }) => {
             <div className={classes.dialogTitleWrapper}>
               <Avatar className={classes.styledAvatar} src={TeamDetails.avatarUrl} />
               <Typography className={classes.styledTitle} variant="h6">
-                {TeamDetails.firstName}
+                {TeamDetails.nick}
               </Typography>
             </div>
             <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>

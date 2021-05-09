@@ -10,6 +10,7 @@ import styles from './styles';
 const EmployeeSelect = ({ classes }) => {
   const dispatch = useDispatch();
   const EmployeeData = useSelector((state) => state.AvailableDatesSlice);
+  const nameService = useSelector((state) => state.ServicesSlice.selectService.nameService);
 
   const { appointments } = EmployeeData;
 
@@ -45,6 +46,9 @@ const EmployeeSelect = ({ classes }) => {
             <Typography>{data.employeeName}</Typography>
           </div>
         ))}
+      </div>
+      <div className={classes.footer}>
+        <Typography variant="subtitle1">Service Name: {nameService}</Typography>
       </div>
     </div>
   );

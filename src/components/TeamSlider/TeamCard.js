@@ -13,7 +13,7 @@ const TeamCard = ({ classes, person }) => {
   return (
     <div className={classes.card}>
       <img onClick={handleOpenModal} src={person.avatarUrl} />
-      <Typography>{person.firstName}</Typography>
+      <Typography>{person.nick}</Typography>
     </div>
   );
 };

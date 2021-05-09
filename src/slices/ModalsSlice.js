@@ -18,9 +18,9 @@ export const ModalsSlice = createSlice({
     isOpenAuthModal: (state) => {
       state.AuthModal.isModalOpen = !state.AuthModal.isModalOpen;
     },
-    isOpenTeamModal: (state, person) => {
+    isOpenTeamModal: (state, data) => {
       state.TeamModal.isModalOpen = !state.TeamModal.isModalOpen;
-      state.TeamModalDetails = person.payload;
+      state.TeamModalDetails = data.payload;
     },
     isOpenAppointmentsModal: (state) => {
       state.AppointmentsModal.isModalOpen = !state.AppointmentsModal.isModalOpen;

@@ -64,5 +64,8 @@ const api = {
   teamMembers: () => {
     return axios.get(`${baseUrl}/team-members`);
   },
+  services: () => {
+    return axios.get(`${baseUrl}/services`);
+  },
 };
 export default api;

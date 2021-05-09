@@ -65,8 +65,8 @@ const TeamSlider = ({ classes }) => {
         <CircularProgress color="secondary" size={60} />
       ) : (
         <Slider {...settings}>
-          {teamMembers.map((person, index) => (
-            <TeamCard key={index} person={person} />
+          {teamMembers.map((person) => (
+            <TeamCard key={person.employeeId} person={person} />
           ))}
         </Slider>
       )}

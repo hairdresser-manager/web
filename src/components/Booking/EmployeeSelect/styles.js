@@ -4,6 +4,8 @@ const styles = (theme) => ({
     minHeight: '500px',
     background: '#fafafa',
     boxShadow: '0 0.5rem 3rem rgba(0, 0, 0, 0.4)',
+    display: 'flex',
+    flexDirection: 'column',
   },
   textHeader: {
     '& .MuiTypography-subtitle1': {
@@ -32,6 +34,7 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     width: '200px',
+    height: '65px',
     alignItems: 'center',
     padding: '20px',
     margin: '15px 0 ',
@@ -51,6 +54,15 @@ const styles = (theme) => ({
     '&:hover': {
       transform: 'scale(1.1)',
     },
+  },
+  footer: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    minHeight: '50px',
+    background: theme.palette.secondary.main,
+    marginTop: 'auto',
+    color: '#fafafa',
   },
   [theme.breakpoints.down('md')]: {
     employees: {
