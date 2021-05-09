@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Button, TextField, Typography } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
@@ -9,11 +9,8 @@ const ChangeNumberPhone = ({ classes }) => {
     handleSubmit,
     control,
     register,
-    watch,
     formState: { errors },
   } = useForm();
-  const newPassword = useRef({});
-  newPassword.current = watch('newPassword', '');
 
   const onSubmit = (data) => {
     console.log(data);

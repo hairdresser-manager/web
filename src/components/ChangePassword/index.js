@@ -1,14 +1,16 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changePassword } from 'slices/ChangePasswordSlice';
+import { changePassword, clearState } from 'slices/ChangePasswordSlice';
 import { withStyles, Button, TextField, Typography } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
+import MuiAlert from '@material-ui/lab/Alert';
 import styles from './styles';
 
 const ChangePassword = ({ classes }) => {
   const dispatch = useDispatch();
-
+  const registerData = useSelector((state) => state.ChangePasswordSlice);
+  const { errorMessage, isError, isSuccess } = registerData;
   const {
     handleSubmit,
     control,
@@ -22,8 +24,23 @@ const ChangePassword = ({ classes }) => {
   const onSubmit = (data) => {
     dispatch(changePassword(data));
   };
+
+  useEffect(() => {
+    dispatch(clearState());
+  }, []);
+
   return (
     <>
+      {isSuccess && (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="success">
+          The password was changed successfully!
+        </MuiAlert>
+      )}
+      {isError && (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage}
+        </MuiAlert>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
         <Typography variant="h6">Change Password</Typography>
         <Controller

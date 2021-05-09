@@ -14,8 +14,6 @@ export const changePassword = createAsyncThunk(
         reTypedNewPassword: reTypedNewPassword,
       };
     } catch (error) {
-      console.log(error.response);
-      console.log(error.response.data);
       return thunkAPI.rejectWithValue(error.response.data.errors);
     }
   }
@@ -49,6 +47,7 @@ export const ChangePasswordSlice = createSlice({
       state.newPassword = payload.newPassword;
       state.reTypedNewPassword = payload.reTypedNewPassword;
       state.isSuccess = true;
+      state.isLoading = false;
     },
     [changePassword.rejected]: (state, { payload }) => {
       state.isError = true;
