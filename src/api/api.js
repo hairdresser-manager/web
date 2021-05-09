@@ -58,9 +58,11 @@ const api = {
   userAppointments: () => {
     return axios.get(`${baseUrl}/appointments`);
   },
-
   availableDates: () => {
     return axios.get(`${baseUrl}/appointments/available-dates`);
+  },
+  teamMembers: () => {
+    return axios.get(`${baseUrl}/team-members`);
   },
 };
 export default api;

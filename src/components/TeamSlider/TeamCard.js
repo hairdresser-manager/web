@@ -11,9 +11,9 @@ const TeamCard = ({ classes, person }) => {
     dispatch(isOpenTeamModal(person));
   };
   return (
-    <div className={classes.Card}>
-      <img onClick={handleOpenModal} src={person.imgUrl} />
-      <Typography>{person.name}</Typography>
+    <div className={classes.card}>
+      <img onClick={handleOpenModal} src={person.avatarUrl} />
+      <Typography>{person.firstName}</Typography>
     </div>
   );
 };

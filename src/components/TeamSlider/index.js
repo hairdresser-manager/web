@@ -1,47 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { TeamMembers } from 'slices/TeamMembersSlice';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import { CircularProgress, withStyles } from '@material-ui/core';
 import { Arrow } from './Arrows';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './styles';
-import employee1 from 'images/employee1.jpg';
-import employee2 from 'images/employee2.jpg';
-import employee3 from 'images/employee3.jpg';
-import employee4 from 'images/employee4.jpg';
-import employee5 from 'images/employee5.jpg';
 import TeamCard from './TeamCard';
 
-const initState = [
-  {
-    name: 'Ania',
-    imgUrl: employee1,
-    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
-  },
-  {
-    name: 'Marta',
-    imgUrl: employee2,
-    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
-  },
-  {
-    name: 'Rafał',
-    imgUrl: employee3,
-    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
-  },
-  {
-    name: 'Włodek',
-    imgUrl: employee4,
-    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
-  },
-  {
-    name: 'Bartek',
-    imgUrl: employee5,
-    description: 'person who cuts mens hair and shaves or trims beards as an occupation',
-  },
-];
-
 const TeamSlider = ({ classes }) => {
+  const dispatch = useDispatch();
+  const teamMembersData = useSelector((state) => state.TeamMembersSlice);
+
+  const { teamMembers, isLoading } = teamMembersData;
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -81,13 +55,21 @@ const TeamSlider = ({ classes }) => {
     ],
   };
 
+  useEffect(() => {
+    dispatch(TeamMembers());
+  }, []);
+
   return (
     <div id="team" className={classes.container}>
-      <Slider {...settings}>
-        {initState.map((person, index) => (
-          <TeamCard key={index} person={person} />
-        ))}
-      </Slider>
+      {isLoading ? (
+        <CircularProgress color="secondary" size={60} />
+      ) : (
+        <Slider {...settings}>
+          {teamMembers.map((person, index) => (
+            <TeamCard key={index} person={person} />
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };

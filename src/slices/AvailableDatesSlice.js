@@ -75,7 +75,6 @@ export const AvailableDatesSlice = createSlice({
     [AvailableDates.fulfilled]: (state, { payload }) => {
       state.appointments = payload.appointments;
       state.isSuccess = true;
-      state.isConfirm = true;
       state.isLoading = false;
     },
     [AvailableDates.rejected]: (state, { payload }) => {

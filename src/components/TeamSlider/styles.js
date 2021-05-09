@@ -2,8 +2,9 @@ const styles = () => ({
   container: {
     width: '90vw',
     margin: 'auto',
+    textAlign: 'center',
   },
-  Card: {
+  card: {
     textAlign: 'center',
     '& img': {
       margin: '12px auto',

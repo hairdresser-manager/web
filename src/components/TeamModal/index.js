@@ -34,9 +34,9 @@ const TeamModal = ({ classes }) => {
         >
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             <div className={classes.dialogTitleWrapper}>
-              <Avatar className={classes.styledAvatar} src={TeamDetails.imgUrl} />
+              <Avatar className={classes.styledAvatar} src={TeamDetails.avatarUrl} />
               <Typography className={classes.styledTitle} variant="h6">
-                {TeamDetails.name}
+                {TeamDetails.firstName}
               </Typography>
             </div>
             <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
