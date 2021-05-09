@@ -24,7 +24,7 @@ const Home = () => {
       <Services />
       <Heading title="meet the team" />
       <TeamSlider />
-      <Heading title="reviews" />
+      <Heading title="latest reviews" />
       <Reviews />
       <Dialog fullScreen open={isModalOpen} TransitionComponent={Transition}>
         <AuthModal />

@@ -67,5 +67,8 @@ const api = {
   services: () => {
     return axios.get(`${baseUrl}/services`);
   },
+  reviews: () => {
+    return axios.get(`${baseUrl}/reviews?Page=1&PerPage=5`);
+  },
 };
 export default api;

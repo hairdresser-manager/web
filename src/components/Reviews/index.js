@@ -1,31 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Reviews as GetReviews } from 'slices/ReviewsSlice';
 import PropTypes from 'prop-types';
 import { Grid, withStyles } from '@material-ui/core';
 import styles from './styles';
 import Review from './Review';
 
-const initState = [
-  {
-    name: 'Ania',
-    contents: 'Great experience! Looking forward to my hair growth journey....',
-    rating: 4,
-    date: 'Jan 28, 2021',
-    about: 'Rafał',
-  },
-  {
-    name: 'Włodek',
-    contents: 'Great experience! Looking forward to my hair growth journey....',
-    rating: 5,
-    date: 'Jan 28, 2021',
-    about: 'Włodek',
-  },
-];
-
 const Reviews = ({ classes }) => {
+  const dispatch = useDispatch();
+  const reviewsData = useSelector((state) => state.ReviewsSlice);
+
+  const { reviews } = reviewsData;
+
+  useEffect(() => {
+    dispatch(GetReviews());
+  }, []);
+
   return (
-    <Grid id="reviews" className={classes.styledGrid} container direction="row" spacing={2}>
-      {initState.map((item, index) => (
-        <Review key={index} item={item} />
+    <Grid className={classes.styledGrid} container direction="row" spacing={2}>
+      {reviews.map((review) => (
+        <Review key={review.reviewId} review={review} />
       ))}
     </Grid>
   );

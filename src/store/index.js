@@ -8,6 +8,7 @@ import UserReservationsReducer from 'slices/UserReservationsSlice';
 import AvailableDatesReducer from 'slices/AvailableDatesSlice';
 import TeamMembersReducer from 'slices/TeamMembersSlice';
 import ServicesReducer from 'slices/ServicesSlice';
+import ReviewsReducer from 'slices/ReviewsSlice';
 
 export default configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
     AvailableDatesSlice: AvailableDatesReducer,
     TeamMembersSlice: TeamMembersReducer,
     ServicesSlice: ServicesReducer,
+    ReviewsSlice: ReviewsReducer,
   },
 });
