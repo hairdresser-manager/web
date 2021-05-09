@@ -6,7 +6,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LockIcon from '@material-ui/icons/Lock';
 import DateRangeIcon from '@material-ui/icons/DateRange';
-import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
+import EditIcon from '@material-ui/icons/Edit';
 import styles from './styles';
 import { useHistory } from 'react-router';
 
@@ -48,10 +48,10 @@ const ProfileMenu = ({ classes }) => {
             </ListItem>
           </Link>
           <Divider />
-          <Link underline="none" color="inherit" href="/profile/change-numberphone">
+          <Link underline="none" color="inherit" href="/profile/change-account-informations">
             <ListItem button>
-              <PhoneAndroidIcon />
-              <ListItemText>Change Number Phone</ListItemText>
+              <EditIcon />
+              <ListItemText>Change Account Information</ListItemText>
             </ListItem>
           </Link>
           <Divider />

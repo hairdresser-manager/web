@@ -6,7 +6,7 @@ import ProfileStyles from './ProfileStyles';
 import Profile from 'components/Profile';
 import { Route } from 'react-router-dom';
 import ChangePassword from 'components/ChangePassword';
-import ChangeNumberPhone from 'components/ChangeNumberPhone';
+import ChangeAccountInformations from 'components/ChangeAccountInformations';
 import MyReservations from 'components/MyReservations';
 
 const ProfileComponent = ({ classes }) => {
@@ -18,7 +18,10 @@ const ProfileComponent = ({ classes }) => {
       <div className={classes.rightBox}>
         <Route exact path="/profile" component={Profile}></Route>
         <Route path="/profile/change-password" component={ChangePassword}></Route>
-        <Route path="/profile/change-numberphone" component={ChangeNumberPhone}></Route>
+        <Route
+          path="/profile/change-account-informations"
+          component={ChangeAccountInformations}
+        ></Route>
         <Route path="/profile/my-reservations" component={MyReservations}></Route>
       </div>
     </div>

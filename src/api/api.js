@@ -55,6 +55,9 @@ const api = {
   changePassword: (body) => {
     return axios.post(`${baseUrl}/accounts/change-password`, body);
   },
+  ChangeAccountInformations: (body) => {
+    return axios.put(`${baseUrl}/accounts`, body);
+  },
   userAppointments: () => {
     return axios.get(`${baseUrl}/appointments`);
   },
