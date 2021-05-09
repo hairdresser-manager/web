@@ -10,11 +10,10 @@ const styles = (theme) => ({
     minHeight: '400px',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    marginTop: '82px',
   },
   textBox: {
     position: 'absolute',
-    top: '420px',
+    top: '340px',
     width: '333px',
     height: '115px',
     background: '#E10050',

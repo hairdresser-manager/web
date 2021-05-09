@@ -17,6 +17,15 @@ const styles = (theme) => ({
       background: theme.palette.secondary.main,
     },
   },
+  [theme.breakpoints.down('sm')]: {
+    container: {
+      width: '100%',
+      borderRight: 'none',
+    },
+    user: {
+      justifyContent: 'center',
+    },
+  },
 });
 
 export default styles;

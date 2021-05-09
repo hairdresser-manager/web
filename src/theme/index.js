@@ -1,6 +1,15 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        body: {
+          marginTop: '85px',
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: ['Montserrat', 'sans-serif'].join(','),
     h6: {

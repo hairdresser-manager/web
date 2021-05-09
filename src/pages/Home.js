@@ -7,8 +7,9 @@ import Navbar from 'components/Navbar';
 import Services from 'components/Services';
 import TeamSlider from 'components/TeamSlider';
 import Reviews from 'components/Reviews';
-import ModalAuth from 'components/ModalAuth';
-import ModalTeam from 'components/ModalTeam';
+import AuthModal from 'components/AuthModal';
+import TeamModal from 'components/TeamModal';
+import BookingModal from 'components/Booking/BookingModal';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -26,9 +27,10 @@ const Home = () => {
       <Heading title="reviews" />
       <Reviews />
       <Dialog fullScreen open={isModalOpen} TransitionComponent={Transition}>
-        <ModalAuth />
+        <AuthModal />
       </Dialog>
-      <ModalTeam />
+      <TeamModal />
+      <BookingModal />
     </>
   );
 };

@@ -65,9 +65,11 @@ export const RegisterSlice = createSlice({
       state.mobilePhone = payload.mobilePhone;
       state.verifyToken = payload.verifyToken;
       state.isSuccess = true;
+      state.isLoading = false;
     },
     [register.rejected]: (state, { payload }) => {
       state.isError = true;
+      state.isLoading = false;
       state.errorMessage = payload;
     },
   },

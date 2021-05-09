@@ -53,6 +53,10 @@ const Register = ({ classes, setShowRegisterForm }) => {
   };
 
   useEffect(() => {
+    dispatch(ClearStateRegister());
+  }, []);
+
+  useEffect(() => {
     if (isSuccess && isConfirm) {
       setTimeout(() => {
         handleLoginForm();
@@ -60,10 +64,7 @@ const Register = ({ classes, setShowRegisterForm }) => {
         dispatch(ClearStateVerifyEmail());
       }, 3000);
     }
-    if (isError) {
-      dispatch(ClearStateRegister());
-    }
-  }, [isError, isSuccess, isConfirm]);
+  }, [isSuccess, isConfirm]);
   return (
     <>
       {isSuccess ? (
@@ -84,7 +85,7 @@ const Register = ({ classes, setShowRegisterForm }) => {
         </>
       ) : (
         <>
-          {errorMessage ? (
+          {isError ? (
             <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
               {errorMessage}
             </MuiAlert>

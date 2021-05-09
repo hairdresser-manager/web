@@ -8,17 +8,19 @@ const MyReservationsCard = ({ classes, appointments }) => {
   const { employeeName, serviceName, date, hour } = appointments;
 
   return (
-    <Paper elevation={7} className={classes.container}>
-      <div className={classes.leftBox}>
-        <Typography variant="subtitle1">{serviceName}</Typography>
-        <Typography variant="subtitle2">Employee: {employeeName} </Typography>
-      </div>
-      <div className={classes.rightBox}>
-        <Typography variant="subtitle2">{GetMonth(date)}</Typography>
-        <Typography className={classes.text}>{GetDay(date)}</Typography>
-        <Typography variant="subtitle2">{hour}</Typography>
-      </div>
-    </Paper>
+    <div className={classes.test}>
+      <Paper elevation={7} className={classes.container}>
+        <div className={classes.leftBox}>
+          <Typography variant="subtitle1">{serviceName}</Typography>
+          <Typography variant="subtitle2">Employee: {employeeName} </Typography>
+        </div>
+        <div className={classes.rightBox}>
+          <Typography variant="subtitle2">{GetMonth(date)}</Typography>
+          <Typography className={classes.text}>{GetDay(date)}</Typography>
+          <Typography variant="subtitle2">{hour}</Typography>
+        </div>
+      </Paper>
+    </div>
   );
 };
 

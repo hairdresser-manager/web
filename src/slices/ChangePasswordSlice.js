@@ -52,6 +52,7 @@ export const ChangePasswordSlice = createSlice({
     },
     [changePassword.rejected]: (state, { payload }) => {
       state.isError = true;
+      state.isLoading = false;
       state.errorMessage = payload;
     },
   },

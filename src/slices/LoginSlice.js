@@ -46,9 +46,11 @@ export const LoginSlice = createSlice({
       state.role = payload.role;
       state.isLoggedIn = true;
       state.isSuccess = true;
+      state.isLoading = false;
     },
     [login.rejected]: (state, { payload }) => {
       state.isError = true;
+      state.isLoading = false;
       state.errorMessage = payload;
     },
   },

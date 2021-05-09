@@ -53,6 +53,7 @@ export const VerifyEmailSlice = createSlice({
     },
     [verifyEmail.rejected]: (state, { payload }) => {
       state.isError = true;
+      state.isLoading = false;
       state.errorMessage = payload;
     },
   },

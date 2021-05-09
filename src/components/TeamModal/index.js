@@ -16,7 +16,7 @@ import styles from './styles';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const ModalTeam = ({ classes }) => {
+const TeamModal = ({ classes }) => {
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(isOpenTeamModal());
@@ -57,8 +57,8 @@ const ModalTeam = ({ classes }) => {
   );
 };
 
-ModalTeam.propTypes = {
+TeamModal.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ModalTeam);
+export default withStyles(styles)(TeamModal);

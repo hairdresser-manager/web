@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Login from 'components/Login';
 import Register from 'components/Register';
 
-const ModalAuth = ({ classes }) => {
+const AuthModal = ({ classes }) => {
   const dispatch = useDispatch();
   const handleCloseModal = () => {
     dispatch(isOpenAuthModal());
@@ -29,8 +29,8 @@ const ModalAuth = ({ classes }) => {
   );
 };
 
-ModalAuth.propTypes = {
+AuthModal.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ModalAuth);
+export default withStyles(styles)(AuthModal);

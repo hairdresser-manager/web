@@ -43,18 +43,15 @@ const Login = ({ classes, setShowRegisterForm }) => {
       dispatch(isOpenAuthModal());
       dispatch(clearState());
     }
-    if (isError) {
-      dispatch(clearState());
-    }
-  }, [isError, isSuccess]);
+  }, [isSuccess]);
 
   return (
     <>
-      {errorMessage ? (
+      {isError && (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
           {errorMessage}
         </MuiAlert>
-      ) : null}
+      )}
       <Typography variant="h5">Log in</Typography>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
         <Controller

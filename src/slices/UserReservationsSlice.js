@@ -46,6 +46,7 @@ export const UserReservationsSlice = createSlice({
     },
     [UserReservations.rejected]: (state, { payload }) => {
       state.isError = true;
+      state.isLoading = false;
       state.errorMessage = payload;
     },
   },

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserReservations } from 'slices/UserReservationsSlice';
 import PropTypes from 'prop-types';
-import { Typography, withStyles } from '@material-ui/core';
+import { Typography, withStyles, CircularProgress } from '@material-ui/core';
 import styles from './styles';
 import MyReservationsCard from './MyReservationsCard';
 
@@ -19,13 +19,17 @@ const MyReservations = ({ classes }) => {
   return (
     <>
       <Typography variant="h6">My Reservations:</Typography>
-      {!isLoading && (
-        <div className={classes.container}>
-          {UserAppointments.map((data) => (
-            <MyReservationsCard key={data.appointmentId} appointments={data} />
-          ))}
-        </div>
-      )}
+      <div className={classes.container}>
+        {isLoading ? (
+          <CircularProgress size={70} />
+        ) : (
+          <>
+            {UserAppointments.map((data) => (
+              <MyReservationsCard key={data.appointmentId} appointments={data} />
+            ))}
+          </>
+        )}
+      </div>
     </>
   );
 };

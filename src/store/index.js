@@ -5,6 +5,7 @@ import RegisterReducer from 'slices/RegisterSlice';
 import ChangePasswordReducer from 'slices/ChangePasswordSlice';
 import verifyEmailReducer from 'slices/VerifyEmailSlice';
 import UserReservationsReducer from 'slices/UserReservationsSlice';
+import AvailableDatesReducer from 'slices/AvailableDatesSlice';
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     ChangePasswordSlice: ChangePasswordReducer,
     VerifyEmailSlice: verifyEmailReducer,
     UserReservationsSlice: UserReservationsReducer,
+    AvailableDatesSlice: AvailableDatesReducer,
   },
 });
