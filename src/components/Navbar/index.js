@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { isOpenAuthModal } from 'slices/ModalsSlice';
+import { checkRole } from 'helpers/CheckRoles';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import {
@@ -30,6 +31,7 @@ const Navbar = ({ classes }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const history = useHistory();
+  const userRole = checkRole('Admin');
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -110,9 +112,16 @@ const Navbar = ({ classes }) => {
             </>
           ) : (
             <div>
-              <Button className={classes.styledButton} variant="outlined" color="secondary">
-                BOOK NOW
-              </Button>
+              {userRole ? (
+                <Button className={classes.styledButton} variant="outlined" color="primary">
+                  ADMIN PANEL
+                </Button>
+              ) : (
+                <Button className={classes.styledButton} variant="outlined" color="secondary">
+                  BOOK NOW
+                </Button>
+              )}
+
               {isLoggedIn ? (
                 <>
                   <IconButton
@@ -153,7 +162,6 @@ const Navbar = ({ classes }) => {
                     >
                       <MenuItem onClick={handleCloseMenu}>Edit Account</MenuItem>
                     </Link>
-
                     <MenuItem onClick={onLogOut}>Logout</MenuItem>
                   </Menu>
                 </>
