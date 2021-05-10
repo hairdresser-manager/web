@@ -49,7 +49,7 @@ const Login = ({ classes, setShowRegisterForm }) => {
     <>
       {isError && (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {errorMessage}
+          {errorMessage || 'Something went wrong'}
         </MuiAlert>
       )}
       <Typography variant="h5">Log in</Typography>

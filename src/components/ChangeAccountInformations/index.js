@@ -56,7 +56,7 @@ const ChangeAccountInformations = ({ classes }) => {
       )}
       {isError && (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {errorMessage.MobilePhone}
+          {errorMessage || 'Something went wrong, please try logging in again'}
         </MuiAlert>
       )}
       <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
@@ -103,6 +103,10 @@ const ChangeAccountInformations = ({ classes }) => {
             <TextField
               {...register('mobilePhone', {
                 required: 'This field is required',
+                pattern: {
+                  value: /^-?[0-9]\d*\.?\d*$/,
+                  message: 'invalid phone number',
+                },
               })}
               {...field}
               label="New Mobile Phone"
