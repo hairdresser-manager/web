@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CheckRoles } from 'helpers/CheckRoles';
 import { Divider, List, ListItem, ListItemText, withStyles, Link } from '@material-ui/core';
 import { Avatar, Typography } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -12,6 +13,8 @@ import { useHistory } from 'react-router';
 
 const ProfileMenu = ({ classes }) => {
   const userName = localStorage.getItem('firstName');
+  const isUser = CheckRoles('User');
+  const isAdmin = CheckRoles('Admin');
   const history = useHistory();
   const onLogOut = () => {
     localStorage.removeItem('accessToken');
@@ -34,13 +37,28 @@ const ProfileMenu = ({ classes }) => {
             </ListItem>
           </Link>
           <Divider />
-          <Link underline="none" color="inherit" href="/profile/my-reservations">
-            <ListItem button>
-              <DateRangeIcon />
-              <ListItemText>My Reservations</ListItemText>
-            </ListItem>
-          </Link>
-          <Divider />
+          {isUser && (
+            <>
+              <Link underline="none" color="inherit" href="/profile/my-reservations">
+                <ListItem button>
+                  <DateRangeIcon />
+                  <ListItemText>My Reservations</ListItemText>
+                </ListItem>
+              </Link>
+              <Divider />
+            </>
+          )}
+          {isAdmin && (
+            <>
+              <Link underline="none" color="inherit" href="/profile/manage-schedule">
+                <ListItem button>
+                  <DateRangeIcon />
+                  <ListItemText>Manage Schedules</ListItemText>
+                </ListItem>
+              </Link>
+              <Divider />
+            </>
+          )}
           <Link underline="none" color="inherit" href="/profile/change-password">
             <ListItem button>
               <LockIcon />

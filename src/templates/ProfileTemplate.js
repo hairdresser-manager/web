@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom';
 import ChangePassword from 'components/ChangePassword';
 import ChangeAccountInformations from 'components/ChangeAccountInformations';
 import MyReservations from 'components/MyReservations';
+import ManageSchedule from 'components/ManageSchedule';
 
 const ProfileComponent = ({ classes }) => {
   return (
@@ -23,6 +24,7 @@ const ProfileComponent = ({ classes }) => {
           component={ChangeAccountInformations}
         ></Route>
         <Route path="/profile/my-reservations" component={MyReservations}></Route>
+        <Route path="/profile/manage-schedule" component={ManageSchedule}></Route>
       </div>
     </div>
   );

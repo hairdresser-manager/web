@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { isOpenAuthModal } from 'slices/ModalsSlice';
-import { checkRole } from 'helpers/CheckRoles';
+import { CheckRoles } from 'helpers/CheckRoles';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import {
@@ -31,7 +31,7 @@ const Navbar = ({ classes }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const history = useHistory();
-  const userRole = checkRole('Admin');
+  const userRole = CheckRoles('Admin');
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -113,13 +113,22 @@ const Navbar = ({ classes }) => {
           ) : (
             <div>
               {userRole ? (
-                <Button className={classes.styledButton} variant="outlined" color="primary">
-                  ADMIN PANEL
-                </Button>
+                <Link underline="none" color="inherit" href="/profile">
+                  <Button className={classes.styledButton} variant="outlined" color="primary">
+                    ADMIN PANEL
+                  </Button>
+                </Link>
               ) : (
-                <Button className={classes.styledButton} variant="outlined" color="secondary">
-                  BOOK NOW
-                </Button>
+                <Link
+                  className={classes.styledLink}
+                  href="/#services"
+                  color="inherit"
+                  underline="none"
+                >
+                  <Button className={classes.styledButton} variant="outlined" color="secondary">
+                    BOOK NOW
+                  </Button>
+                </Link>
               )}
 
               {isLoggedIn ? (

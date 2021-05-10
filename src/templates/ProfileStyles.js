@@ -1,7 +1,7 @@
 const styles = (theme) => ({
   container: {
     display: 'flex',
-    width: '60%',
+    width: '80%',
     margin: '150px auto',
   },
   rightBox: {
