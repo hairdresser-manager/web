@@ -17,7 +17,7 @@ const Reviews = ({ classes }) => {
   }, []);
 
   return (
-    <Grid className={classes.styledGrid} container direction="row" spacing={2}>
+    <Grid id="reviews" className={classes.styledGrid} container direction="row" spacing={2}>
       {reviews.map((review) => (
         <Review key={review.reviewId} review={review} />
       ))}
