@@ -33,6 +33,7 @@ export const LoginSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
+      state.errorMessage = '';
     },
   },
   extraReducers: {

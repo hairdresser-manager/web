@@ -65,10 +65,10 @@ const api = {
     return axios.get(`${baseUrl}/appointments/available-dates`);
   },
   teamMembers: () => {
-    return axios.get(`${baseUrl}/team-members`);
+    return axios.get(`${baseUrl}/offers/team-members`);
   },
   services: () => {
-    return axios.get(`${baseUrl}/services`);
+    return axios.get(`${baseUrl}/offers/services`);
   },
   reviews: () => {
     return axios.get(`${baseUrl}/reviews?Page=1&PerPage=5`);

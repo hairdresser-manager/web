@@ -28,6 +28,7 @@ const Login = ({ classes, setShowRegisterForm }) => {
   } = useForm();
 
   const onSubmit = (data) => {
+    dispatch(clearState());
     dispatch(login(data));
   };
   const handleRegisterForm = () => {
@@ -40,8 +41,8 @@ const Login = ({ classes, setShowRegisterForm }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(isOpenAuthModal());
       dispatch(clearState());
+      dispatch(isOpenAuthModal());
     }
   }, [isSuccess]);
 
@@ -49,7 +50,7 @@ const Login = ({ classes, setShowRegisterForm }) => {
     <>
       {isError && (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {errorMessage || 'Something went wrong'}
+          {isError ? errorMessage : 'Something went wrong'}
         </MuiAlert>
       )}
       <Typography variant="h5">Log in</Typography>

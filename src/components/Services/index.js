@@ -62,44 +62,44 @@ const Services = ({ classes }) => {
       )}
       <Grid id="services" container justify="center">
         <Paper elevation={4} className={classes.root}>
-          {services.map((service) => (
-            <Accordion key={service.serviceId} className={classes.styledAccordion}>
+          {services.map((service, index) => (
+            <Accordion key={index} className={classes.styledAccordion}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography className={classes.heading}>
-                  {service.categories.map((category) => category + ' / ')}
-                </Typography>
+                <Typography className={classes.heading}>{service.categoryName}</Typography>
               </AccordionSummary>
-              <AccordionDetails className={classes.styledAccordionDetails}>
-                <div className={classes.accordionWrapper}>
-                  <div className={classes.leftBox}>
-                    <Typography variant="subtitle1">{service.name}</Typography>
-                    <Typography variant="subtitle2">{service.description}</Typography>
-                  </div>
-                  <div className={classes.rightBox}>
-                    <Typography variant="subtitle1">${service.price}.00+</Typography>
+              {service.services.map((serviceDetail) => (
+                <AccordionDetails key={serviceDetail.id} className={classes.styledAccordionDetails}>
+                  <div className={classes.accordionWrapper}>
+                    <div className={classes.leftBox}>
+                      <Typography variant="subtitle1">{serviceDetail.name}</Typography>
+                      <Typography variant="subtitle2">{serviceDetail.description}</Typography>
+                    </div>
+                    <div className={classes.rightBox}>
+                      <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
 
-                    <Button
-                      onClick={
-                        isLoggedIn
-                          ? () => {
-                              handleOpenModal();
-                              handleSelectService(service.serviceId, service.name);
-                            }
-                          : handleAlert
-                      }
-                      color="secondary"
-                      variant="contained"
-                    >
-                      book
-                    </Button>
+                      <Button
+                        onClick={
+                          isLoggedIn
+                            ? () => {
+                                handleOpenModal();
+                                handleSelectService(serviceDetail.id, serviceDetail.name);
+                              }
+                            : handleAlert
+                        }
+                        color="secondary"
+                        variant="contained"
+                      >
+                        book
+                      </Button>
+                    </div>
                   </div>
-                </div>
-                <Divider className={classes.styledDivider} />
-              </AccordionDetails>
+                  <Divider className={classes.styledDivider} />
+                </AccordionDetails>
+              ))}
             </Accordion>
           ))}
         </Paper>

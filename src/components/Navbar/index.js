@@ -119,12 +119,7 @@ const Navbar = ({ classes }) => {
                   </Button>
                 </Link>
               ) : (
-                <Link
-                  className={classes.styledLink}
-                  href="/#services"
-                  color="inherit"
-                  underline="none"
-                >
+                <Link href="/#services" color="inherit" underline="none">
                   <Button className={classes.styledButton} variant="outlined" color="secondary">
                     BOOK NOW
                   </Button>

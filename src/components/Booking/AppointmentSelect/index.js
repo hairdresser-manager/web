@@ -8,6 +8,7 @@ import {
   clearStateSelectDay,
   clearState,
 } from 'slices/AvailableDatesSlice';
+import { isOpenAppointmentsModal } from 'slices/ModalsSlice';
 import { Typography, withStyles, Avatar, Button } from '@material-ui/core';
 import styles from './styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -43,6 +44,10 @@ const AppointmentSelect = ({ classes }) => {
     dispatch(clearStateSelectHour());
   };
 
+  const handleClose = () => {
+    dispatch(isOpenAppointmentsModal());
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -56,7 +61,7 @@ const AppointmentSelect = ({ classes }) => {
       </div>
       <div className={classes.content}>
         {isDaySelected
-          ? selectedDay.dates.map((data, index) => (
+          ? selectedDay.hours.map((data, index) => (
               <div onClick={() => handleHour(data, index)} className={classes.cards} key={index}>
                 <Typography>{data}</Typography>
               </div>
@@ -79,6 +84,7 @@ const AppointmentSelect = ({ classes }) => {
         </Typography>
         {isHourSelected && (
           <Button
+            onClick={handleClose}
             className={classes.button}
             variant="outlined"
             color="inherit"

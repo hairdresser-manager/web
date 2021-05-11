@@ -40,7 +40,7 @@ const EmployeeSelect = ({ classes }) => {
           <div
             onClick={() => handleSelectEmployee(data)}
             className={classes.employeeCard}
-            key={data.employeeId}
+            key={data.appointmentId}
           >
             <Avatar src={data.employeeLowQualityAvatar ? data.employeeLowQualityAvatar : null} />
             <Typography>{data.employeeName}</Typography>
