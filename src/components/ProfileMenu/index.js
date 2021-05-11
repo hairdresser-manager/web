@@ -5,6 +5,7 @@ import { Divider, List, ListItem, ListItemText, withStyles, Link } from '@materi
 import { Avatar, Typography } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import LockIcon from '@material-ui/icons/Lock';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import EditIcon from '@material-ui/icons/Edit';
@@ -54,6 +55,13 @@ const ProfileMenu = ({ classes }) => {
                 <ListItem button>
                   <DateRangeIcon />
                   <ListItemText>Manage Schedules</ListItemText>
+                </ListItem>
+              </Link>
+              <Divider />
+              <Link underline="none" color="inherit" href="/profile/manage-employee">
+                <ListItem button>
+                  <AccessibilityNewIcon />
+                  <ListItemText>Add new Employee</ListItemText>
                 </ListItem>
               </Link>
               <Divider />

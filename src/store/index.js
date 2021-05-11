@@ -10,6 +10,9 @@ import TeamMembersReducer from 'slices/TeamMembersSlice';
 import ServicesReducer from 'slices/ServicesSlice';
 import ReviewsReducer from 'slices/ReviewsSlice';
 import ChangeAccountInformationsReducer from 'slices/ChangeAccountInformations';
+import getEmployeesReducer from 'slices/EmployeesSlice';
+import addEmployeesReducer from 'slices/AddEmployeeSlice';
+import editEmployeeReducer from 'slices/EditEmployeeSlice';
 
 export default configureStore({
   reducer: {
@@ -24,5 +27,8 @@ export default configureStore({
     ServicesSlice: ServicesReducer,
     ReviewsSlice: ReviewsReducer,
     ChangeAccountInformationsSlice: ChangeAccountInformationsReducer,
+    EmployeesSlice: getEmployeesReducer,
+    AddEmployeeSlice: addEmployeesReducer,
+    editEmployeeSlice: editEmployeeReducer,
   },
 });

@@ -73,5 +73,14 @@ const api = {
   reviews: () => {
     return axios.get(`${baseUrl}/reviews?Page=1&PerPage=5`);
   },
+  showEmployees: () => {
+    return axios.get(`${baseUrl}/employees`);
+  },
+  addEmployee: (body) => {
+    return axios.post(`${baseUrl}/employees`, body);
+  },
+  editEmployee: (body, id) => {
+    return axios.put(`${baseUrl}/employees/${id}`, body);
+  },
 };
 export default api;

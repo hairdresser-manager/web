@@ -12,6 +12,12 @@ export const ModalsSlice = createSlice({
     AppointmentsModal: {
       isModalOpen: false,
     },
+    AddEmployeeModal: {
+      isModalOpen: false,
+    },
+    EditEmployeeModal: {
+      isModalOpen: false,
+    },
     TeamModalDetails: {},
   },
   reducers: {
@@ -25,9 +31,21 @@ export const ModalsSlice = createSlice({
     isOpenAppointmentsModal: (state) => {
       state.AppointmentsModal.isModalOpen = !state.AppointmentsModal.isModalOpen;
     },
+    isOpenAddEmployeeModal: (state) => {
+      state.AddEmployeeModal.isModalOpen = !state.AddEmployeeModal.isModalOpen;
+    },
+    isOpenEditEmployeeModal: (state) => {
+      state.EditEmployeeModal.isModalOpen = !state.EditEmployeeModal.isModalOpen;
+    },
   },
 });
 
-export const { isOpenAuthModal, isOpenTeamModal, isOpenAppointmentsModal } = ModalsSlice.actions;
+export const {
+  isOpenAuthModal,
+  isOpenTeamModal,
+  isOpenAppointmentsModal,
+  isOpenAddEmployeeModal,
+  isOpenEditEmployeeModal,
+} = ModalsSlice.actions;
 
 export default ModalsSlice.reducer;
