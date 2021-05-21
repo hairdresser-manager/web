@@ -56,6 +56,10 @@ const styles = (theme) => ({
   iconButton: {
     width: '95px',
   },
+  menuItemAdmin: {
+    color: theme.palette.primary.main,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProfileMenu from 'components/ProfileMenu';
+import ProfileMenu from 'components/Menu';
 import { withStyles } from '@material-ui/core';
-import ProfileStyles from './ProfileStyles';
+import styles from './styles';
 import Profile from 'components/Profile';
 import { Route } from 'react-router-dom';
 import ChangePassword from 'components/ChangePassword';
@@ -36,4 +36,4 @@ ProfileComponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(ProfileStyles)(ProfileComponent);
+export default withStyles(styles)(ProfileComponent);

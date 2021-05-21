@@ -30,6 +30,11 @@ const styles = (theme) => ({
   img: {
     width: '140px',
     height: '140px',
+  },
+  imgActive: {
+    borderLeft: `2px solid green`,
+  },
+  imgInActive: {
     borderLeft: `2px solid ${theme.palette.secondary.main}`,
   },
   status: {

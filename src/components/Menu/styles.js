@@ -17,6 +17,16 @@ const styles = (theme) => ({
       background: theme.palette.secondary.main,
     },
   },
+  avatarUser: {
+    '&.MuiAvatar-colorDefault': {
+      background: theme.palette.secondary.main,
+    },
+  },
+  avatarAdmin: {
+    '&.MuiAvatar-colorDefault': {
+      background: theme.palette.primary.main,
+    },
+  },
   [theme.breakpoints.down('sm')]: {
     container: {
       width: '100%',

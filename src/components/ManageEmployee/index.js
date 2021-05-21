@@ -25,7 +25,7 @@ const ManageEmployee = ({ classes }) => {
     <>
       <div className={classes.header}>
         <Typography variant="h6">Employees:</Typography>
-        <Button onClick={handleClickOpen} type="submit" color="secondary" variant="contained">
+        <Button onClick={handleClickOpen} type="submit" color="primary" variant="contained">
           Add
         </Button>
       </div>

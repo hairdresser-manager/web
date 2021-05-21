@@ -64,7 +64,11 @@ const EmployeeCard = ({ classes, employee }) => {
         </div>
       </div>
       <div className={classes.rightBox}>
-        <img className={classes.img} src={avatarUrl} alt="" />
+        <img
+          className={`${classes.img} ${active ? classes.imgActive : classes.imgInActive}`}
+          src={avatarUrl}
+          alt="Employee Avatar"
+        />
       </div>
     </Paper>
   );

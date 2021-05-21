@@ -111,7 +111,7 @@ const Navbar = ({ classes }) => {
           ) : (
             <div>
               {userRole ? (
-                <Link underline="none" color="inherit" href="/profile">
+                <Link underline="none" color="inherit" href="/admin">
                   <Button className={classes.styledButton} variant="outlined" color="primary">
                     ADMIN PANEL
                   </Button>
@@ -164,6 +164,13 @@ const Navbar = ({ classes }) => {
                     >
                       <MenuItem onClick={handleCloseMenu}>Edit Account</MenuItem>
                     </Link>
+                    {userRole && (
+                      <Link underline="none" color="inherit" href="admin">
+                        <MenuItem className={classes.menuItemAdmin} onClick={handleCloseMenu}>
+                          Admin Panel
+                        </MenuItem>
+                      </Link>
+                    )}
                     <MenuItem onClick={onLogOut}>Logout</MenuItem>
                   </Menu>
                 </>

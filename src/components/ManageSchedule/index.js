@@ -13,7 +13,7 @@ const ManageSchedule = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar color="secondary" position="static">
+      <AppBar color="primary" position="static">
         <Tabs
           variant="fullWidth"
           className={classes.tabs}
