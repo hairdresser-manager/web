@@ -33,12 +33,12 @@ export const LoginSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
-      state.errorMessage = '';
     },
   },
   extraReducers: {
     [login.pending]: (state) => {
       state.isLoading = true;
+      state.isError = false;
       state.errorMessage = '';
     },
     [login.fulfilled]: (state, { payload }) => {

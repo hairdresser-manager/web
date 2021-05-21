@@ -54,6 +54,7 @@ export const RegisterSlice = createSlice({
   extraReducers: {
     [register.pending]: (state) => {
       state.isLoading = true;
+      state.isError = false;
       state.errorMessage = '';
     },
     [register.fulfilled]: (state, { payload }) => {

@@ -35,7 +35,7 @@ const Register = ({ classes, setShowRegisterForm }) => {
   const password = useRef({});
   password.current = watch('password', '');
 
-  const handleLoginForm = () => {
+  const showLoginForm = () => {
     setShowRegisterForm((prev) => !prev);
   };
 
@@ -59,12 +59,13 @@ const Register = ({ classes, setShowRegisterForm }) => {
   useEffect(() => {
     if (isSuccess && isConfirm) {
       setTimeout(() => {
-        handleLoginForm();
+        showLoginForm();
         dispatch(ClearStateRegister());
         dispatch(ClearStateVerifyEmail());
       }, 3000);
     }
   }, [isSuccess, isConfirm]);
+
   return (
     <>
       {isSuccess ? (
@@ -208,7 +209,7 @@ const Register = ({ classes, setShowRegisterForm }) => {
               defaultValue=""
             />
             {isLoading ? <CircularProgress /> : null}
-            <Link className={classes.link} onClick={handleLoginForm}>
+            <Link className={classes.link} onClick={showLoginForm}>
               already have an account? log in
             </Link>
             <Button type="submit" variant="contained" color="secondary" className={classes.button}>

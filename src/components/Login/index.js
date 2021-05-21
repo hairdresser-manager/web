@@ -28,10 +28,10 @@ const Login = ({ classes, setShowRegisterForm }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(clearState());
     dispatch(login(data));
   };
-  const handleRegisterForm = () => {
+
+  const showFormRegister = () => {
     setShowRegisterForm((prev) => !prev);
   };
 
@@ -50,7 +50,7 @@ const Login = ({ classes, setShowRegisterForm }) => {
     <>
       {isError && (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {isError ? errorMessage : 'Something went wrong'}
+          {errorMessage}
         </MuiAlert>
       )}
       <Typography variant="h5">Log in</Typography>
@@ -107,7 +107,7 @@ const Login = ({ classes, setShowRegisterForm }) => {
         </Button>
       </form>
       <Button
-        onClick={handleRegisterForm}
+        onClick={showFormRegister}
         variant="contained"
         color="secondary"
         className={classes.button}
