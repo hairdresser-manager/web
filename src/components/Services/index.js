@@ -63,7 +63,7 @@ const Services = ({ classes }) => {
       )}
       <Grid id="services" className={classes.container} container>
         {isLoading ? (
-          <CircularProgress />
+          <CircularProgress color="secondary" size={60} />
         ) : (
           <Paper elevation={4} className={classes.paper}>
             {services.map((service, index) => (
