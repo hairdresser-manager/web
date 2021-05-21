@@ -46,9 +46,7 @@ const Navbar = ({ classes }) => {
   };
 
   const onLogOut = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('role');
+    localStorage.clear();
     history.push('/');
     window.location.reload();
   };

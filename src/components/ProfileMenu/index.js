@@ -18,7 +18,7 @@ const ProfileMenu = ({ classes }) => {
   const isAdmin = CheckRoles('Admin');
   const history = useHistory();
   const onLogOut = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     history.push('/');
     window.location.reload();
   };
