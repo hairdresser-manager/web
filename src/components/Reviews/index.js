@@ -19,7 +19,7 @@ const Reviews = ({ classes }) => {
   return (
     <Grid id="reviews" className={classes.styledGrid} container direction="row" spacing={2}>
       {isLoading ? (
-        <CircularProgress color="secondary" size={60} />
+        <CircularProgress className={classes.circularProgress} color="secondary" size={60} />
       ) : (
         <>
           {reviews.map((review) => (
