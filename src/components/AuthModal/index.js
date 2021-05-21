@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { isOpenAuthModal } from 'slices/ModalsSlice';
 import PropTypes from 'prop-types';
 import { Grid, withStyles } from '@material-ui/core';
@@ -9,21 +9,21 @@ import Login from 'components/Login';
 import Register from 'components/Register';
 
 const AuthModal = ({ classes }) => {
+  const isShowRegisterForm = useSelector(
+    (state) => state.ModalsSlice.showRegisterForm.isShowRegisterForm
+  );
   const dispatch = useDispatch();
+
   const handleCloseModal = () => {
     dispatch(isOpenAuthModal());
   };
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
+
   return (
     <Grid container className={classes.conatiner}>
       <Grid item xs={false} sm={6} className={classes.leftBox}></Grid>
       <Grid item xs={12} sm={6} className={classes.rightBox}>
         <CloseIcon onClick={handleCloseModal} className={classes.closeIcon} />
-        {showRegisterForm ? (
-          <Register showRegisterForm={showRegisterForm} setShowRegisterForm={setShowRegisterForm} />
-        ) : (
-          <Login setShowRegisterForm={setShowRegisterForm} />
-        )}
+        {isShowRegisterForm ? <Register /> : <Login />}
       </Grid>
     </Grid>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isOpenAuthModal } from 'slices/ModalsSlice';
+import { isOpenAuthModal, isShowRegisterForm } from 'slices/ModalsSlice';
 import { login, clearState } from 'slices/LoginSlice';
 import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
@@ -15,7 +15,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import styles from './styles';
 
-const Login = ({ classes, setShowRegisterForm }) => {
+const Login = ({ classes }) => {
   const dispatch = useDispatch();
   const loginData = useSelector((state) => state.LoginSlice);
   const { errorMessage, isLoading, isError, isSuccess } = loginData;
@@ -32,7 +32,7 @@ const Login = ({ classes, setShowRegisterForm }) => {
   };
 
   const showFormRegister = () => {
-    setShowRegisterForm((prev) => !prev);
+    dispatch(isShowRegisterForm());
   };
 
   useEffect(() => {
@@ -120,7 +120,6 @@ const Login = ({ classes, setShowRegisterForm }) => {
 
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
-  setShowRegisterForm: PropTypes.func,
 };
 
 export default withStyles(styles)(Login);

@@ -6,6 +6,9 @@ export const ModalsSlice = createSlice({
     AuthModal: {
       isModalOpen: false,
     },
+    showRegisterForm: {
+      isShowRegisterForm: false,
+    },
     TeamModal: {
       isModalOpen: false,
     },
@@ -23,6 +26,9 @@ export const ModalsSlice = createSlice({
   reducers: {
     isOpenAuthModal: (state) => {
       state.AuthModal.isModalOpen = !state.AuthModal.isModalOpen;
+    },
+    isShowRegisterForm: (state) => {
+      state.showRegisterForm.isShowRegisterForm = !state.showRegisterForm.isShowRegisterForm;
     },
     isOpenTeamModal: (state, data) => {
       state.TeamModal.isModalOpen = !state.TeamModal.isModalOpen;
@@ -42,6 +48,7 @@ export const ModalsSlice = createSlice({
 
 export const {
   isOpenAuthModal,
+  isShowRegisterForm,
   isOpenTeamModal,
   isOpenAppointmentsModal,
   isOpenAddEmployeeModal,

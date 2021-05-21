@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { isShowRegisterForm } from 'slices/ModalsSlice';
 import {
   register as registerSlice,
   clearState as ClearStateRegister,
 } from 'slices/RegisterSlice.js';
-import { verifyEmail, clearState as ClearStateVerifyEmail } from 'slices/VerifyEmailSlice';
 import { useForm, Controller } from 'react-hook-form';
 import {
   Button,
@@ -17,13 +17,12 @@ import {
 } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import styles from './styles';
+import ConfirmAccount from './ConfirmAccount';
 
-const Register = ({ classes, setShowRegisterForm }) => {
+const Register = ({ classes }) => {
   const dispatch = useDispatch();
   const registerData = useSelector((state) => state.RegisterSlice);
-  const { errorMessage, isLoading, isSuccess, isError, email, verifyToken } = registerData;
-  const verifyEmailData = useSelector((state) => state.VerifyEmailSlice);
-  const { isConfirm } = verifyEmailData;
+  const { errorMessage, isLoading, isSuccess, isError } = registerData;
 
   const {
     handleSubmit,
@@ -36,54 +35,21 @@ const Register = ({ classes, setShowRegisterForm }) => {
   password.current = watch('password', '');
 
   const showLoginForm = () => {
-    setShowRegisterForm((prev) => !prev);
+    dispatch(isShowRegisterForm());
   };
 
   const onSubmit = (data) => {
     dispatch(registerSlice(data));
   };
 
-  const handleConfirmLink = () => {
-    dispatch(
-      verifyEmail({
-        token: verifyToken,
-        email: email,
-      })
-    );
-  };
-
   useEffect(() => {
     dispatch(ClearStateRegister());
   }, []);
 
-  useEffect(() => {
-    if (isSuccess && isConfirm) {
-      setTimeout(() => {
-        showLoginForm();
-        dispatch(ClearStateRegister());
-        dispatch(ClearStateVerifyEmail());
-      }, 3000);
-    }
-  }, [isSuccess, isConfirm]);
-
   return (
     <>
       {isSuccess ? (
-        <>
-          <Typography variant="subtitle1">
-            Your account has been created successfully, click this{' '}
-            <Link onClick={handleConfirmLink} className={classes.confirmLink}>
-              link
-            </Link>{' '}
-            to confirm your account
-          </Typography>
-          {isConfirm && (
-            <Typography>
-              Your account has been activated successfully. In 3 seconds you will be redirected to
-              the login page
-            </Typography>
-          )}
-        </>
+        <ConfirmAccount />
       ) : (
         <>
           {isError ? (
@@ -167,6 +133,7 @@ const Register = ({ classes, setShowRegisterForm }) => {
                   {...field}
                   label="First Name"
                   variant="outlined"
+                  type="text"
                   helperText={errors.firstName && 'This field is required'}
                   error={errors.firstName ? true : false}
                 />
@@ -184,6 +151,7 @@ const Register = ({ classes, setShowRegisterForm }) => {
                   {...field}
                   label="Last Name"
                   variant="outlined"
+                  type="text"
                   helperText={errors.lastName && 'This field is required'}
                   error={errors.lastName ? true : false}
                 />
@@ -197,11 +165,15 @@ const Register = ({ classes, setShowRegisterForm }) => {
                 <TextField
                   {...register('mobilePhone', {
                     required: true,
+                    pattern: {
+                      value: /^-?[0-9]\d*\.?\d*$/,
+                      message: 'invalid phone number',
+                    },
                   })}
                   {...field}
                   label="Phone Number"
                   variant="outlined"
-                  helperText={errors.mobilePhone && 'This field is required'}
+                  helperText={errors.mobilePhone && errors.mobilePhone.message}
                   error={errors.mobilePhone ? true : false}
                 />
               )}
@@ -224,7 +196,6 @@ const Register = ({ classes, setShowRegisterForm }) => {
 
 Register.propTypes = {
   classes: PropTypes.object.isRequired,
-  setShowRegisterForm: PropTypes.func,
 };
 
 export default withStyles(styles)(Register);
