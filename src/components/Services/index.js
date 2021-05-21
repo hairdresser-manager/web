@@ -15,6 +15,7 @@ import {
   Grid,
   Slide,
   Snackbar,
+  CircularProgress,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Alert from '@material-ui/lab/Alert';
@@ -26,7 +27,7 @@ const Services = ({ classes }) => {
   const dispatch = useDispatch();
   const servicesData = useSelector((state) => state.ServicesSlice);
 
-  const { services } = servicesData;
+  const { services, isLoading } = servicesData;
 
   const handleOpenModal = () => {
     dispatch(isOpenAppointmentsModal());
@@ -60,49 +61,56 @@ const Services = ({ classes }) => {
           </Slide>
         </Snackbar>
       )}
-      <Grid id="services" container justify="center">
-        <Paper elevation={4} className={classes.root}>
-          {services.map((service, index) => (
-            <Accordion key={index} className={classes.styledAccordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>{service.categoryName}</Typography>
-              </AccordionSummary>
-              {service.services.map((serviceDetail) => (
-                <AccordionDetails key={serviceDetail.id} className={classes.styledAccordionDetails}>
-                  <div className={classes.accordionWrapper}>
-                    <div className={classes.leftBox}>
-                      <Typography variant="subtitle1">{serviceDetail.name}</Typography>
-                      <Typography variant="subtitle2">{serviceDetail.description}</Typography>
-                    </div>
-                    <div className={classes.rightBox}>
-                      <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
+      <Grid id="services" className={classes.container} container>
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          <Paper elevation={4} className={classes.paper}>
+            {services.map((service, index) => (
+              <Accordion key={index} className={classes.styledAccordion}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>{service.categoryName}</Typography>
+                </AccordionSummary>
+                {service.services.map((serviceDetail) => (
+                  <AccordionDetails
+                    key={serviceDetail.id}
+                    className={classes.styledAccordionDetails}
+                  >
+                    <div className={classes.accordionWrapper}>
+                      <div className={classes.leftBox}>
+                        <Typography variant="subtitle1">{serviceDetail.name}</Typography>
+                        <Typography variant="subtitle2">{serviceDetail.description}</Typography>
+                      </div>
+                      <div className={classes.rightBox}>
+                        <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
 
-                      <Button
-                        onClick={
-                          isLoggedIn
-                            ? () => {
-                                handleOpenModal();
-                                handleSelectService(serviceDetail.id, serviceDetail.name);
-                              }
-                            : handleAlert
-                        }
-                        color="secondary"
-                        variant="contained"
-                      >
-                        book
-                      </Button>
+                        <Button
+                          onClick={
+                            isLoggedIn
+                              ? () => {
+                                  handleOpenModal();
+                                  handleSelectService(serviceDetail.id, serviceDetail.name);
+                                }
+                              : handleAlert
+                          }
+                          color="secondary"
+                          variant="contained"
+                        >
+                          book
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                  <Divider className={classes.styledDivider} />
-                </AccordionDetails>
-              ))}
-            </Accordion>
-          ))}
-        </Paper>
+                    <Divider className={classes.styledDivider} />
+                  </AccordionDetails>
+                ))}
+              </Accordion>
+            ))}
+          </Paper>
+        )}
       </Grid>
     </>
   );

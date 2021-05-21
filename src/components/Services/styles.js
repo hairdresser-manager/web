@@ -1,5 +1,12 @@
 const styles = (theme) => ({
-  root: {
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '54px',
+    minHeight: '400px',
+  },
+  paper: {
     width: '90vw',
     marginTop: '100px',
     background: '#E10050',
