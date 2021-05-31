@@ -32,10 +32,10 @@ const styles = (theme) => ({
     height: '140px',
   },
   imgActive: {
-    borderLeft: `2px solid green`,
+    borderLeft: `3px solid green`,
   },
   imgInActive: {
-    borderLeft: `2px solid ${theme.palette.secondary.main}`,
+    borderLeft: `3px solid ${theme.palette.secondary.main}`,
   },
   status: {
     display: 'flex',

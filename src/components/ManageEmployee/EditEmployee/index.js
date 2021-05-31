@@ -12,12 +12,29 @@ import {
 import { useForm, Controller } from 'react-hook-form';
 import styles from './styles';
 import { editEmployee } from 'slices/EditEmployeeSlice';
+import { isOpenEditEmployeeModal, isOpenAddEmployeeModal } from 'slices/ModalsSlice';
+import { getEmployees } from 'slices/EmployeesSlice';
+
+export const updateAndThenGet = (newData) => async (dispatch) => {
+  await dispatch(dispatch(editEmployee(newData)));
+  return await dispatch(getEmployees());
+};
 
 const EditEmployee = ({ classes, id }) => {
   const dispatch = useDispatch();
   const employeeData = useSelector((state) => state.editEmployeeSlice);
+  const isAddEmployeeModalOpen = useSelector(
+    (state) => state.ModalsSlice.AddEmployeeModal.isModalOpen
+  );
 
-  const { nick, description, avatarUrl, lowQualityAvatarUrl, active } = employeeData;
+  const {
+    nick,
+    description,
+    avatarUrl,
+    lowQualityAvatarUrl,
+    active,
+    isSelectedEmployee,
+  } = employeeData;
 
   const {
     handleSubmit,
@@ -35,12 +52,18 @@ const EditEmployee = ({ classes, id }) => {
       nick: data.nick,
       id: id,
     };
+
     dispatch(editEmployee(newData));
-    window.location.reload();
+    if (isAddEmployeeModalOpen == true) {
+      dispatch(isOpenAddEmployeeModal());
+    } else {
+      dispatch(isOpenEditEmployeeModal());
+    }
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
-      <Typography variant="h6">Update employee</Typography>
+      <Typography variant="h6">{isSelectedEmployee ? 'Edit Employee' : 'Add Employee'}</Typography>
       <Controller
         name="nick"
         render={({ field }) => (
@@ -120,15 +143,14 @@ const EditEmployee = ({ classes, id }) => {
             {...field}
             labelPlacement="start"
             label="Active"
-            control={<Switch name="isActive" color="secondary" />}
+            control={<Switch checked={active} name="isActive" color="secondary" />}
           />
         )}
         control={control}
-        defaultValue={active || ''}
       />
 
-      <Button type="submit" variant="contained" color="secondary" className={classes.button}>
-        Edit
+      <Button type="submit" variant="contained" color="primary" className={classes.button}>
+        {isSelectedEmployee ? 'Edit' : 'Add'}
       </Button>
     </form>
   );

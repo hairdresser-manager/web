@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://hairdresser-manager.azurewebsites.net/api/v1';
+const baseUrl = 'http://localhost:8080/api/v1';
 
 axios.interceptors.request.use(
   (config) => {

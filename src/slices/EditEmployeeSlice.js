@@ -18,6 +18,11 @@ export const editEmployee = createAsyncThunk(
       );
       return {
         ...res.data,
+        nick: nick,
+        description: description,
+        avatarUrl: avatarUrl,
+        lowQualityAvatarUrl: lowQualityAvatarUrl,
+        active: active,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.errors);
@@ -31,23 +36,31 @@ export const editEmployeeSlice = createSlice({
     isLoading: false,
     isSuccess: false,
     isError: false,
+    isSelectedEmployee: false,
     errorMessage: '',
     nick: '',
     description: '',
     avatarUrl: '',
     lowQualityAvatarUrl: '',
     active: false,
-    employeeId: '',
+    employeeId: null,
   },
   reducers: {
     clearState: (state) => {
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
+      state.isSelectedEmployee = false;
       state.errorMessage = '';
-      state.employees = [];
+      state.nick = '';
+      state.description = '';
+      state.avatarUrl = '';
+      state.lowQualityAvatarUrl = '';
+      state.active = false;
+      state.employeeId = null;
     },
     setEmployee: (state, data) => {
+      state.isSelectedEmployee = true;
       state.employeeId = data.payload.id;
       state.active = data.payload.active;
       state.description = data.payload.description;

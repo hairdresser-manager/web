@@ -16,7 +16,7 @@ const EditEmployeeModal = () => {
   return (
     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isModalOpen}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Add employee
+        Edit employee
       </DialogTitle>
       <DialogContent dividers>
         <EditEmployee id={id} />

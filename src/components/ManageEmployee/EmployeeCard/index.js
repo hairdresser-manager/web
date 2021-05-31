@@ -7,6 +7,7 @@ import { Paper, Typography, withStyles } from '@material-ui/core';
 import styles from './styles';
 import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined';
 import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
+import PersonIcon from '@material-ui/icons/Person';
 
 const EmployeeCard = ({ classes, employee }) => {
   const {
@@ -64,11 +65,17 @@ const EmployeeCard = ({ classes, employee }) => {
         </div>
       </div>
       <div className={classes.rightBox}>
-        <img
-          className={`${classes.img} ${active ? classes.imgActive : classes.imgInActive}`}
-          src={avatarUrl}
-          alt="Employee Avatar"
-        />
+        {avatarUrl ? (
+          <img
+            className={`${classes.img} ${active ? classes.imgActive : classes.imgInActive}`}
+            src={avatarUrl}
+            alt="Employee Avatar"
+          />
+        ) : (
+          <PersonIcon
+            className={`${classes.img} ${active ? classes.imgActive : classes.imgInActive}`}
+          />
+        )}
       </div>
     </Paper>
   );

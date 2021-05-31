@@ -22,6 +22,7 @@ const AddEmployee = ({ classes }) => {
   const onSubmit = (data) => {
     dispatch(addEmployee(data));
   };
+
   return (
     <>
       {isError && (
@@ -53,7 +54,7 @@ const AddEmployee = ({ classes }) => {
           control={control}
           defaultValue=""
         />
-        <Button type="submit" variant="contained" color="secondary" className={classes.button}>
+        <Button type="submit" variant="contained" color="primary" className={classes.button}>
           Add
         </Button>
       </form>
