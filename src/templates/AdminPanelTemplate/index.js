@@ -16,8 +16,8 @@ const AdminPanelTemplate = ({ classes }) => {
       </div>
       <div className={classes.rightBox}>
         <Route exact path="/admin" component={Profile}></Route>
-        <Route path="/admin/manage-schedule" component={ManageSchedule}></Route>
-        <Route path="/admin/manage-employee" component={ManageEmployee}></Route>
+        <Route exact path="/admin/manage-schedule" component={ManageSchedule}></Route>
+        <Route exact path="/admin/manage-employee" component={ManageEmployee}></Route>
       </div>
     </div>
   );

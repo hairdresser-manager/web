@@ -19,14 +19,15 @@ const ProfileComponent = ({ classes }) => {
       </div>
       <div className={classes.rightBox}>
         <Route exact path="/profile" component={Profile}></Route>
-        <Route path="/profile/change-password" component={ChangePassword}></Route>
+        <Route exact path="/profile/change-password" component={ChangePassword}></Route>
         <Route
+          exact
           path="/profile/change-account-informations"
           component={ChangeAccountInformations}
         ></Route>
-        <Route path="/profile/my-reservations" component={MyReservations}></Route>
-        <Route path="/profile/manage-schedule" component={ManageSchedule}></Route>
-        <Route path="/profile/manage-employee" component={ManageEmployee}></Route>
+        <Route exact path="/profile/my-reservations" component={MyReservations}></Route>
+        <Route exact path="/profile/manage-schedule" component={ManageSchedule}></Route>
+        <Route exact path="/profile/manage-employee" component={ManageEmployee}></Route>
       </div>
     </div>
   );

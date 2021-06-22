@@ -55,12 +55,14 @@ const Navbar = ({ classes }) => {
     <div className={classes.root}>
       <AppBar color="default" position="fixed">
         <Toolbar className={classes.styledToolbar}>
-          <div className={classes.styledLogo}>
-            <img src={logo} alt="Logo" />
-            <Typography className={classes.styledLogoTypography} variant="h6">
-              hairdresser
-            </Typography>
-          </div>
+          <Link href="/" color="inherit" underline="none">
+            <div className={classes.styledLogo}>
+              <img src={logo} alt="Logo" />
+              <Typography className={classes.styledLogoTypography} variant="h6">
+                hairdresser
+              </Typography>
+            </div>
+          </Link>
           <Typography className={classes.styledMenu}>
             <Link className={classes.styledLink} href="/" color="inherit" underline="none">
               home
@@ -160,12 +162,12 @@ const Navbar = ({ classes }) => {
                     <Link
                       underline="none"
                       color="inherit"
-                      href="profile/change-account-informations"
+                      href="/profile/change-account-informations"
                     >
                       <MenuItem onClick={handleCloseMenu}>Edit Account</MenuItem>
                     </Link>
                     {userRole && (
-                      <Link underline="none" color="inherit" href="admin">
+                      <Link underline="none" color="inherit" href="/admin">
                         <MenuItem className={classes.menuItemAdmin} onClick={handleCloseMenu}>
                           Admin Panel
                         </MenuItem>
