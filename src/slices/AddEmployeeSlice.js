@@ -33,7 +33,6 @@ export const AddEmployeeSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
       state.errorMessage = '';
-      state.employees = [];
     },
   },
   extraReducers: {

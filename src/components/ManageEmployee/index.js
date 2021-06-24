@@ -10,13 +10,14 @@ import EmployeeCard from './EmployeeCard';
 const ManageEmployee = ({ classes }) => {
   const dispatch = useDispatch();
   const employeeData = useSelector((state) => state.EmployeesSlice);
-  const editEmployeeData = useSelector((state) => state.editEmployeeSlice);
+  const editEmployeeData = useSelector((state) => state.EditEmployeeSlice);
+  const addEmployeeData = useSelector((state) => state.AddEmployeeSlice);
 
   const { employees } = employeeData;
 
   useEffect(() => {
     dispatch(getEmployees());
-  }, [editEmployeeData]);
+  }, [editEmployeeData, addEmployeeData]);
 
   const handleClickOpen = () => {
     dispatch(isOpenAddEmployeeModal());

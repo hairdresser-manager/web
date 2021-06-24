@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'api/api';
 
 export const editEmployee = createAsyncThunk(
-  'editEmployeeSlices/editEmployee',
+  'EditEmployeeSlices/editEmployee',
   async ({ nick, description, avatarUrl, lowQualityAvatarUrl, active, id }, thunkAPI) => {
     try {
       let res;
@@ -30,8 +30,8 @@ export const editEmployee = createAsyncThunk(
   }
 );
 
-export const editEmployeeSlice = createSlice({
-  name: 'editEmployeeSlices',
+export const EditEmployeeSlice = createSlice({
+  name: 'EditEmployeeSlices',
   initialState: {
     isLoading: false,
     isSuccess: false,
@@ -91,6 +91,6 @@ export const editEmployeeSlice = createSlice({
   },
 });
 
-export const { clearState, setEmployee } = editEmployeeSlice.actions;
+export const { clearState, setEmployee } = EditEmployeeSlice.actions;
 
-export default editEmployeeSlice.reducer;
+export default EditEmployeeSlice.reducer;

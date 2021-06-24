@@ -1,31 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  withStyles,
-  Button,
-  TextField,
-  Typography,
-  Switch,
-  FormControlLabel,
-} from '@material-ui/core';
+import { withStyles, Button, TextField, Typography, Switch } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import styles from './styles';
-import { editEmployee } from 'slices/EditEmployeeSlice';
-import { isOpenEditEmployeeModal, isOpenAddEmployeeModal } from 'slices/ModalsSlice';
-import { getEmployees } from 'slices/EmployeesSlice';
+import { editEmployee, clearState } from 'slices/EditEmployeeSlice';
+import { isOpenEditEmployeeModal } from 'slices/ModalsSlice';
+import MuiAlert from '@material-ui/lab/Alert';
 
-export const updateAndThenGet = (newData) => async (dispatch) => {
-  await dispatch(dispatch(editEmployee(newData)));
-  return await dispatch(getEmployees());
-};
-
-const EditEmployee = ({ classes, id }) => {
+const EditEmployee = ({ classes }) => {
   const dispatch = useDispatch();
-  const employeeData = useSelector((state) => state.editEmployeeSlice);
-  const isAddEmployeeModalOpen = useSelector(
-    (state) => state.ModalsSlice.AddEmployeeModal.isModalOpen
-  );
+  const employeeData = useSelector((state) => state.EditEmployeeSlice);
 
   const {
     nick,
@@ -33,7 +18,10 @@ const EditEmployee = ({ classes, id }) => {
     avatarUrl,
     lowQualityAvatarUrl,
     active,
-    isSelectedEmployee,
+    isError,
+    isSuccess,
+    errorMessage,
+    employeeId,
   } = employeeData;
 
   const {
@@ -50,26 +38,37 @@ const EditEmployee = ({ classes, id }) => {
       description: data.description,
       lowQualityAvatarUrl: data.lowQualityAvatarUrl,
       nick: data.nick,
-      id: id,
+      id: employeeId,
     };
 
     dispatch(editEmployee(newData));
-    if (isAddEmployeeModalOpen == true) {
-      dispatch(isOpenAddEmployeeModal());
-    } else {
-      dispatch(isOpenEditEmployeeModal());
-    }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(isOpenEditEmployeeModal());
+      dispatch(clearState());
+    }
+  }, [isSuccess]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
-      <Typography variant="h6">{isSelectedEmployee ? 'Edit Employee' : 'Add Employee'}</Typography>
+      {isError && (
+        <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
+          {errorMessage && 'Something went wrong'}
+        </MuiAlert>
+      )}
+      <Typography variant="h6">Edit Employee</Typography>
       <Controller
         name="nick"
         render={({ field }) => (
           <TextField
             {...register('nick', {
               required: 'Enter your nick',
+              pattern: {
+                value: /^.{6,15}$/,
+                message: 'Invalid nick. Nick must be at least 6 and a maximum of 15.',
+              },
             })}
             {...field}
             label="Nick"
@@ -88,6 +87,11 @@ const EditEmployee = ({ classes, id }) => {
           <TextField
             {...register('description', {
               required: 'Enter your description',
+              pattern: {
+                value: /^.{30,255}$/,
+                message:
+                  'Invalid description. description must be at least 30 and a maximum of 255.',
+              },
             })}
             {...field}
             label="Description"
@@ -138,19 +142,15 @@ const EditEmployee = ({ classes, id }) => {
       />
       <Controller
         name="active"
-        render={({ field }) => (
-          <FormControlLabel
-            {...field}
-            labelPlacement="start"
-            label="Active"
-            control={<Switch checked={active} name="isActive" color="secondary" />}
-          />
-        )}
         control={control}
+        defaultValue={active}
+        render={({ field }) => (
+          <Switch onChange={(e) => field.onChange(e.target.checked)} checked={field.value} />
+        )}
       />
 
       <Button type="submit" variant="contained" color="primary" className={classes.button}>
-        {isSelectedEmployee ? 'Edit' : 'Add'}
+        Edit
       </Button>
     </form>
   );
@@ -158,7 +158,6 @@ const EditEmployee = ({ classes, id }) => {
 
 EditEmployee.propTypes = {
   classes: PropTypes.object.isRequired,
-  id: PropTypes.number,
 };
 
 export default withStyles(styles)(EditEmployee);

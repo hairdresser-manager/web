@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addEmployee } from 'slices/AddEmployeeSlice';
+import { addEmployee, clearState } from 'slices/AddEmployeeSlice';
+import { isOpenAddEmployeeModal } from 'slices/ModalsSlice';
 import { useForm, Controller } from 'react-hook-form';
 import { withStyles, Button, TextField } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -9,7 +10,7 @@ import styles from './styles';
 
 const AddEmployee = ({ classes }) => {
   const addEmployeeData = useSelector((state) => state.AddEmployeeSlice);
-  const { isError, errorMessage } = addEmployeeData;
+  const { isSuccess, isError, errorMessage } = addEmployeeData;
   const dispatch = useDispatch();
 
   const {
@@ -22,6 +23,13 @@ const AddEmployee = ({ classes }) => {
   const onSubmit = (data) => {
     dispatch(addEmployee(data));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(isOpenAddEmployeeModal());
+      dispatch(clearState());
+    }
+  }, [isSuccess]);
 
   return (
     <>

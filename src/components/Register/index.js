@@ -52,11 +52,11 @@ const Register = ({ classes }) => {
         <ConfirmAccount />
       ) : (
         <>
-          {isError ? (
+          {isError && (
             <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
               {errorMessage}
             </MuiAlert>
-          ) : null}
+          )}
           <Typography variant="h5">Register</Typography>
           <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
             <Controller
@@ -166,8 +166,9 @@ const Register = ({ classes }) => {
                   {...register('mobilePhone', {
                     required: true,
                     pattern: {
-                      value: /^-?[0-9]\d*\.?\d*$/,
-                      message: 'invalid phone number',
+                      value: /^-?[0-9]{9,}$/,
+                      message:
+                        'Invalid phone number. Mobile Phone must be only numbers and at least 9 characters.',
                     },
                   })}
                   {...field}
