@@ -6,9 +6,12 @@ const styles = (theme) => ({
   },
   rightBox: {
     display: 'flex',
-    width: '100%',
+    flex: '1 1 75%',
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  leftBox: {
+    flex: '1 1 25%',
   },
   [theme.breakpoints.down('md')]: {
     container: {

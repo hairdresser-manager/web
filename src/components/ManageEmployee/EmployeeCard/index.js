@@ -47,9 +47,11 @@ const EmployeeCard = ({ classes, employee }) => {
             <b>Last Name:</b> {lastName}
           </Typography>
         </div>
+
         <Typography variant="subtitle2">
-          <b>Description:</b> {description}
+          <b>Description:</b> {description && description.substring(0, 100)}
         </Typography>
+
         <Typography variant="subtitle2">
           <b>Phone Number:</b> {phoneNumber}
         </Typography>

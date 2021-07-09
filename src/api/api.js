@@ -85,5 +85,11 @@ const api = {
   editEmployee: (body, id) => {
     return axios.put(`${baseUrl}/employees/${id}`, body);
   },
+  addSchedule: (body, id) => {
+    return axios.post(`${baseUrl}/employees/${id}/schedules`, body);
+  },
+  addScopedSchedule: (body, id) => {
+    return axios.post(`${baseUrl}/employees/${id}/scoped-schedules`, body);
+  },
 };
 export default api;

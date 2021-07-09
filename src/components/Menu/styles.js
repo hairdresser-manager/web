@@ -1,6 +1,5 @@
 const styles = (theme) => ({
   container: {
-    width: '400px',
     height: '400px',
     borderRight: 'solid 1px #7F7F7F',
   },

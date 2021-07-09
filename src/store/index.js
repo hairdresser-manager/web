@@ -13,6 +13,8 @@ import ChangeAccountInformationsReducer from 'slices/ChangeAccountInformations';
 import getEmployeesReducer from 'slices/EmployeesSlice';
 import addEmployeesReducer from 'slices/AddEmployeeSlice';
 import EditEmployeeReducer from 'slices/EditEmployeeSlice';
+import SearchEmployeeReducer from 'slices/SearchEmployeeSlice';
+import AddScheduleReducer from 'slices/AddScheduleSlice';
 
 export default configureStore({
   reducer: {
@@ -30,5 +32,7 @@ export default configureStore({
     EmployeesSlice: getEmployeesReducer,
     AddEmployeeSlice: addEmployeesReducer,
     EditEmployeeSlice: EditEmployeeReducer,
+    SearchEmployeeSlice: SearchEmployeeReducer,
+    AddScheduleSlice: AddScheduleReducer,
   },
 });

@@ -3,7 +3,7 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '600px',
+    width: '70%',
     height: '140px',
     overflow: 'hidden',
     margin: '10px auto',
@@ -12,23 +12,23 @@ const styles = (theme) => ({
   },
   leftBox: {
     display: 'flex',
+    flex: '1 1 80%',
     flexDirection: 'column',
-    width: '80%',
     padding: '10px',
   },
   rightBox: {
     display: 'flex',
+    flex: '1 1 20%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '20%',
   },
   text: {
     fontSize: '23px',
     fontWeight: 'bold',
   },
   img: {
-    width: '140px',
+    width: '100%',
     height: '140px',
   },
   imgActive: {
@@ -52,6 +52,10 @@ const styles = (theme) => ({
   employeeName: {
     display: 'flex',
     justifyContent: 'space-evenly',
+  },
+  description: {
+    width: '100%',
+    height: '50px',
   },
 });
 
