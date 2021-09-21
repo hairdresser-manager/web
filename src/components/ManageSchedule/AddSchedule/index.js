@@ -97,7 +97,7 @@ const AddSchedule = ({ classes }) => {
             ) : (
               <PersonIcon className={classes.employeeAvatar} />
             )}
-            <Typography variant="body1">
+            <Typography className={classes.employeeName} variant="body1">
               {currentEmployee[0].firstName + ' ' + currentEmployee[0].lastName}
             </Typography>
           </div>

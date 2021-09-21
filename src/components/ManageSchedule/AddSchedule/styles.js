@@ -32,6 +32,9 @@ const styles = (theme) => ({
     height: '140px',
     borderRadius: '5px',
   },
+  employeeName: {
+    textAlign: 'center',
+  },
   divider: {
     height: '150px',
   },

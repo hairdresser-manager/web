@@ -32,6 +32,9 @@ const SearchBar = ({ classes }) => {
             className={classes.input}
             placeholder="Search employee"
             value={searchValue}
+            inputProps={{
+              maxLength: 25,
+            }}
           />
         </div>
         <Divider />

@@ -5,7 +5,7 @@ export const SearchEmployeeSlice = createSlice({
   initialState: {
     searchValue: '',
     isSelectedEmployee: false,
-    selectedEmployee: '',
+    selectedEmployee: null,
   },
   reducers: {
     setSearchValue: (state, data) => {

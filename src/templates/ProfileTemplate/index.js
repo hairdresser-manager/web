@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 import ChangePassword from 'components/ChangePassword';
 import ChangeAccountInformations from 'components/ChangeAccountInformations';
 import MyReservations from 'components/MyReservations';
-import ManageSchedule from 'components/ManageSchedule';
+import ShowSchedule from 'components/ManageSchedule/ShowSchedule';
 import ManageEmployee from 'components/ManageEmployee';
 
 const ProfileComponent = ({ classes }) => {
@@ -26,7 +26,7 @@ const ProfileComponent = ({ classes }) => {
           component={ChangeAccountInformations}
         ></Route>
         <Route exact path="/profile/my-reservations" component={MyReservations}></Route>
-        <Route exact path="/profile/manage-schedule" component={ManageSchedule}></Route>
+        <Route exact path="/profile/manage-schedule" component={ShowSchedule}></Route>
         <Route exact path="/profile/manage-employee" component={ManageEmployee}></Route>
       </div>
     </div>
