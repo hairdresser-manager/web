@@ -94,5 +94,8 @@ const api = {
   showSchedule: (id) => {
     return axios.get(`${baseUrl}/employees/${id}/schedules`);
   },
+  removeSchedule: (body, id) => {
+    return axios.delete(`${baseUrl}/employees/${id}/schedules`, { data: body });
+  },
 };
 export default api;
