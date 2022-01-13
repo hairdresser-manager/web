@@ -25,10 +25,3 @@ To run this project, install it locally using npm:
 $ npm install
 $ npm start
 ```
-
-## TEAM
-
-- Kamil Nahotko - Frontend
-- Andrzej wójciak - Backend
-- Adrian Książek - Desktop
-- Mateusz Słupski-Kartaczewski - Mobile
