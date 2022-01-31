@@ -5,7 +5,7 @@ export const SearchEmployeeSlice = createSlice({
   initialState: {
     searchValue: '',
     isSelectedEmployee: false,
-    selectedEmployee: null,
+    selectedEmployeeId: null,
   },
   reducers: {
     setSearchValue: (state, data) => {
@@ -13,7 +13,7 @@ export const SearchEmployeeSlice = createSlice({
     },
     setSelectedEmployee: (state, data) => {
       state.isSelectedEmployee = true;
-      state.selectedEmployee = data.payload;
+      state.selectedEmployeeId = data.payload;
     },
     clearSearchValue: (state) => {
       state.searchValue = '';

@@ -53,7 +53,7 @@ const Navbar = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar color="default" position="fixed">
+      <AppBar className={classes.test} color="default" position="fixed">
         <Toolbar className={classes.styledToolbar}>
           <Link href="/" color="inherit" underline="none">
             <div className={classes.styledLogo}>

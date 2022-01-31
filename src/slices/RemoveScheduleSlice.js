@@ -4,7 +4,6 @@ import api from 'api/api';
 export const removeSchedule = createAsyncThunk(
   'RemoveScheduleSlices/removeSchedule',
   async ({ id, date }, thunkAPI) => {
-    console.log(date + ' ' + id);
     try {
       let res;
       res = await api.removeSchedule(
@@ -31,6 +30,7 @@ export const RemoveScheduleSlice = createSlice({
     isError: false,
     errorMessage: '',
     date: '',
+    dupa: '',
   },
   reducers: {
     clearState: (state) => {
@@ -38,6 +38,7 @@ export const RemoveScheduleSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
       state.errorMessage = '';
+      state.dupa = 'dupa';
     },
   },
   extraReducers: {
@@ -45,7 +46,6 @@ export const RemoveScheduleSlice = createSlice({
       state.isLoading = true;
       state.isError = false;
       state.isSuccess = false;
-      state.errorMessage = '';
     },
     [removeSchedule.fulfilled]: (state, { payload }) => {
       state.isSuccess = true;

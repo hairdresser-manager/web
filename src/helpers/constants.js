@@ -1,0 +1,3 @@
+export const ADD_SCHEDULE = 'ADD_SCHEDULE';
+export const DELETE_SCHEDULE = 'DELETE_SCHEDULE';
+export const SHOW_SCHEDULE = 'SHOW_SCHEDULE';

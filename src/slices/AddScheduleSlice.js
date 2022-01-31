@@ -50,7 +50,6 @@ export const AddScheduleSlice = createSlice({
       state.isLoading = true;
       state.isError = false;
       state.isSuccess = false;
-      state.errorMessage = '';
     },
     [addSchedule.fulfilled]: (state, { payload }) => {
       state.date = payload.date;

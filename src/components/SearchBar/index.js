@@ -38,7 +38,7 @@ const SearchBar = ({ classes }) => {
           />
         </div>
         <Divider />
-        <div className={classes.test}>
+        <div className={classes.suggestionsContainer}>
           {searchValue.length > 0 &&
             employeeData
               .filter(

@@ -1,46 +1,22 @@
 const styles = (theme) => ({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '& .MuiTypography-root': {
-      color: '#3D3D3D',
-      opacity: '0.7',
-    },
-  },
-  searchWarnings: {
-    margin: '80px 0 20px 0',
-  },
-  selectedEmployee: {
     width: '100%',
+    padding: 15,
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
   },
-  rightBox: {
+  formStyle: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '0 20px 0 20px',
-  },
-  leftBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '0 20px 0 20px',
-  },
-  employeeAvatar: {
-    width: '140px',
-    height: '140px',
-    borderRadius: '5px',
-  },
-  employeeName: {
-    textAlign: 'center',
-  },
-  divider: {
-    height: '150px',
+    width: '100%',
   },
   alert: {
     marginBottom: theme.spacing(2),
-    width: '400px',
+    maxWidth: '400px',
+  },
+  buttonStyle: {
+    margin: '5px 0 5px 0',
   },
 });
 

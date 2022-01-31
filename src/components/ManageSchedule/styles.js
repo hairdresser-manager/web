@@ -1,0 +1,47 @@
+const styles = () => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    maxWidth: 900,
+    flex: 1,
+  },
+  wrapper: {
+    display: 'flex',
+    marginTop: 100,
+    flex: 1,
+    alignItems: 'center',
+    minHeight: 430,
+  },
+  leftWrapper: {
+    display: 'flex',
+    width: '50%',
+    height: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rightWrapper: {
+    display: 'flex',
+    width: '50%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  img: {
+    width: 140,
+    height: 140,
+    borderRadius: 5,
+    margin: '5px 0 5px 0',
+  },
+  buttonStyle: {
+    margin: '10px 0 10px 0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+    width: 250,
+  },
+});
+
+export default styles;

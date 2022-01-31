@@ -1,5 +1,5 @@
 const styles = (theme) => ({
-  test: {
+  suggestionsContainer: {
     maxHeight: '225px',
     overflow: 'auto',
     overflowY: 'overlay',
@@ -16,8 +16,8 @@ const styles = (theme) => ({
     },
   },
   container: {
-    position: 'absolute',
     zIndex: '999',
+    position: 'absolute',
   },
   searchBar: {
     padding: '2px 4px',
