@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from 'components/SearchBar';
 import { useEffect } from 'react';
-import { Button, Divider, Fade, Typography } from '@material-ui/core';
+import { Button, Collapse, Divider, Fade, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -19,7 +19,7 @@ import ShowSchedule from './ShowSchedule';
 const ManageSchedule = ({ classes }) => {
   const [selectedEmployee, setselectedEmployee] = useState();
   const [manageSchedule, setManageSchedule] = useState('');
-  const { selectedEmployeeId } = useSelector((state) => state.SearchEmployeeSlice);
+  const { selectedEmployeeId, searchValue } = useSelector((state) => state.SearchEmployeeSlice);
   const employees = useSelector((state) => state.EmployeesSlice.employees);
   const filteredEmployees = () => employees.filter((item) => item.id === selectedEmployeeId);
 
@@ -31,72 +31,89 @@ const ManageSchedule = ({ classes }) => {
     dispatch(clearRemoveScheduleState());
   }, [filteredEmployees, dispatch]);
 
+  const searchingFilter = employees.filter(
+    (employee) =>
+      employee.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      employee.lastName.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
-    <div className={classes.container}>
+    <>
       <SearchBar />
-      <Fade in={selectedEmployeeId} timeout={1000}>
-        <div className={classes.wrapper}>
-          {selectedEmployee &&
-            (manageSchedule === SHOW_SCHEDULE ? (
-              <ShowSchedule setManageSchedule={setManageSchedule} />
-            ) : (
-              <>
-                <div className={classes.leftWrapper}>
-                  <img
-                    className={classes.img}
-                    src={selectedEmployee.avatarUrl}
-                    alt="Employee Avatar"
-                  />
-                  <Typography variant="body1">
-                    {selectedEmployee.firstName} {selectedEmployee.lastName}
-                  </Typography>
-                </div>
-                <Divider orientation="vertical" />
-                <div className={classes.rightWrapper}>
-                  {manageSchedule === ADD_SCHEDULE ? (
-                    <AddSchedule setManageSchedule={setManageSchedule} />
-                  ) : manageSchedule === DELETE_SCHEDULE ? (
-                    <RemoveSchedule setManageSchedule={setManageSchedule} />
-                  ) : (
-                    <div>
-                      <Button
-                        className={classes.buttonStyle}
-                        onClick={() => setManageSchedule(SHOW_SCHEDULE)}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        startIcon={<EventNoteIcon />}
-                      >
-                        Show Schedule
-                      </Button>
-                      <Button
-                        className={classes.buttonStyle}
-                        onClick={() => setManageSchedule(ADD_SCHEDULE)}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        startIcon={<AddBoxIcon />}
-                      >
-                        ADD SCHEDULE
-                      </Button>
-                      <Button
-                        className={classes.buttonStyle}
-                        onClick={() => setManageSchedule(DELETE_SCHEDULE)}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        startIcon={<IndeterminateCheckBoxIcon />}
-                      >
-                        DELETE SCHEDULE
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              </>
-            ))}
+      <Collapse direction="up" in={searchingFilter.length === 0 && employees.length > 0}>
+        <div className={classes.searchWarnings}>
+          {searchingFilter.length === 0 && employees.length > 0 && (
+            <Typography variant="body1">
+              There are no results for: <b>{searchValue}</b>
+            </Typography>
+          )}
         </div>
-      </Fade>
-    </div>
+      </Collapse>
+      <div className={classes.container}>
+        <Fade in={selectedEmployeeId} timeout={1000}>
+          <div className={classes.wrapper}>
+            {selectedEmployee &&
+              (manageSchedule === SHOW_SCHEDULE ? (
+                <ShowSchedule setManageSchedule={setManageSchedule} />
+              ) : (
+                <>
+                  <div className={classes.leftWrapper}>
+                    <img
+                      className={classes.img}
+                      src={selectedEmployee.avatarUrl}
+                      alt="Employee Avatar"
+                    />
+                    <Typography variant="body1">
+                      {selectedEmployee.firstName} {selectedEmployee.lastName}
+                    </Typography>
+                  </div>
+                  <Divider orientation="vertical" />
+                  <div className={classes.rightWrapper}>
+                    {manageSchedule === ADD_SCHEDULE ? (
+                      <AddSchedule setManageSchedule={setManageSchedule} />
+                    ) : manageSchedule === DELETE_SCHEDULE ? (
+                      <RemoveSchedule setManageSchedule={setManageSchedule} />
+                    ) : (
+                      <div>
+                        <Button
+                          className={classes.buttonStyle}
+                          onClick={() => setManageSchedule(SHOW_SCHEDULE)}
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          startIcon={<EventNoteIcon />}
+                        >
+                          Show Schedule
+                        </Button>
+                        <Button
+                          className={classes.buttonStyle}
+                          onClick={() => setManageSchedule(ADD_SCHEDULE)}
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          startIcon={<AddBoxIcon />}
+                        >
+                          ADD SCHEDULE
+                        </Button>
+                        <Button
+                          className={classes.buttonStyle}
+                          onClick={() => setManageSchedule(DELETE_SCHEDULE)}
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          startIcon={<IndeterminateCheckBoxIcon />}
+                        >
+                          DELETE SCHEDULE
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </>
+              ))}
+          </div>
+        </Fade>
+      </div>
+    </>
   );
 };
 

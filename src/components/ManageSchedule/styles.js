@@ -5,10 +5,11 @@ const styles = () => ({
     width: '100%',
     maxWidth: 900,
     flex: 1,
+    marginTop: 50,
   },
   wrapper: {
     display: 'flex',
-    marginTop: 100,
+    marginTop: 25,
     flex: 1,
     alignItems: 'center',
     minHeight: 430,
@@ -41,6 +42,12 @@ const styles = () => ({
     justifyContent: 'flex-start',
     alignSelf: 'center',
     width: 250,
+  },
+  searchWarnings: {
+    display: 'flex',
+    marginTop: 80,
+    width: '100%',
+    justifyContent: 'center',
   },
 });
 
