@@ -30,6 +30,7 @@ const styles = (theme) => ({
     container: {
       width: '100%',
       borderRight: 'none',
+      height: 250,
     },
     user: {
       justifyContent: 'center',

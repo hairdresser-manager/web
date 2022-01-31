@@ -1,4 +1,4 @@
-const styles = () => ({
+const styles = (theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -6,6 +6,7 @@ const styles = () => ({
     maxWidth: 900,
     flex: 1,
     marginTop: 50,
+    padding: '0 10px 0 10px',
   },
   wrapper: {
     display: 'flex',
@@ -48,6 +49,21 @@ const styles = () => ({
     marginTop: 80,
     width: '100%',
     justifyContent: 'center',
+  },
+  [theme.breakpoints.down('sm')]: {
+    wrapper: {
+      flexDirection: 'column',
+    },
+    leftWrapper: {
+      width: '100%',
+    },
+    rightWrapper: {
+      width: '100%',
+      alignItems: 'flex-start',
+    },
+    dividerStyle: {
+      display: 'none',
+    },
   },
 });
 

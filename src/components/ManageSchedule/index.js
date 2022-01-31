@@ -67,7 +67,7 @@ const ManageSchedule = ({ classes }) => {
                       {selectedEmployee.firstName} {selectedEmployee.lastName}
                     </Typography>
                   </div>
-                  <Divider orientation="vertical" />
+                  <Divider className={classes.dividerStyle} orientation="vertical" />
                   <div className={classes.rightWrapper}>
                     {manageSchedule === ADD_SCHEDULE ? (
                       <AddSchedule setManageSchedule={setManageSchedule} />
