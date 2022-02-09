@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isOpenAuthModal, isShowRegisterForm } from 'slices/ModalsSlice';
-import { login, clearState } from 'slices/LoginSlice';
+import { login, clearState, loginWithFB } from 'slices/LoginSlice';
 import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
 import {
@@ -11,9 +11,12 @@ import {
   Typography,
   withStyles,
   CircularProgress,
+  Divider,
 } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import styles from './styles';
+import FacebookLogin from 'react-facebook-login';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 const Login = ({ classes }) => {
   const dispatch = useDispatch();
@@ -46,6 +49,14 @@ const Login = ({ classes }) => {
     }
   }, [isSuccess]);
 
+  const responseFacebook = (response) => {
+    const data = { accessToken: response.accessToken };
+    dispatch(loginWithFB(data));
+  };
+
+  // eslint-disable-next-line no-undef
+  const { REACT_APP_FB_ID } = process.env;
+
   return (
     <>
       {isError && (
@@ -53,6 +64,16 @@ const Login = ({ classes }) => {
           {errorMessage}
         </MuiAlert>
       )}
+
+      <FacebookLogin
+        appId={REACT_APP_FB_ID}
+        fields="name,email,picture"
+        callback={responseFacebook}
+        icon={<FacebookIcon style={{ margin: '0 5px' }} />}
+        size="medium"
+        cssClass={classes.fbButton}
+      />
+      <Divider orientation="horizontal" width={'60%'} style={{ margin: '15px 0 15px 0' }} />
       <Typography variant="h5">Log in</Typography>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.formContainer}>
         <Controller

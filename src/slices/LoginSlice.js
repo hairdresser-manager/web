@@ -16,6 +16,24 @@ export const login = createAsyncThunk('LoginSlice/login', async ({ email, passwo
   }
 });
 
+export const loginWithFB = createAsyncThunk(
+  'LoginSlice/login',
+  async ({ accessToken }, thunkAPI) => {
+    try {
+      let res;
+      res = await api.loginWithFB({ accessToken });
+      let { refreshToken, firstName, roles } = res.data;
+      localStorage.setItem('accessToken', res.data.accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('firstName', firstName);
+      localStorage.setItem('roles', JSON.stringify(roles));
+      return { ...res.data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.errors);
+    }
+  }
+);
+
 export const LoginSlice = createSlice({
   name: 'LoginSlices',
   initialState: {

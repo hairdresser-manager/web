@@ -49,6 +49,9 @@ const api = {
   login: (body) => {
     return axios.post(`${baseUrl}/login`, body);
   },
+  loginWithFB: (body) => {
+    return axios.post(`${baseUrl}/facebook-auth`, body);
+  },
   refreshToken: (body) => {
     return axios.post(`${baseUrl}/jwt/refresh`, body);
   },
