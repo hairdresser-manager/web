@@ -42,7 +42,7 @@ const Menu = ({ classes }) => {
               <Link underline="none" color="inherit" href="/admin/manage-employee">
                 <ListItem button>
                   <AccessibilityNewIcon />
-                  <ListItemText>Manage EmployeesSlice</ListItemText>
+                  <ListItemText>Manage Employees</ListItemText>
                 </ListItem>
               </Link>
               <Divider />
