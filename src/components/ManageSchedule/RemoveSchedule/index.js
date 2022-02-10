@@ -9,9 +9,8 @@ import { format } from 'date-fns';
 import { removeSchedule, clearState } from 'slices/RemoveScheduleSlice';
 import MuiAlert from '@material-ui/lab/Alert';
 
-const RemoveSchedule = ({ classes, setManageSchedule }) => {
+const RemoveSchedule = ({ classes, setManageSchedule, employeeId }) => {
   const dispatch = useDispatch();
-  const { selectedEmployeeId } = useSelector((state) => state.SearchEmployeeSlice);
 
   const RemoveScheduleData = useSelector((state) => state.RemoveScheduleSlice);
   const { isSuccess, isError, errorMessage } = RemoveScheduleData;
@@ -19,7 +18,7 @@ const RemoveSchedule = ({ classes, setManageSchedule }) => {
   const onSubmit = (data) => {
     const newData = {
       date: format(data.date, 'yyyy-MM-dd'),
-      id: selectedEmployeeId,
+      id: employeeId,
     };
     dispatch(removeSchedule(newData));
   };
@@ -104,6 +103,7 @@ const RemoveSchedule = ({ classes, setManageSchedule }) => {
 RemoveSchedule.propTypes = {
   classes: PropTypes.object.isRequired,
   setManageSchedule: PropTypes.func,
+  employeeId: PropTypes.number,
 };
 
 export default withStyles(styles)(RemoveSchedule);

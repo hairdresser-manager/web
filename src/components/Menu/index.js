@@ -5,7 +5,6 @@ import { Divider, List, ListItem, ListItemText, withStyles, Link } from '@materi
 import { Avatar, Typography } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import LockIcon from '@material-ui/icons/Lock';
 import DateRangeIcon from '@material-ui/icons/DateRange';
@@ -40,17 +39,10 @@ const Menu = ({ classes }) => {
           <Divider />
           {history.location.pathname.includes('admin') ? (
             <>
-              <Link underline="none" color="inherit" href="/admin/manage-schedule">
-                <ListItem button>
-                  <EventNoteIcon />
-                  <ListItemText>Manage Schedule</ListItemText>
-                </ListItem>
-              </Link>
-              <Divider />
               <Link underline="none" color="inherit" href="/admin/manage-employee">
                 <ListItem button>
                   <AccessibilityNewIcon />
-                  <ListItemText>Add new Employee</ListItemText>
+                  <ListItemText>Manage EmployeesSlice</ListItemText>
                 </ListItem>
               </Link>
               <Divider />

@@ -12,7 +12,11 @@ export const showSchedule = createAsyncThunk(
         schedule: [...res.data],
       };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.errors);
+      if (error.response.status === 404) {
+        return thunkAPI.rejectWithValue('No schedule for this employee!');
+      } else {
+        return thunkAPI.rejectWithValue(error.response.data.errors);
+      }
     }
   }
 );

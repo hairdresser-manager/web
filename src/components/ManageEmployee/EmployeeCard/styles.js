@@ -3,18 +3,18 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '70%',
-    height: '140px',
+    width: '90%',
     overflow: 'hidden',
     margin: '10px auto',
     background: '#fafafa',
     cursor: 'pointer',
+    height: 220,
   },
   leftBox: {
     display: 'flex',
     flex: '1 1 80%',
-    flexDirection: 'column',
     padding: '10px',
+    alignItems: 'center',
   },
   rightBox: {
     display: 'flex',
@@ -22,6 +22,7 @@ const styles = (theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    height: '100%',
   },
   text: {
     fontSize: '23px',
@@ -29,7 +30,7 @@ const styles = (theme) => ({
   },
   img: {
     width: '100%',
-    height: '140px',
+    height: '100%',
   },
   imgActive: {
     borderLeft: `3px solid green`,
@@ -49,13 +50,20 @@ const styles = (theme) => ({
     color: 'red',
     marginLeft: '10px',
   },
-  employeeName: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
   description: {
     width: '100%',
     height: '50px',
+  },
+  buttonStyle: {
+    margin: '5px 0',
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'flex-start',
+  },
+  [theme.breakpoints.down('md')]: {
+    buttonStyle: {
+      width: '100%',
+    },
   },
 });
 

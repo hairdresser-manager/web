@@ -10,9 +10,8 @@ import { format, startOfWeek, addWeeks, subWeeks, addDays } from 'date-fns';
 import MuiAlert from '@material-ui/lab/Alert';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-const ShowSchedule = ({ classes, setManageSchedule }) => {
+const ShowSchedule = ({ classes, setManageSchedule, employeeId }) => {
   const dispatch = useDispatch();
-  const { selectedEmployeeId } = useSelector((state) => state.SearchEmployeeSlice);
   const scheduleData = useSelector((state) => state.showScheduleSlice);
   const { schedule, isError, isLoading, errorMessage } = scheduleData;
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -26,10 +25,10 @@ const ShowSchedule = ({ classes, setManageSchedule }) => {
 
   useEffect(() => {
     const newData = {
-      id: selectedEmployeeId,
+      id: employeeId,
     };
     dispatch(showSchedule(newData));
-  }, [selectedEmployeeId]);
+  }, [employeeId]);
 
   const daysOfWeek = () => {
     const days = [];
@@ -99,6 +98,7 @@ const ShowSchedule = ({ classes, setManageSchedule }) => {
 ShowSchedule.propTypes = {
   classes: PropTypes.object.isRequired,
   setManageSchedule: PropTypes.func,
+  employeeId: PropTypes.number,
 };
 
 export default withStyles(styles)(ShowSchedule);

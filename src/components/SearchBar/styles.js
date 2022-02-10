@@ -16,8 +16,7 @@ const styles = (theme) => ({
     },
   },
   container: {
-    zIndex: '999',
-    position: 'absolute',
+    marginBottom: 15,
   },
   searchBar: {
     padding: '2px 4px',

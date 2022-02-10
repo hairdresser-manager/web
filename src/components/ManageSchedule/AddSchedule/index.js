@@ -10,9 +10,8 @@ import { format } from 'date-fns';
 import MuiAlert from '@material-ui/lab/Alert';
 import { clearState } from 'slices/AddScheduleSlice';
 
-const AddSchedule = ({ classes, setManageSchedule }) => {
+const AddSchedule = ({ classes, setManageSchedule, employeeId }) => {
   const dispatch = useDispatch();
-  const { selectedEmployeeId } = useSelector((state) => state.SearchEmployeeSlice);
 
   const AddScheduleData = useSelector((state) => state.AddScheduleSlice);
   const { isSuccess, isError, errorMessage } = AddScheduleData;
@@ -42,7 +41,7 @@ const AddSchedule = ({ classes, setManageSchedule }) => {
       date: format(data.date, 'yyyy-MM-dd'),
       startHour: format(data.startHour, 'HH:mm'),
       endHour: format(data.endHour, 'HH:mm'),
-      id: selectedEmployeeId,
+      id: employeeId,
     };
     dispatch(addEmployeeSchedule(newData));
   };
@@ -158,6 +157,7 @@ const AddSchedule = ({ classes, setManageSchedule }) => {
 AddSchedule.propTypes = {
   classes: PropTypes.object.isRequired,
   setManageSchedule: PropTypes.func,
+  employeeId: PropTypes.number,
 };
 
 export default withStyles(styles)(AddSchedule);

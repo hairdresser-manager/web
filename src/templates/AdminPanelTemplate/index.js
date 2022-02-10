@@ -6,7 +6,6 @@ import styles from './styles';
 import Profile from 'components/Profile';
 import { Route } from 'react-router-dom';
 import ManageEmployee from 'components/ManageEmployee';
-import ManageSchedule from 'components/ManageSchedule';
 
 const AdminPanelTemplate = ({ classes }) => {
   return (
@@ -16,7 +15,6 @@ const AdminPanelTemplate = ({ classes }) => {
       </div>
       <div className={classes.rightBox}>
         <Route exact path="/admin" component={Profile}></Route>
-        <Route exact path="/admin/manage-schedule" component={ManageSchedule}></Route>
         <Route exact path="/admin/manage-employee" component={ManageEmployee}></Route>
       </div>
     </div>

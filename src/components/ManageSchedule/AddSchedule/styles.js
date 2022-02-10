@@ -1,6 +1,6 @@
 const styles = (theme) => ({
   container: {
-    width: '100%',
+    width: '50%',
     padding: 15,
     display: 'flex',
     flexDirection: 'column',
@@ -17,6 +17,11 @@ const styles = (theme) => ({
   },
   buttonStyle: {
     margin: '5px 0 5px 0',
+  },
+  [theme.breakpoints.down('md')]: {
+    container: {
+      width: '100%',
+    },
   },
 });
 
