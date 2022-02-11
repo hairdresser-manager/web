@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isOpenAppointmentsModal } from 'slices/ModalsSlice';
 import { Services as GetServices, selectservice } from 'slices/ServicesSlice';
+import { ServicesCategories } from 'slices/ServicesCategoriesSlice';
 import {
   Typography,
   Button,
@@ -26,8 +27,12 @@ const Services = ({ classes }) => {
   const isLoggedIn = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
   const servicesData = useSelector((state) => state.ServicesSlice);
+  const servicesCategoriesData = useSelector((state) => state.ServicesCategoriesSlice);
 
-  const { services, isLoading } = servicesData;
+  const { services } = servicesData;
+  const isLoadingServices = servicesData.isLoading;
+  const { servicesCategories } = servicesCategoriesData;
+  const isLoadingCategories = servicesCategoriesData.isLoading;
 
   const handleOpenModal = () => {
     dispatch(isOpenAppointmentsModal());
@@ -48,6 +53,7 @@ const Services = ({ classes }) => {
 
   useEffect(() => {
     dispatch(GetServices());
+    dispatch(ServicesCategories());
   }, []);
 
   return (
@@ -62,51 +68,54 @@ const Services = ({ classes }) => {
         </Snackbar>
       )}
       <Grid id="services" className={classes.container} container>
-        {isLoading ? (
+        {isLoadingServices || isLoadingCategories ? (
           <CircularProgress color="secondary" size={60} />
         ) : (
           <Paper elevation={4} className={classes.paper}>
-            {services.map((service, index) => (
+            {servicesCategories.map((category, index) => (
               <Accordion key={index} className={classes.styledAccordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography className={classes.heading}>{service.categoryName}</Typography>
+                  <Typography className={classes.heading}>{category.name}</Typography>
                 </AccordionSummary>
-                {service.services.map((serviceDetail) => (
-                  <AccordionDetails
-                    key={serviceDetail.id}
-                    className={classes.styledAccordionDetails}
-                  >
-                    <div className={classes.accordionWrapper}>
-                      <div className={classes.leftBox}>
-                        <Typography variant="subtitle1">{serviceDetail.name}</Typography>
-                        <Typography variant="subtitle2">{serviceDetail.description}</Typography>
-                      </div>
-                      <div className={classes.rightBox}>
-                        <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
+                {services.map(
+                  (serviceDetail) =>
+                    serviceDetail.categoryId === category.id && (
+                      <AccordionDetails
+                        key={serviceDetail.id}
+                        className={classes.styledAccordionDetails}
+                      >
+                        <div className={classes.accordionWrapper}>
+                          <div className={classes.leftBox}>
+                            <Typography variant="subtitle1">{serviceDetail.name}</Typography>
+                            <Typography variant="subtitle2">{serviceDetail.description}</Typography>
+                          </div>
+                          <div className={classes.rightBox}>
+                            <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
 
-                        <Button
-                          onClick={
-                            isLoggedIn
-                              ? () => {
-                                  handleOpenModal();
-                                  handleSelectService(serviceDetail.id, serviceDetail.name);
-                                }
-                              : handleAlert
-                          }
-                          color="secondary"
-                          variant="contained"
-                        >
-                          book
-                        </Button>
-                      </div>
-                    </div>
-                    <Divider className={classes.styledDivider} />
-                  </AccordionDetails>
-                ))}
+                            <Button
+                              onClick={
+                                isLoggedIn
+                                  ? () => {
+                                      handleOpenModal();
+                                      handleSelectService(serviceDetail.id, serviceDetail.name);
+                                    }
+                                  : handleAlert
+                              }
+                              color="secondary"
+                              variant="contained"
+                            >
+                              book
+                            </Button>
+                          </div>
+                        </div>
+                        <Divider className={classes.styledDivider} />
+                      </AccordionDetails>
+                    )
+                )}
               </Accordion>
             ))}
           </Paper>

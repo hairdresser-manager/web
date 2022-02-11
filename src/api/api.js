@@ -74,7 +74,10 @@ const api = {
     return axios.get(`${baseUrl}/offers/team-members`);
   },
   services: () => {
-    return axios.get(`${baseUrl}/offers/services`);
+    return axios.get(`${baseUrl}/services`);
+  },
+  servicesCategories: () => {
+    return axios.get(`${baseUrl}/services/categories`);
   },
   reviews: () => {
     return axios.get(`${baseUrl}/reviews?Page=1&PerPage=5`);
