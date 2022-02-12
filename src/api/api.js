@@ -79,6 +79,12 @@ const api = {
   servicesCategories: () => {
     return axios.get(`${baseUrl}/services/categories`);
   },
+  changeServicesCategory: (body, id) => {
+    return axios.put(`${baseUrl}/services/categories/${id}`, body);
+  },
+  addServicesCategory: (body) => {
+    return axios.post(`${baseUrl}/services/categories/`, body);
+  },
   reviews: () => {
     return axios.get(`${baseUrl}/reviews?Page=1&PerPage=5`);
   },

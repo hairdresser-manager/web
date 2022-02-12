@@ -5,12 +5,13 @@ import { Divider, List, ListItem, ListItemText, withStyles, Link } from '@materi
 import { Avatar, Typography } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import EditIcon from '@material-ui/icons/Edit';
 import styles from './styles';
 import { useHistory } from 'react-router';
+import SubjectIcon from '@material-ui/icons/Subject';
 
 const Menu = ({ classes }) => {
   const userName = localStorage.getItem('firstName');
@@ -41,8 +42,15 @@ const Menu = ({ classes }) => {
             <>
               <Link underline="none" color="inherit" href="/admin/manage-employee">
                 <ListItem button>
-                  <AccessibilityNewIcon />
+                  <SupervisedUserCircleIcon />
                   <ListItemText>Manage Employees</ListItemText>
+                </ListItem>
+              </Link>
+              <Divider />
+              <Link underline="none" color="inherit" href="/admin/manage-services">
+                <ListItem button>
+                  <SubjectIcon />
+                  <ListItemText>Manage Services</ListItemText>
                 </ListItem>
               </Link>
               <Divider />

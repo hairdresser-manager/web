@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isOpenAppointmentsModal } from 'slices/ModalsSlice';
 import { Services as GetServices, selectservice } from 'slices/ServicesSlice';
-import { ServicesCategories } from 'slices/ServicesCategoriesSlice';
+import { ServicesCategories, ChangeServicesCategory } from 'slices/ServicesCategoriesSlice';
 import {
   Typography,
   Button,
@@ -17,12 +17,24 @@ import {
   Slide,
   Snackbar,
   CircularProgress,
+  TextField,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Alert from '@material-ui/lab/Alert';
 import styles from './styles';
+import EditIcon from '@material-ui/icons/Edit';
+import CancelIcon from '@material-ui/icons/Cancel';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { useForm, Controller } from 'react-hook-form';
 
-const Services = ({ classes }) => {
+export function stopPropagate(callback) {
+  return (e) => {
+    e.stopPropagation();
+    callback();
+  };
+}
+
+const Services = ({ classes, isEdit }) => {
   const [isShowAlert, setIsShowAlert] = useState(false);
   const isLoggedIn = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
@@ -31,8 +43,10 @@ const Services = ({ classes }) => {
 
   const { services } = servicesData;
   const isLoadingServices = servicesData.isLoading;
-  const { servicesCategories } = servicesCategoriesData;
+  const { servicesCategories, isUpdateSuccess } = servicesCategoriesData;
   const isLoadingCategories = servicesCategoriesData.isLoading;
+  const [isEditCategory, setIsEditCategory] = useState(false);
+  const [editCategoryId, setEditCategoryId] = useState(false);
 
   const handleOpenModal = () => {
     dispatch(isOpenAppointmentsModal());
@@ -51,10 +65,34 @@ const Services = ({ classes }) => {
     setIsShowAlert(!isShowAlert);
   };
 
+  const handleIsEditCategory = (e, id) => {
+    e.stopPropagation();
+    setEditCategoryId(id);
+    setIsEditCategory(!isEditCategory);
+    reset();
+  };
+
   useEffect(() => {
     dispatch(GetServices());
     dispatch(ServicesCategories());
-  }, []);
+  }, [isUpdateSuccess]);
+
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (id) => (data) => {
+    const newData = {
+      id: id,
+      name: data.categoryName,
+    };
+    dispatch(ChangeServicesCategory(newData));
+    setIsEditCategory(!isEditCategory);
+  };
 
   return (
     <>
@@ -72,14 +110,57 @@ const Services = ({ classes }) => {
           <CircularProgress color="secondary" size={60} />
         ) : (
           <Paper elevation={4} className={classes.paper}>
-            {servicesCategories.map((category, index) => (
-              <Accordion key={index} className={classes.styledAccordion}>
+            {servicesCategories.map((category) => (
+              <Accordion key={category.id} className={classes.styledAccordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography className={classes.heading}>{category.name}</Typography>
+                  {(editCategoryId === category.id) & isEditCategory ? (
+                    <>
+                      <form onSubmit={handleSubmit(onSubmit(category.id))}>
+                        <Controller
+                          name="categoryName"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              key={category.id}
+                              {...register('categoryName', {
+                                required: 'Enter category name',
+                                pattern: {
+                                  value: /^.{5,25}$/i,
+                                  message:
+                                    'Category name must have at least 5 and a maximum of 25 characters',
+                                },
+                              })}
+                              {...field}
+                              type="text"
+                              helperText={errors.categoryName?.message}
+                              error={errors.categoryName ? true : false}
+                            />
+                          )}
+                          defaultValue={category.name}
+                        />
+
+                        <CheckCircleIcon
+                          onClick={stopPropagate(handleSubmit(onSubmit(category.id)))}
+                          style={{ margin: '0 10px' }}
+                        />
+                      </form>
+                    </>
+                  ) : (
+                    <Typography className={classes.heading}>{category.name}</Typography>
+                  )}
+                  {isEdit &&
+                    (isEditCategory & (editCategoryId === category.id) ? (
+                      <CancelIcon onClick={(e) => handleIsEditCategory(e, category.id)} />
+                    ) : (
+                      <EditIcon
+                        onClick={(e) => handleIsEditCategory(e, category.id)}
+                        style={{ margin: '0 10px' }}
+                      />
+                    ))}
                 </AccordionSummary>
                 {services.map(
                   (serviceDetail) =>
@@ -95,21 +176,30 @@ const Services = ({ classes }) => {
                           </div>
                           <div className={classes.rightBox}>
                             <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
-
-                            <Button
-                              onClick={
-                                isLoggedIn
-                                  ? () => {
-                                      handleOpenModal();
-                                      handleSelectService(serviceDetail.id, serviceDetail.name);
-                                    }
-                                  : handleAlert
-                              }
-                              color="secondary"
-                              variant="contained"
-                            >
-                              book
-                            </Button>
+                            {isEdit ? (
+                              <Button
+                                onClick={() => console.log(serviceDetail.id)}
+                                color="secondary"
+                                variant="contained"
+                              >
+                                Edit
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={
+                                  isLoggedIn
+                                    ? () => {
+                                        handleOpenModal();
+                                        handleSelectService(serviceDetail.id, serviceDetail.name);
+                                      }
+                                    : handleAlert
+                                }
+                                color="secondary"
+                                variant="contained"
+                              >
+                                book
+                              </Button>
+                            )}
                           </div>
                         </div>
                         <Divider className={classes.styledDivider} />
@@ -127,6 +217,7 @@ const Services = ({ classes }) => {
 
 Services.propTypes = {
   classes: PropTypes.object.isRequired,
+  isEdit: PropTypes.bool,
 };
 
 export default withStyles(styles)(Services);
