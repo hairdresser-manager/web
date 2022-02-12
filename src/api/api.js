@@ -103,11 +103,14 @@ const api = {
   addScopedSchedule: (body, id) => {
     return axios.post(`${baseUrl}/employees/${id}/scoped-schedules`, body);
   },
-  showSchedule: (id) => {
+  showScheduleById: (id) => {
     return axios.get(`${baseUrl}/employees/${id}/schedules`);
   },
   removeSchedule: (body, id) => {
     return axios.delete(`${baseUrl}/employees/${id}/schedules`, { data: body });
+  },
+  showSchedule: () => {
+    return axios.get(`${baseUrl}/schedules`);
   },
 };
 export default api;

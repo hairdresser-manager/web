@@ -9,7 +9,6 @@ import ChangePassword from 'components/ChangePassword';
 import ChangeAccountInformations from 'components/ChangeAccountInformations';
 import MyReservations from 'components/MyReservations';
 import ShowSchedule from 'components/ManageSchedule/ShowSchedule';
-import ManageEmployee from 'components/ManageEmployee';
 
 const ProfileComponent = ({ classes }) => {
   return (
@@ -26,8 +25,7 @@ const ProfileComponent = ({ classes }) => {
           component={ChangeAccountInformations}
         ></Route>
         <Route exact path="/profile/my-reservations" component={MyReservations}></Route>
-        <Route exact path="/profile/manage-schedule" component={ShowSchedule}></Route>
-        <Route exact path="/profile/manage-employee" component={ManageEmployee}></Route>
+        <Route exact path="/profile/my-schedule" component={ShowSchedule}></Route>
       </div>
     </div>
   );

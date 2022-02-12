@@ -17,6 +17,7 @@ const Menu = ({ classes }) => {
   const userName = localStorage.getItem('firstName');
   const isUser = CheckRoles('User');
   const isAdmin = CheckRoles('Admin');
+  const isEmployee = CheckRoles('Employee');
   const history = useHistory();
 
   const onLogOut = () => {
@@ -70,6 +71,17 @@ const Menu = ({ classes }) => {
                     <ListItem button>
                       <DateRangeIcon />
                       <ListItemText>My Reservations</ListItemText>
+                    </ListItem>
+                  </Link>
+                  <Divider />
+                </>
+              )}
+              {isEmployee && (
+                <>
+                  <Link underline="none" color="inherit" href="/profile/my-schedule">
+                    <ListItem button>
+                      <DateRangeIcon />
+                      <ListItemText>My Schedule</ListItemText>
                     </ListItem>
                   </Link>
                   <Divider />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showSchedule } from 'slices/ShowScheduleSlice';
+import { showScheduleById, showSchedule } from 'slices/ShowScheduleSlice';
 import PropTypes from 'prop-types';
 import { Typography, withStyles, CircularProgress } from '@material-ui/core';
 import styles from './styles';
@@ -10,11 +10,13 @@ import { format, startOfWeek, addWeeks, subWeeks, addDays } from 'date-fns';
 import MuiAlert from '@material-ui/lab/Alert';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-const ShowSchedule = ({ classes, setManageSchedule, employeeId }) => {
+const ShowSchedule = ({ classes, setManageSchedule, employeeId, isSpecificEmployee }) => {
   const dispatch = useDispatch();
   const scheduleData = useSelector((state) => state.showScheduleSlice);
+  const employees = useSelector((state) => state.EmployeesSlice.employees);
   const { schedule, isError, isLoading, errorMessage } = scheduleData;
   const [currentDate, setCurrentDate] = useState(new Date());
+  const getEmployeeName = window.localStorage.getItem('firstName');
 
   const nextMonth = () => {
     setCurrentDate(addWeeks(currentDate, 1));
@@ -24,10 +26,17 @@ const ShowSchedule = ({ classes, setManageSchedule, employeeId }) => {
   };
 
   useEffect(() => {
-    const newData = {
-      id: employeeId,
-    };
-    dispatch(showSchedule(newData));
+    if (isSpecificEmployee) {
+      const newData = {
+        id: employeeId,
+      };
+      dispatch(showScheduleById(newData));
+    } else {
+      const newData = {
+        id: employeeId,
+      };
+      dispatch(showSchedule(newData));
+    }
   }, [employeeId]);
 
   const daysOfWeek = () => {
@@ -63,10 +72,12 @@ const ShowSchedule = ({ classes, setManageSchedule, employeeId }) => {
         <div className={classes.container}>
           <div className={classes.schedule}>
             <div className={classes.scheduleHeader}>
-              <CancelIcon
-                onClick={() => setManageSchedule('')}
-                style={{ position: 'absolute', top: 10, left: 10, cursor: 'pointer' }}
-              />
+              {isSpecificEmployee && (
+                <CancelIcon
+                  onClick={() => setManageSchedule('')}
+                  style={{ position: 'absolute', top: 10, left: 10, cursor: 'pointer' }}
+                />
+              )}
               <ArrowBackIosIcon onClick={prevMonth} className={classes.arrrowIcon} />
               <div className={classes.date}>
                 <Typography variant="subtitle1">{format(currentDate, 'MMMM')}</Typography>
@@ -83,7 +94,13 @@ const ShowSchedule = ({ classes, setManageSchedule, employeeId }) => {
             ) : (
               <div className={classes.scheduleEmployee}>
                 <div>
-                  <Typography variant="h6">John Doe</Typography>
+                  {isSpecificEmployee ? (
+                    <Typography variant="h6">
+                      {employees.filter((employee) => employee.id === employeeId)[0].firstName}
+                    </Typography>
+                  ) : (
+                    <Typography variant="h6">{getEmployeeName}</Typography>
+                  )}
                 </div>
                 {daysOfWeek()}
               </div>
@@ -99,6 +116,7 @@ ShowSchedule.propTypes = {
   classes: PropTypes.object.isRequired,
   setManageSchedule: PropTypes.func,
   employeeId: PropTypes.number,
+  isSpecificEmployee: PropTypes.bool,
 };
 
 export default withStyles(styles)(ShowSchedule);

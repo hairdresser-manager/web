@@ -53,7 +53,11 @@ const ManageEmployee = ({ classes }) => {
       ) : manageSchedule === DELETE_SCHEDULE ? (
         <RemoveSchedule setManageSchedule={setManageSchedule} employeeId={employeeId} />
       ) : manageSchedule === SHOW_SCHEDULE ? (
-        <ShowSchedule setManageSchedule={setManageSchedule} employeeId={employeeId} />
+        <ShowSchedule
+          isSpecificEmployee
+          setManageSchedule={setManageSchedule}
+          employeeId={employeeId}
+        />
       ) : (
         <>
           <div className={classes.header}>
