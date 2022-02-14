@@ -25,15 +25,19 @@ const styles = (theme) => ({
     width: '100%',
     justifyContent: 'space-between',
   },
-  leftBox: {},
+  leftBox: {
+    flex: 0.8,
+  },
   rightBox: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '150px',
   },
   styledDivider: {
     margin: '20px 0 10px 0',
+  },
+  buttonStyle: {
+    margin: 5,
   },
 });
 

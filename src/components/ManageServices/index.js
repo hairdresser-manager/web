@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Button, Collapse, Paper, withStyles } from '@material-ui/core';
 import Services from 'components/Services';
@@ -7,17 +6,24 @@ import AddService from './AddService';
 import CancelIcon from '@material-ui/icons/Cancel';
 import styles from './styles';
 import PropTypes from 'prop-types';
-import EditServiceModal from './EditServiceModal';
+import ServiceModal from './ServiceModal';
 
 const ManageServices = ({ classes }) => {
   const [isAddCategoryOpen, setIsAddCategoryOpen] = useState(false);
   const [isAddServiceOpen, setIsAddServiceOpen] = useState(false);
+  const [isAddEmployee, setIsAddEmployee] = useState(false);
   const [open, setOpen] = useState(false);
   const [service, setService] = useState({});
 
   return (
     <div className={classes.container}>
-      <EditServiceModal setOpen={setOpen} open={open} service={service} />
+      <ServiceModal
+        setOpen={setOpen}
+        open={open}
+        service={service}
+        isAddEmployee={isAddEmployee}
+        setIsAddEmployee={setIsAddEmployee}
+      />
       <div style={{ padding: 15 }}>
         <Button
           onClick={() => setIsAddCategoryOpen(!isAddCategoryOpen)}
@@ -55,7 +61,12 @@ const ManageServices = ({ classes }) => {
           <AddService />
         </Paper>
       </Collapse>
-      <Services isEdit setOpen={setOpen} setService={setService} />
+      <Services
+        isEdit
+        setOpen={setOpen}
+        setService={setService}
+        setIsAddEmployee={setIsAddEmployee}
+      />
     </div>
   );
 };

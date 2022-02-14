@@ -40,6 +40,26 @@ export const AddService = createAsyncThunk(
   }
 );
 
+export const AddEmployeeToService = createAsyncThunk(
+  'ServicesSlices/AddEmployeeToService',
+  async ({ employeeId, serviceId }, thunkAPI) => {
+    try {
+      let res;
+      res = await api.addEmployeeToService(
+        {
+          employeeId,
+        },
+        serviceId
+      );
+      return {
+        ...res.data,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.errors);
+    }
+  }
+);
+
 export const EditService = createAsyncThunk(
   'ServicesSlices/EditService',
   async (
@@ -76,6 +96,7 @@ export const ServicesSlice = createSlice({
     isSuccess: false,
     isAddSuccess: false,
     isEditSuccess: false,
+    isAddEmployeeSuccess: false,
     isError: false,
     errorMessage: '',
     services: [],
@@ -131,6 +152,20 @@ export const ServicesSlice = createSlice({
       state.isLoading = false;
     },
     [EditService.rejected]: (state, { payload }) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.errorMessage = payload;
+    },
+    [AddEmployeeToService.pending]: (state) => {
+      state.isLoading = true;
+      state.errorMessage = '';
+      state.isAddEmployeeSuccess = false;
+    },
+    [AddEmployeeToService.fulfilled]: (state) => {
+      state.isAddEmployeeSuccess = true;
+      state.isLoading = false;
+    },
+    [AddEmployeeToService.rejected]: (state, { payload }) => {
       state.isError = true;
       state.isLoading = false;
       state.errorMessage = payload;

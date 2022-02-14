@@ -22,7 +22,12 @@ const AddSchedule = ({ classes, setManageSchedule, employeeId }) => {
     register,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      startHour: new Date().setUTCHours(0, 0, 0, 0),
+      endHour: new Date().setUTCHours(0, 0, 0, 0),
+    },
+  });
 
   const watchFields = {
     date: watch('date'),
@@ -88,7 +93,6 @@ const AddSchedule = ({ classes, setManageSchedule, employeeId }) => {
         <Controller
           name="startHour"
           control={control}
-          defaultValue={'12'}
           // eslint-disable-next-line no-unused-vars
           render={({ field: { ref, ...rest } }) => (
             <KeyboardTimePicker
@@ -113,7 +117,6 @@ const AddSchedule = ({ classes, setManageSchedule, employeeId }) => {
         <Controller
           name="endHour"
           control={control}
-          defaultValue={'12'}
           // eslint-disable-next-line no-unused-vars
           render={({ field: { ref, ...rest } }) => (
             <KeyboardTimePicker

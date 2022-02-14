@@ -79,6 +79,9 @@ const api = {
   addService: (body) => {
     return axios.post(`${baseUrl}/services`, body);
   },
+  addEmployeeToService: (body, id) => {
+    return axios.post(`${baseUrl}/services/${id}/employees`, body);
+  },
   editService: (body, id) => {
     return axios.put(`${baseUrl}/services/${id}`, body);
   },

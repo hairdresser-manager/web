@@ -34,7 +34,7 @@ export function stopPropagate(callback) {
   };
 }
 
-const Services = ({ classes, isEdit, setOpen, setService }) => {
+const Services = ({ classes, isEdit, setOpen, setService, setIsAddEmployee }) => {
   const [isShowAlert, setIsShowAlert] = useState(false);
   const isLoggedIn = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ const Services = ({ classes, isEdit, setOpen, setService }) => {
 
   const handleOpenServiceEditModal = () => {
     setOpen(true);
+    setIsAddEmployee(false);
   };
 
   const handleSelectService = (id, name) => {
@@ -181,16 +182,30 @@ const Services = ({ classes, isEdit, setOpen, setService }) => {
                           <div className={classes.rightBox}>
                             <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
                             {isEdit ? (
-                              <Button
-                                onClick={() => [
-                                  handleOpenServiceEditModal(),
-                                  setService(serviceDetail),
-                                ]}
-                                color="secondary"
-                                variant="contained"
-                              >
-                                Edit
-                              </Button>
+                              <>
+                                <Button
+                                  className={classes.buttonStyle}
+                                  onClick={() => [
+                                    handleOpenServiceEditModal(),
+                                    setService(serviceDetail),
+                                    setIsAddEmployee(true),
+                                  ]}
+                                  color="secondary"
+                                  variant="contained"
+                                >
+                                  Add employee
+                                </Button>
+                                <Button
+                                  onClick={() => [
+                                    handleOpenServiceEditModal(),
+                                    setService(serviceDetail),
+                                  ]}
+                                  color="secondary"
+                                  variant="contained"
+                                >
+                                  Edit
+                                </Button>
+                              </>
                             ) : (
                               <Button
                                 onClick={
@@ -227,6 +242,7 @@ Services.propTypes = {
   isEdit: PropTypes.bool,
   setOpen: PropTypes.func,
   setService: PropTypes.func,
+  setIsAddEmployee: PropTypes.func,
 };
 
 export default withStyles(styles)(Services);

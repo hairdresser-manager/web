@@ -9,6 +9,7 @@ const styles = (theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     position: 'relative',
+    minWidth: 500,
   },
   cancelIconStyle: {
     position: 'absolute',
