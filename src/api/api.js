@@ -76,6 +76,12 @@ const api = {
   services: () => {
     return axios.get(`${baseUrl}/services`);
   },
+  addService: (body) => {
+    return axios.post(`${baseUrl}/services`, body);
+  },
+  editService: (body, id) => {
+    return axios.put(`${baseUrl}/services/${id}`, body);
+  },
   servicesCategories: () => {
     return axios.get(`${baseUrl}/services/categories`);
   },

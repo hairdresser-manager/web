@@ -6,56 +6,48 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Switch,
   TextField,
-  Typography,
   withStyles,
+  Switch,
 } from '@material-ui/core';
 import styles from './styles';
 import PropTypes from 'prop-types';
-import { useForm, Controller } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
 import { time, timeConvert } from 'helpers/convertMinutes';
-import { AddService as AddServiceToApi } from 'slices/ServicesSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { EditService as EditServiceToApi } from 'slices/ServicesSlice';
 
-const AddService = ({ classes }) => {
+const EditService = ({ classes, service, handleClose }) => {
   const dispatch = useDispatch();
   const servicesCategoriesData = useSelector(
     (state) => state.ServicesCategoriesSlice.servicesCategories
   );
+
+  const { name, categoryId, description, maximumTime, minimumTime, price, available, id } = service;
 
   const {
     handleSubmit,
     control,
     register,
     formState: { errors },
-    reset,
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(AddServiceToApi(data));
-    reset({
-      name: '',
-      categoryId: '',
-      description: '',
-      minimumTime: '',
-      maximumTime: '',
-      price: '',
-      available: false,
-    });
-  };
+    const newData = { serviceId: id, ...data };
 
+    dispatch(EditServiceToApi(newData));
+    handleClose();
+  };
   return (
-    <>
-      <Typography>Add service:</Typography>
+    <div className={classes.container}>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="name"
           control={control}
-          defaultValue=""
+          defaultValue={name || ''}
           render={({ field }) => (
             <TextField
-              style={{ width: '50%', margin: 10 }}
+              fullWidth
               label="Add service name"
               {...register('name', {
                 required: 'Enter service name',
@@ -74,9 +66,9 @@ const AddService = ({ classes }) => {
         <Controller
           name="categoryId"
           control={control}
-          defaultValue=""
+          defaultValue={categoryId || ''}
           render={({ field }) => (
-            <FormControl style={{ width: '50%' }}>
+            <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Category</InputLabel>
               <Select
                 {...register('categoryId', {
@@ -104,12 +96,12 @@ const AddService = ({ classes }) => {
         <Controller
           name="description"
           control={control}
-          defaultValue=""
+          defaultValue={description || ''}
           render={({ field }) => (
             <TextField
               multiline
               rows={2}
-              style={{ width: '50%', margin: 10 }}
+              fullWidth
               label="Add description"
               {...register('description', {
                 required: 'Enter description',
@@ -128,9 +120,9 @@ const AddService = ({ classes }) => {
         <Controller
           name="minimumTime"
           control={control}
-          defaultValue=""
+          defaultValue={minimumTime || ''}
           render={({ field }) => (
-            <FormControl style={{ width: '50%' }}>
+            <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Minimum time</InputLabel>
               <Select
                 {...register('minimumTime', {
@@ -158,9 +150,9 @@ const AddService = ({ classes }) => {
         <Controller
           name="maximumTime"
           control={control}
-          defaultValue=""
+          defaultValue={maximumTime || ''}
           render={({ field }) => (
-            <FormControl style={{ width: '50%' }}>
+            <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Maximum time</InputLabel>
               <Select
                 {...register('maximumTime', {
@@ -191,11 +183,11 @@ const AddService = ({ classes }) => {
         <Controller
           name="price"
           control={control}
-          defaultValue=""
+          defaultValue={price || ''}
           render={({ field }) => (
             <TextField
               type="number"
-              style={{ width: '50%', margin: 10 }}
+              fullWidth
               label="Add price"
               {...register('price', {
                 required: 'Enter price',
@@ -214,7 +206,7 @@ const AddService = ({ classes }) => {
         <Controller
           name="available"
           control={control}
-          defaultValue={false}
+          defaultValue={available || false}
           render={({ field }) => (
             <>
               <label>Available:</label>
@@ -224,14 +216,17 @@ const AddService = ({ classes }) => {
         />
 
         <Button type="submit" className={classes.button} color="primary" variant="contained">
-          Add
+          Edit
         </Button>
       </form>
-    </>
+    </div>
   );
 };
 
-AddService.propTypes = {
+EditService.propTypes = {
   classes: PropTypes.object.isRequired,
+  service: PropTypes.object.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
-export default withStyles(styles)(AddService);
+
+export default withStyles(styles)(EditService);

@@ -5,6 +5,7 @@ const styles = () => ({
     justifyContent: 'center',
     width: '100%',
     flexDirection: 'column',
+    padding: 10,
   },
   button: {
     margin: '0 15px',

@@ -34,14 +34,14 @@ export function stopPropagate(callback) {
   };
 }
 
-const Services = ({ classes, isEdit }) => {
+const Services = ({ classes, isEdit, setOpen, setService }) => {
   const [isShowAlert, setIsShowAlert] = useState(false);
   const isLoggedIn = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
   const servicesData = useSelector((state) => state.ServicesSlice);
   const servicesCategoriesData = useSelector((state) => state.ServicesCategoriesSlice);
 
-  const { services } = servicesData;
+  const { services, isAddSuccess, isEditSuccess } = servicesData;
   const isLoadingServices = servicesData.isLoading;
   const { servicesCategories, isUpdateSuccess } = servicesCategoriesData;
   const isLoadingCategories = servicesCategoriesData.isLoading;
@@ -50,6 +50,10 @@ const Services = ({ classes, isEdit }) => {
 
   const handleOpenModal = () => {
     dispatch(isOpenAppointmentsModal());
+  };
+
+  const handleOpenServiceEditModal = () => {
+    setOpen(true);
   };
 
   const handleSelectService = (id, name) => {
@@ -75,7 +79,7 @@ const Services = ({ classes, isEdit }) => {
   useEffect(() => {
     dispatch(GetServices());
     dispatch(ServicesCategories());
-  }, [isUpdateSuccess]);
+  }, [isUpdateSuccess, isAddSuccess, isEditSuccess]);
 
   const {
     control,
@@ -178,7 +182,10 @@ const Services = ({ classes, isEdit }) => {
                             <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
                             {isEdit ? (
                               <Button
-                                onClick={() => console.log(serviceDetail.id)}
+                                onClick={() => [
+                                  handleOpenServiceEditModal(),
+                                  setService(serviceDetail),
+                                ]}
                                 color="secondary"
                                 variant="contained"
                               >
@@ -218,6 +225,8 @@ const Services = ({ classes, isEdit }) => {
 Services.propTypes = {
   classes: PropTypes.object.isRequired,
   isEdit: PropTypes.bool,
+  setOpen: PropTypes.func,
+  setService: PropTypes.func,
 };
 
 export default withStyles(styles)(Services);

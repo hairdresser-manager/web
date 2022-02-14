@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 const AddCategory = ({ classes }) => {
   const dispatch = useDispatch();
+
   const {
     handleSubmit,
     control,
@@ -15,12 +16,14 @@ const AddCategory = ({ classes }) => {
     formState: { errors },
     reset,
   } = useForm();
+
   const onSubmit = (data) => {
     dispatch(AddServicesCategory(data));
     reset({
       categoryName: '',
     });
   };
+
   return (
     <>
       <Typography>Add category:</Typography>
@@ -31,7 +34,6 @@ const AddCategory = ({ classes }) => {
           defaultValue=""
           render={({ field }) => (
             <TextField
-              fullWidth
               style={{ width: '50%' }}
               label="Add category"
               {...register('categoryName', {
