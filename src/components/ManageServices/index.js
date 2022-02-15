@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Collapse, Paper, withStyles } from '@material-ui/core';
-import Services from 'components/Services';
+import Services from 'components/ManageServices/Services';
 import AddCategory from './AddCategory';
 import AddService from './AddService';
 import CancelIcon from '@material-ui/icons/Cancel';

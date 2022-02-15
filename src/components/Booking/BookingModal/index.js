@@ -1,29 +1,36 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { clearState } from 'slices/AvailableDatesSlice';
+import { clearState as clearAvailableDatesState } from 'slices/AvailableDatesSlice';
+import { clearState as clearUserAppointmentState } from 'slices/UserAppointmentSlice';
 import { isOpenAppointmentsModal } from 'slices/ModalsSlice';
 import { withStyles, Dialog, CircularProgress } from '@material-ui/core';
 import styles from './styles';
-import EmployeeSelect from '../EmployeeSelect';
-import AppointmentSelect from '../AppointmentSelect';
+import DateAndEmployeeSelect from '../DateAndEmployeeSelect';
+import Appointment from '../Appointment';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const BookingModal = ({ classes }) => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.ModalsSlice.AppointmentsModal.isModalOpen);
-  const EmployeeData = useSelector((state) => state.AvailableDatesSlice);
+  const AvailableDates = useSelector((state) => state.AvailableDatesSlice);
 
-  const { isEmployeeSelected, isLoading } = EmployeeData;
+  const { isLoading, isSuccess } = AvailableDates;
 
   const handleClose = () => {
-    dispatch(clearState());
+    dispatch(clearAvailableDatesState());
     dispatch(isOpenAppointmentsModal());
+    dispatch(clearUserAppointmentState());
   };
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Dialog
-      maxWidth="lg"
+      fullScreen={fullScreen}
       onClose={handleClose}
+      maxWidth={9009}
       aria-labelledby="customized-dialog-title"
       open={isModalOpen}
     >
@@ -31,7 +38,7 @@ const BookingModal = ({ classes }) => {
         {isLoading && (
           <CircularProgress className={classes.loadingCircular} color="secondary" size={60} />
         )}
-        {isEmployeeSelected ? <AppointmentSelect /> : <EmployeeSelect />}
+        {isSuccess ? <Appointment /> : <DateAndEmployeeSelect />}
       </div>
     </Dialog>
   );

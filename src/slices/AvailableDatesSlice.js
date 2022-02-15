@@ -3,13 +3,15 @@ import api from 'api/api';
 
 export const AvailableDates = createAsyncThunk(
   'AvailableDatesSlices/AvailableDates',
-  async (thunkAPI) => {
+  async ({ Employees, ServiceDuration, StartDate, EndDate }, thunkAPI) => {
     try {
       let res;
-      res = await api.availableDates();
+      res = await api.availableDates(Employees, ServiceDuration, StartDate, EndDate);
       return {
         ...res.data,
         appointments: [...res.data],
+        selectedEmployee: Employees,
+        selectedDate: EndDate,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.errors);
@@ -23,48 +25,20 @@ export const AvailableDatesSlice = createSlice({
     isLoading: false,
     isSuccess: false,
     isError: false,
-    isEmployeeSelected: false,
-    isDaySelected: false,
-    isHourSelected: false,
     errorMessage: '',
     appointments: [],
-    selectedEmployee: [],
-    selectedDay: '',
-    selectedHour: '',
+    selectedEmployee: null,
+    selectedDate: '',
   },
   reducers: {
-    selectEmployee: (state, data) => {
-      state.selectedEmployee = data.payload;
-      state.isEmployeeSelected = true;
-    },
-    selectDay: (state, data) => {
-      state.selectedDay = data.payload;
-      state.isDaySelected = true;
-    },
-    selectHour: (state, data) => {
-      state.selectedHour = data.payload;
-      state.isHourSelected = true;
-    },
-    clearStateSelectDay: (state) => {
-      state.selectedDay = '';
-      state.isDaySelected = false;
-    },
-    clearStateSelectHour: (state) => {
-      state.selectedHour = '';
-      state.isHourSelected = false;
-    },
     clearState: (state) => {
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
-      state.isEmployeeSelected = false;
-      state.isDaySelected = false;
-      state.isHourSelected = false;
       state.errorMessage = '';
       state.appointments = [];
       state.selectedEmployee = [];
-      state.selectedDay = '';
-      state.selectedHour = '';
+      state.selectedDate = '';
     },
   },
   extraReducers: {
@@ -74,6 +48,8 @@ export const AvailableDatesSlice = createSlice({
     },
     [AvailableDates.fulfilled]: (state, { payload }) => {
       state.appointments = payload.appointments;
+      state.selectedDate = payload.selectedDate;
+      state.selectedEmployee = payload.selectedEmployee;
       state.isSuccess = true;
       state.isLoading = false;
     },
@@ -85,13 +61,6 @@ export const AvailableDatesSlice = createSlice({
   },
 });
 
-export const {
-  clearState,
-  selectEmployee,
-  selectDay,
-  selectHour,
-  clearStateSelectHour,
-  clearStateSelectDay,
-} = AvailableDatesSlice.actions;
+export const { clearState } = AvailableDatesSlice.actions;
 
 export default AvailableDatesSlice.reducer;

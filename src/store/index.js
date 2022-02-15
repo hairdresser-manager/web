@@ -18,6 +18,7 @@ import AddScheduleReducer from 'slices/AddScheduleSlice';
 import ShowScheduleReducer from 'slices/ShowScheduleSlice';
 import RemoveScheduleReducer from 'slices/RemoveScheduleSlice';
 import ServicesCategoriesReducer from 'slices/ServicesCategoriesSlice';
+import UserAppointmentReducer from 'slices/UserAppointmentSlice';
 
 export default configureStore({
   reducer: {
@@ -40,5 +41,6 @@ export default configureStore({
     showScheduleSlice: ShowScheduleReducer,
     RemoveScheduleSlice: RemoveScheduleReducer,
     ServicesCategoriesSlice: ServicesCategoriesReducer,
+    UserAppointmentSlice: UserAppointmentReducer,
   },
 });

@@ -1,11 +1,16 @@
 const styles = (theme) => ({
   container: {
-    width: '800px',
+    width: '100%',
     minHeight: '500px',
     background: '#fafafa',
     boxShadow: '0 0.5rem 3rem rgba(0, 0, 0, 0.4)',
     display: 'flex',
     flexDirection: 'column',
+  },
+  textHeader: {
+    '& .MuiTypography-subtitle1': {
+      fontSize: '26px',
+    },
   },
   header: {
     width: '100%',
@@ -18,18 +23,14 @@ const styles = (theme) => ({
     background: theme.palette.secondary.main,
     color: '#eee',
     textShadow: '0 0.2rem 0.4rem rgba(0, 0, 0, 0.5)',
-    '& .MuiTypography-subtitle1': {
-      fontSize: '26px',
-      marginLeft: '10px',
-    },
   },
   content: {
-    display: 'grid',
-    width: '100%',
-    justifyItems: 'center',
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
   },
-  cards: {
+  employeeCard: {
     display: 'flex',
     justifyContent: 'space-evenly',
     width: '200px',
@@ -39,15 +40,17 @@ const styles = (theme) => ({
     margin: '15px 0 ',
     background: theme.palette.secondary.main,
     color: 'white',
+    boxShadow: '0 0.5rem 3rem rgba(0, 0, 0, 0.4)',
     textTransform: 'uppercase',
     cursor: 'pointer',
   },
-  arrrowIcon: {
-    cursor: 'pointer',
+  closeIcon: {
     position: 'absolute',
+    fontSize: '2.3rem',
+    cursor: 'pointer',
     left: '20px',
     top: '10px',
-    fontSize: '2.3rem',
+
     '&:hover': {
       transform: 'scale(1.1)',
     },
@@ -60,6 +63,9 @@ const styles = (theme) => ({
     background: theme.palette.secondary.main,
     marginTop: 'auto',
     color: '#fafafa',
+  },
+  formContainer: {
+    width: '60%',
   },
   [theme.breakpoints.down('md')]: {
     employees: {

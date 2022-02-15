@@ -67,14 +67,27 @@ const api = {
   userAppointments: () => {
     return axios.get(`${baseUrl}/appointments`);
   },
-  availableDates: () => {
-    return axios.get(`${baseUrl}/appointments/available-dates`);
+  addAppointment: (body) => {
+    return axios.post(`${baseUrl}/appointments`, body);
+  },
+  availableDates: (Employees, ServiceDuration, StartDate, EndDate) => {
+    return axios.get(`${baseUrl}/appointments/available-dates`, {
+      params: {
+        Employees,
+        ServiceDuration,
+        StartDate,
+        EndDate,
+      },
+    });
   },
   teamMembers: () => {
     return axios.get(`${baseUrl}/offers/team-members`);
   },
   services: () => {
     return axios.get(`${baseUrl}/services`);
+  },
+  publicServices: () => {
+    return axios.get(`${baseUrl}/offers/services`);
   },
   addService: (body) => {
     return axios.post(`${baseUrl}/services`, body);
