@@ -14,11 +14,27 @@ export const Reviews = createAsyncThunk('ReviewsSlices/Reviews', async (thunkAPI
   }
 });
 
+export const addReview = createAsyncThunk(
+  'ReviewsSlices/addReview',
+  async ({ appointmentId, rate, description }, thunkAPI) => {
+    try {
+      let res;
+      res = await api.addReview({ appointmentId, rate, description });
+      return {
+        ...res.data,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.errors);
+    }
+  }
+);
+
 export const ReviewsSlice = createSlice({
   name: 'ReviewsSlices',
   initialState: {
     isLoading: false,
     isSuccess: false,
+    isSuccessAdded: false,
     isError: false,
     errorMessage: '',
     reviews: [],
@@ -42,6 +58,19 @@ export const ReviewsSlice = createSlice({
       state.isLoading = false;
     },
     [Reviews.rejected]: (state, { payload }) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.errorMessage = payload;
+    },
+    [addReview.pending]: (state) => {
+      state.isLoading = true;
+      state.errorMessage = '';
+    },
+    [addReview.fulfilled]: (state) => {
+      state.isSuccessAdded = true;
+      state.isLoading = false;
+    },
+    [addReview.rejected]: (state, { payload }) => {
       state.isError = true;
       state.isLoading = false;
       state.errorMessage = payload;

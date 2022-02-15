@@ -10,20 +10,36 @@ const styles = () => ({
     background: '#fafafa',
     flexGrow: 1,
   },
-  leftBox: {
+  centerBox: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     flexGrow: '3',
   },
-  rightBox: {
+  RightBox: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     flexGrow: '1',
-    borderLeft: `1px solid #e6e6e6`,
+    borderLeft: `2px solid #e6e6e6`,
+  },
+  LeftBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexGrow: '1',
+    borderRight: `2px solid #e6e6e6`,
+  },
+  reviewText: {
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#f50057',
+    },
   },
   text: {
     fontSize: '23px',

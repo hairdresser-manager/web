@@ -129,6 +129,7 @@ const AddSchedule = ({ classes, setManageSchedule, employeeId }) => {
               })}
               margin="normal"
               inputProps={{ readOnly: true }}
+              minutesStep={15}
               id="endHour"
               label="Choose ending hour"
               KeyboardButtonProps={{

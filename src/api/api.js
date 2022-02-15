@@ -110,6 +110,9 @@ const api = {
   reviews: () => {
     return axios.get(`${baseUrl}/reviews?Page=1&PerPage=5`);
   },
+  addReview: (body) => {
+    return axios.post(`${baseUrl}/reviews`, body);
+  },
   showEmployees: () => {
     return axios.get(`${baseUrl}/employees`);
   },
