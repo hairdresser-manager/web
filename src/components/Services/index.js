@@ -20,13 +20,13 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Alert from '@material-ui/lab/Alert';
 import styles from './styles';
+import { CheckRoles } from 'helpers/CheckRoles';
 
 const Services = ({ classes }) => {
   const [isShowAlert, setIsShowAlert] = useState(false);
-  const isLoggedIn = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
   const servicesData = useSelector((state) => state.ServicesSlice);
-
+  const isLoggedIn = localStorage.getItem('accessToken');
   const { services } = servicesData;
   const isLoadingServices = servicesData.isLoading;
 
@@ -52,7 +52,11 @@ const Services = ({ classes }) => {
         <Snackbar open={isShowAlert} autoHideDuration={6000} onClose={handleAlert}>
           <Slide direction="up" in={isShowAlert} mountOnEnter unmountOnExit>
             <Alert severity="error" onClose={handleAlert}>
-              Log in to make an appointment
+              {CheckRoles('Admin') || CheckRoles('Employee') ? (
+                <Typography>Only user can make appointment!</Typography>
+              ) : (
+                <Typography>Log in to make an appointment</Typography>
+              )}
             </Alert>
           </Slide>
         </Snackbar>
@@ -85,7 +89,7 @@ const Services = ({ classes }) => {
                         <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
                         <Button
                           onClick={
-                            isLoggedIn
+                            isLoggedIn && !CheckRoles('Admin') & !CheckRoles('Employee')
                               ? () => {
                                   handleOpenModal();
                                   handleSelectService(serviceDetail);
