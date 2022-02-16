@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/api/v1';
+// eslint-disable-next-line no-undef
+const { REACT_APP_API_KEY } = process.env;
+
+const baseUrl = `${REACT_APP_API_KEY}/api/v1`;
 
 axios.interceptors.request.use(
   (config) => {
