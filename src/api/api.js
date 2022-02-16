@@ -73,6 +73,9 @@ const api = {
   addAppointment: (body) => {
     return axios.post(`${baseUrl}/appointments`, body);
   },
+  AddAppointmentByEmployee: (body) => {
+    return axios.post(`${baseUrl}/employees/appointments`, body);
+  },
   availableDates: (Employees, ServiceDuration, StartDate, EndDate) => {
     return axios.get(`${baseUrl}/appointments/available-dates`, {
       params: {

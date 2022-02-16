@@ -53,7 +53,7 @@ const Services = ({ classes }) => {
         <Snackbar open={isShowAlert} autoHideDuration={6000} onClose={handleAlert}>
           <Slide direction="up" in={isShowAlert} mountOnEnter unmountOnExit>
             <Alert severity="error" onClose={handleAlert}>
-              {CheckRoles('Admin') || CheckRoles('Employee') ? (
+              {CheckRoles('Admin') ? (
                 <Typography>Only user can make appointment!</Typography>
               ) : (
                 <Typography>Log in to make an appointment</Typography>
@@ -100,7 +100,7 @@ const Services = ({ classes }) => {
                         </Typography>
                         <Button
                           onClick={
-                            isLoggedIn && !CheckRoles('Admin') & !CheckRoles('Employee')
+                            isLoggedIn && !CheckRoles('Admin')
                               ? () => {
                                   handleOpenModal();
                                   handleSelectService(serviceDetail);

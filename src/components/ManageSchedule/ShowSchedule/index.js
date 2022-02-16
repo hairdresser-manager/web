@@ -66,7 +66,7 @@ const ShowSchedule = ({ classes, setManageSchedule, employeeId, isSpecificEmploy
     <>
       {isError ? (
         <MuiAlert className={classes.alert} elevation={6} variant="filled" severity="error">
-          {errorMessage}
+          {errorMessage || 'something gone wrong'}
         </MuiAlert>
       ) : (
         <div className={classes.container}>

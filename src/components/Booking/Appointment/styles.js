@@ -56,12 +56,13 @@ const styles = (theme) => ({
     alignItems: 'center',
     flex: 0.5,
     width: '50%',
+    flexDirection: 'column',
   },
   menuPaper: {
     maxHeight: 250,
   },
   button: {
-    marginLeft: 15,
+    margin: '15px 0',
   },
   alert: {
     width: '50%',

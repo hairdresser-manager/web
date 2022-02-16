@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { clearState as clearAvailableDatesState } from 'slices/AvailableDatesSlice';
 import { clearState as clearUserAppointmentState } from 'slices/UserAppointmentSlice';
+import { clearState as clearAddAppointmentEmployeeState } from 'slices/AddAppointmentEmployeeSlice';
 import { isOpenAppointmentsModal } from 'slices/ModalsSlice';
 import { withStyles, Dialog, CircularProgress } from '@material-ui/core';
 import styles from './styles';
@@ -22,6 +23,7 @@ const BookingModal = ({ classes }) => {
     dispatch(clearAvailableDatesState());
     dispatch(isOpenAppointmentsModal());
     dispatch(clearUserAppointmentState());
+    dispatch(clearAddAppointmentEmployeeState());
   };
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
