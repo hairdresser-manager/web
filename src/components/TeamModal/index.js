@@ -23,6 +23,7 @@ const TeamModal = ({ classes }) => {
   };
   const isModalOpen = useSelector((state) => state.ModalsSlice.TeamModal.isModalOpen);
   const TeamDetails = useSelector((state) => state.ModalsSlice.TeamModalDetails);
+
   return (
     <>
       {TeamDetails ? (
@@ -47,8 +48,7 @@ const TeamModal = ({ classes }) => {
             <Typography>About me: {TeamDetails.description}</Typography>
 
             <Box mt={3}>
-              <Typography variant="h6">The latest reviews:</Typography>
-              <Reviews />
+              <Reviews employeeId={TeamDetails.employeeId} />
             </Box>
           </DialogContent>
         </Dialog>

@@ -14,6 +14,23 @@ export const Reviews = createAsyncThunk('ReviewsSlices/Reviews', async (thunkAPI
   }
 });
 
+export const employeeReviews = createAsyncThunk(
+  'ReviewsSlices/employeeReviews',
+  async ({ employeeId }, thunkAPI) => {
+    console.log({ employeeId });
+    try {
+      let res;
+      res = await api.employeeReviews(employeeId);
+      return {
+        ...res.data,
+        employeeReviews: [...res.data],
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.errors);
+    }
+  }
+);
+
 export const addReview = createAsyncThunk(
   'ReviewsSlices/addReview',
   async ({ appointmentId, rate, description }, thunkAPI) => {
@@ -38,6 +55,7 @@ export const ReviewsSlice = createSlice({
     isError: false,
     errorMessage: '',
     reviews: [],
+    employeeReviews: [],
   },
   reducers: {
     clearState: (state) => {
@@ -74,6 +92,21 @@ export const ReviewsSlice = createSlice({
       state.isError = true;
       state.isLoading = false;
       state.errorMessage = payload;
+    },
+    [employeeReviews.pending]: (state) => {
+      state.isLoading = true;
+      state.errorMessage = '';
+    },
+    [employeeReviews.fulfilled]: (state, { payload }) => {
+      state.employeeReviews = payload.employeeReviews;
+      state.isSuccess = true;
+      state.isLoading = false;
+    },
+    [employeeReviews.rejected]: (state, { payload }) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.errorMessage = payload;
+      state.employeeReviews = [];
     },
   },
 });
