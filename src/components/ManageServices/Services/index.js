@@ -155,7 +155,11 @@ const Services = ({ classes, isEdit, setOpen, setService, setIsAddEmployee }) =>
                           <div className={classes.rightBox}>
                             <AccessTimeIcon fontSize="small" />
                             <Typography style={{ marginRight: 15 }} variant="subtitle1">
-                              {serviceDetail.minimumTime} - {serviceDetail.maximumTime}min
+                              {serviceDetail.minimumTime === serviceDetail.maximumTime
+                                ? serviceDetail.maximumTime + `min`
+                                : `${serviceDetail.minimumTime}` +
+                                  `-` +
+                                  `${serviceDetail.maximumTime}min`}
                             </Typography>
                             <Typography style={{ marginRight: 15 }} variant="subtitle1">
                               ${serviceDetail.price}+
