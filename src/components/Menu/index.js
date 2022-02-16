@@ -86,13 +86,6 @@ const Menu = ({ classes }) => {
                     </ListItem>
                   </Link>
                   <Divider />
-                  <Link underline="none" color="inherit" href="/profile/new-appointment">
-                    <ListItem button>
-                      <AddBoxIcon />
-                      <ListItemText>New Appointment</ListItemText>
-                    </ListItem>
-                  </Link>
-                  <Divider />
                 </>
               )}
               <Link underline="none" color="inherit" href="/profile/change-password">
