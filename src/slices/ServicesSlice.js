@@ -166,6 +166,7 @@ export const ServicesSlice = createSlice({
     },
     [AddService.pending]: (state) => {
       state.isLoading = true;
+      state.isAddSuccess = false;
       state.errorMessage = '';
     },
     [AddService.fulfilled]: (state) => {
