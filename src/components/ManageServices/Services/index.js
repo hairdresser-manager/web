@@ -22,6 +22,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { useForm, Controller } from 'react-hook-form';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 export function stopPropagate(callback) {
   return (e) => {
@@ -148,7 +149,13 @@ const Services = ({ classes, isEdit, setOpen, setService, setIsAddEmployee }) =>
                             <Typography variant="subtitle2">{serviceDetail.description}</Typography>
                           </div>
                           <div className={classes.rightBox}>
-                            <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
+                            <AccessTimeIcon fontSize="small" />
+                            <Typography style={{ marginRight: 15 }} variant="subtitle1">
+                              {serviceDetail.minimumTime} - {serviceDetail.maximumTime}min
+                            </Typography>
+                            <Typography style={{ marginRight: 15 }} variant="subtitle1">
+                              ${serviceDetail.price}+
+                            </Typography>
                             <>
                               <Button
                                 className={classes.buttonStyle}

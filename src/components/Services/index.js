@@ -21,6 +21,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Alert from '@material-ui/lab/Alert';
 import styles from './styles';
 import { CheckRoles } from 'helpers/CheckRoles';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 const Services = ({ classes }) => {
   const [isShowAlert, setIsShowAlert] = useState(false);
@@ -86,7 +87,13 @@ const Services = ({ classes }) => {
                         <Typography variant="subtitle2">{serviceDetail.description}</Typography>
                       </div>
                       <div className={classes.rightBox}>
-                        <Typography variant="subtitle1">${serviceDetail.price}+</Typography>
+                        <AccessTimeIcon fontSize="small" />
+                        <Typography style={{ marginRight: 15 }} variant="subtitle1">
+                          {serviceDetail.minimumTime} - {serviceDetail.maximumTime}min
+                        </Typography>
+                        <Typography style={{ marginRight: 15 }} variant="subtitle1">
+                          ${serviceDetail.price}+
+                        </Typography>
                         <Button
                           onClick={
                             isLoggedIn && !CheckRoles('Admin') & !CheckRoles('Employee')
