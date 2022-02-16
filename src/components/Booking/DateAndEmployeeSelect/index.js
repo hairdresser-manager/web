@@ -53,8 +53,6 @@ const DateAndEmployeeSelect = ({ classes }) => {
     dispatch(AvailableDates(newData));
   };
 
-  console.log(employeeIds);
-
   return (
     <div className={classes.container}>
       <div className={classes.header}>

@@ -17,7 +17,6 @@ export const Reviews = createAsyncThunk('ReviewsSlices/Reviews', async (thunkAPI
 export const employeeReviews = createAsyncThunk(
   'ReviewsSlices/employeeReviews',
   async ({ employeeId }, thunkAPI) => {
-    console.log({ employeeId });
     try {
       let res;
       res = await api.employeeReviews(employeeId);
