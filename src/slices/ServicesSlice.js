@@ -134,6 +134,9 @@ export const ServicesSlice = createSlice({
     selectservice: (state, data) => {
       state.selectService = data.payload;
     },
+    clearAddEmployeeToService: (state) => {
+      state.isAddEmployeeSuccess = false;
+    },
   },
   extraReducers: {
     [Services.pending]: (state) => {
@@ -209,6 +212,11 @@ export const ServicesSlice = createSlice({
   },
 });
 
-export const { clearState, selectservice, clearError } = ServicesSlice.actions;
+export const {
+  clearState,
+  selectservice,
+  clearError,
+  clearAddEmployeeToService,
+} = ServicesSlice.actions;
 
 export default ServicesSlice.reducer;

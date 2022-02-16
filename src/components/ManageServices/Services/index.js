@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { clearError, Services as GetServices } from 'slices/ServicesSlice';
+import {
+  clearError,
+  Services as GetServices,
+  clearAddEmployeeToService,
+} from 'slices/ServicesSlice';
 import { ServicesCategories, ChangeServicesCategory } from 'slices/ServicesCategoriesSlice';
 import {
   Typography,
@@ -164,6 +168,7 @@ const Services = ({ classes, isEdit, setOpen, setService, setIsAddEmployee }) =>
                                   setService(serviceDetail),
                                   setIsAddEmployee(true),
                                   dispatch(clearError()),
+                                  dispatch(clearAddEmployeeToService()),
                                 ]}
                                 color="secondary"
                                 variant="contained"
