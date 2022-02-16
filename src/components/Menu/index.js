@@ -12,7 +12,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import styles from './styles';
 import { useHistory } from 'react-router';
 import SubjectIcon from '@material-ui/icons/Subject';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 
 const Menu = ({ classes }) => {
   const userName = localStorage.getItem('firstName');
